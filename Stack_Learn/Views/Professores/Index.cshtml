@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Stack_Learn.Models.Professor>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            font-family: 'Jost';
+        }
+
+        th, td {
+            font-family: 'Jost';
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        td {
+            height: 40px;
+        }
+
+        .nome {
+            width: 80px;
+        }
+
+        .btn {
+            margin-top: 40px;
+        }
+
+        a {
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+            background-color: #70D7C7;
+            color: black;
+            text-decoration: none;
+            transition-duration: 0.3s;
+            border: solid 2px;
+            border-image: linear-gradient(#70D7C7, #FFCB34);
+        }
+
+            a:hover {
+                background-color: #FFCC36;
+            }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="btn">
+        @Html.ActionLink("Categorias", "Index", "Categorias")
+    </div>
+    <div class="btn">
+        @Html.ActionLink("Cursos", "Index", "Cursos")
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Senha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CEP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProfessorId })
+                    @Html.ActionLink("Details", "Details", new { id = item.ProfessorId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProfessorId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

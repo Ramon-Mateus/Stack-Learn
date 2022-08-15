@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Stack_Learn.Models.Curso>
+﻿@model IEnumerable<Stack_Learn.Models.Categoria>
 
 @{
     Layout = null;
@@ -54,59 +54,33 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Criar novo curso", "Create")
+        @Html.ActionLink("Create New", "Create")
     </p>
     <div class="btn">
         @Html.ActionLink("Professores", "Index", "Professores")
     </div>
     <div class="btn">
-        @Html.ActionLink("Categorias", "Index", "Categorias")
+        @Html.ActionLink("Cursos", "Index", "Cursos")
     </div>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Qtd_Aulas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>Categoria</th>
-            <th>Professor</th>
         </tr>
 
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qtd_Aulas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Professor.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.CursoId })
-            @Html.ActionLink("Details", "Details", new { id = item.CursoId })
-            @Html.ActionLink("Delete", "Delete", new { id = item.CursoId })
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoriaId })
+                    @Html.ActionLink("Details", "Details", new { id = item.CategoriaId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoriaId })
+                </td>
+            </tr>
         }
 
     </table>

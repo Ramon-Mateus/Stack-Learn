@@ -1,0 +1,90 @@
+﻿@model Stack_Learn.Models.Categoria
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            font-family: 'Jost';
+        }
+
+        th, td {
+            font-family: 'Jost';
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        td {
+            height: 40px;
+        }
+
+        .nome {
+            width: 80px;
+        }
+
+        .btn {
+            margin-top: 40px;
+        }
+
+        a {
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+            background-color: #70D7C7;
+            color: black;
+            text-decoration: none;
+            transition-duration: 0.3s;
+        }
+
+            a:hover {
+                background-color: #FFCC36;
+            }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar categoria</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Categoria</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CategoriaId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="btn">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

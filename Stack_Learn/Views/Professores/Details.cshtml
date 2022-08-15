@@ -1,4 +1,4 @@
-﻿@model Stack_Learn.Models.Curso
+﻿@model Stack_Learn.Models.Professor
 
 @{
     Layout = null;
@@ -54,9 +54,17 @@
 </head>
 <body>
     <div>
-        <h4>Curso</h4>
+        <h4>Professor</h4>
         <hr />
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CPF)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CPF)
+            </dd>
+    
             <dt>
                 @Html.DisplayNameFor(model => model.Nome)
             </dt>
@@ -66,49 +74,49 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Descricao)
+                @Html.DisplayNameFor(model => model.Email)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Descricao)
+                @Html.DisplayFor(model => model.Email)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Qtd_Aulas)
+                @Html.DisplayNameFor(model => model.Login)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Qtd_Aulas)
+                @Html.DisplayFor(model => model.Login)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Preco)
+                @Html.DisplayNameFor(model => model.Senha)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Preco)
+                @Html.DisplayFor(model => model.Senha)
             </dd>
     
             <dt>
-                Categoria
+                @Html.DisplayNameFor(model => model.CEP)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Categoria.Nome)
+                @Html.DisplayFor(model => model.CEP)
             </dd>
     
             <dt>
-                Professor
+                @Html.DisplayNameFor(model => model.Endereco)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Professor.Nome)
+                @Html.DisplayFor(model => model.Endereco)
             </dd>
     
         </dl>
     </div>
     <p class="btn">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.CursoId }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProfessorId }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

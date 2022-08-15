@@ -1,4 +1,4 @@
-﻿@model Stack_Learn.Models.Curso
+﻿@model Stack_Learn.Models.Categoria
 
 @{
     Layout = null;
@@ -50,65 +50,24 @@
             }
     </style>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Detalhes de categoria</title>
 </head>
 <body>
     <div>
-        <h4>Curso</h4>
+        <h4>Categoria</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Nome)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Nome)
             </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Descricao)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Qtd_Aulas)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Qtd_Aulas)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Preco)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Preco)
-            </dd>
-    
-            <dt>
-                Categoria
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Categoria.Nome)
-            </dd>
-    
-            <dt>
-                Professor
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Professor.Nome)
-            </dd>
-    
         </dl>
     </div>
     <p class="btn">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.CursoId }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoriaId }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

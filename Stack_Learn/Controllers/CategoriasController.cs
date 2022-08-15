@@ -10,7 +10,7 @@ using Stack_Learn.Models;
 
 namespace Stack_Learn.Controllers
 {
-    public class CursosController : Controller
+    public class CategoriasController : Controller
     {
 
         private EFContext context = new EFContext();
@@ -18,21 +18,19 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Index()
         {
-            return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
+            return View(context.Categorias.OrderBy(c => c.Nome));
         }
 
         public ActionResult Create()
         {
-            ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome),"CategoriaId", "Nome");
-            ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome),"ProfessorId", "Nome");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Curso curso)
+        public ActionResult Create(Categoria categoria)
         {
-            context.Cursos.Add(curso);
+            context.Categorias.Add(categoria);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -43,27 +41,25 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Find(id);
-            if (curso == null)
+            Categoria categoria = context.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId","Nome", curso.CategoriaId);
-            ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome), "ProfessorId","Nome", curso.ProfessorId);
-            return View(curso);
+            return View(categoria);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Curso curso)
+        public ActionResult Edit(Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(curso).State = EntityState.Modified;
+                context.Entry(categoria).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(categoria);
         }
 
         public ActionResult Details(long? id)
@@ -72,12 +68,12 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Categoria categoria = context.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(categoria);
         }
 
         public ActionResult Delete(long? id)
@@ -86,23 +82,24 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Categoria categoria = context.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(categoria);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Curso curso = context.Cursos.Find(id);
-            context.Cursos.Remove(curso);
+            Categoria categoria = context.Categorias.Find(id);
+            context.Categorias.Remove(categoria);
             context.SaveChanges();
-            TempData["Message"] = "Categoria " + curso.Nome.ToUpper() + " foi removida";
+            TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
             return RedirectToAction("Index");
         }
     }
 }
+
