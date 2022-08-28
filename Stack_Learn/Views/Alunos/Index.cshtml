@@ -10,6 +10,12 @@
         @TempData["Message"]
     </div>
 }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
+</head>
 <div class="panel panel-primary">
     <div class="panel-heading">
         Relação de Alunos registrados
@@ -55,7 +61,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Assinatura)
                         </td>
-                        <td>
+                        <td class="crud">
                             @Html.ActionLink("Alterar", "Edit", new { id = item.AlunoId })
                             @Html.ActionLink("Detalhes", "Details", new { id = item.AlunoId })
                             @Html.ActionLink("Eliminar", "Delete", new { id = item.AlunoId })
@@ -66,7 +72,7 @@
         </table>
     </div>
     <div class="panel-footer panel-info">
-        @Html.ActionLink("Registrar um novo aluno", "Create", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Registrar um novo aluno", "Create", null, new { @class = "btn btn-white" })
     </div>
 </div>
 @section styles{

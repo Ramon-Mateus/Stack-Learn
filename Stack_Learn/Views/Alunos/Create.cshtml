@@ -3,6 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Aluno";
 }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
+</head>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

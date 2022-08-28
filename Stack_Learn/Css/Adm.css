@@ -1,0 +1,63 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Nunito:wght@400;700&display=swap');
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 110%;
+    font-family: 'Nunito', sans-serif;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.panel-primary {
+    border-color: #ddd;
+    font-family: 'Jost',sans-serif;
+}
+.panel-primary > .panel-heading {
+    background-color: #70D7C7;
+    border-color: #70D7C7;
+    color: black;
+}
+.panel-footer {
+    background-color: #70D7C7;
+}
+.btn-white {
+    background-color: white;
+    color: black;
+    transition: 300ms;
+    font-family: 'Jost',sans-serif;
+}
+    .btn-white:hover {
+        background-color: #FECC36;
+    }
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #FECC36;
+    border-color: #FECC36;
+}
+.crud > a {
+    margin-left: 5px;
+    text-decoration: none;
+}
+    .crud > a:hover {
+        text-decoration: none;
+        color: #FECC36;
+    }
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #70D7C7;
+    font-family: 'Jost',sans-serif;
+}
+
+.btn-white300 > li {
+    background-color: #eee;
+    transition: 300ms;
+    font-family: 'Jost',sans-serif;
+}
+
+.nav > li > a:hover{
+    background-color: #FECC36;
+    color: black;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 0;
+}

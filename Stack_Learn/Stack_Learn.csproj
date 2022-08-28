@@ -152,8 +152,11 @@
     <Content Include="Content\DataTables-1.10.2\swf\copy_csv_xls.swf" />
     <Content Include="Content\DataTables-1.10.2\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\Site.css" />
+    <Content Include="Css\Adm.css" />
+    <Content Include="Css\LayAdm.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\admfoto.svg" />
     <Content Include="img\logo2.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -246,7 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
