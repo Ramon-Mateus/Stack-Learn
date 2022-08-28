@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Stack_Learn",
-    "\\Stack_Learn\\Controllers",
-    "\\Stack_Learn\\Views",
-    "\\Stack_Learn\\Views\\Cursos",
-    "\\Stack_Learn\\Views\\Professores"
+    ""
   ],
-  "SelectedNode": "\\Stack_Learn\\Views\\Cursos\\Details.cshtml",
+  "SelectedNode": "\\Stack_Learn.sln",
   "PreviewInSolutionExplorer": false
 }
