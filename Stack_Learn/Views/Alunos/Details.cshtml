@@ -1,0 +1,81 @@
+﻿@model Stack_Learn.Models.Aluno
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalhes de Aluno";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Detalhes do Aluno
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Nome, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+            @Html.LabelFor(model => model.CPF)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.CPF, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+            @Html.LabelFor(model => model.Login)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Login, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+            @Html.LabelFor(model => model.Senha)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Senha, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+            @Html.LabelFor(model => model.Assinatura)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Assinatura, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.AlunoId },
+        new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar", "Index", null,
+        new { @class = "btn btn-info" })
+    </div>
+</div>

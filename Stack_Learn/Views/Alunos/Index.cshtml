@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Stack_Learn.Models.Aluno>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Alunos";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Relação de Alunos registrados
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CPF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Login)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Senha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Assinatura)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Senha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Assinatura)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Alterar", "Edit", new { id = item.AlunoId })
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.AlunoId })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.AlunoId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Registrar um novo aluno", "Create", null, new { @class = "btn btn-success" })
+    </div>
+</div>
+@section styles{
+    <link href="@Url.Content("~/content/DataTables-1.10.2/css/dataTables.bootstrap.css")" rel="stylesheet" />
+}
+@section ScriptPage{
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
+        });
+    </script>
+}

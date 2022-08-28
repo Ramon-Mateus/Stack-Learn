@@ -19,5 +19,6 @@ namespace Stack_Learn.Context
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Aluno> Alunos { get; set; }
     }
 }
