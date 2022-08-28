@@ -68,7 +68,8 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor categoria = context.Professores.Find(id);
+            Professor categoria = context.Professores.Where(f => f.ProfessorId == id).
+           Include("Cursos.Categoria").First();
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -97,7 +98,7 @@ namespace Stack_Learn.Controllers
             Professor categoria = context.Professores.Find(id);
             context.Professores.Remove(categoria);
             context.SaveChanges();
-            TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
+            TempData["Message"] = "Professor " + categoria.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }

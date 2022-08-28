@@ -68,7 +68,8 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = context.Categorias.Find(id);
+            Categoria categoria = context.Categorias.Where(f => f.CategoriaId == id).
+           Include("Cursos.Professor").First();
             if (categoria == null)
             {
                 return HttpNotFound();
