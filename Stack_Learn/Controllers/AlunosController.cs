@@ -96,7 +96,7 @@ namespace Stack_Learn.Controllers
             Aluno aluno = context.Alunos.Find(id);
             context.Alunos.Remove(aluno);
             context.SaveChanges();
-            TempData["Message"] = "Aluno " + aluno.Nome.ToUpper() + " foi removida";
+            TempData["Message"] = "Aluno(a) " + aluno.Nome.ToUpper() + " foi removido(a)";
             return RedirectToAction("Index");
         }
     }

@@ -87,8 +87,12 @@
     </div>
 }
 @section ScriptPage {
-    <script src="~/Scripts/jquery.validate.min.js">
-    </script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liAlunos').addClass("active");
+        });
     </script>
 }

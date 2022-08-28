@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Stack_Learn.Models.Categoria>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Categorias";
 }
 
 <!DOCTYPE html>
@@ -54,14 +55,8 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Criar nova categoria", "Create")
     </p>
-    <div class="btn">
-        @Html.ActionLink("Professores", "Index", "Professores")
-    </div>
-    <div class="btn">
-        @Html.ActionLink("Cursos", "Index", "Cursos")
-    </div>
     <table class="table">
         <tr>
             <th>

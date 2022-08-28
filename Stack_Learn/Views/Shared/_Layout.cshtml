@@ -20,10 +20,10 @@
             <div class="col-xs-3 col-md-3">
                 <ul class="nav nav-pills nav-stacked">
                     <li id="liHome" role="presentation" class="active"><a href="#">Home</a></li>
-                    <li id="liCategorias" role="presentation">@Html.ActionLink("Cursos", "Index", "Cursos")</li>
-                    <li id="liFabricantes" role="presentation">@Html.ActionLink("Alunos", "Index", "Alunos")</li>
-                    <li id="liCategorias" role="presentation">@Html.ActionLink("Professores", "Index", "Professores")</li>
-                    <li id="liFabricantes" role="presentation">@Html.ActionLink("Categorias", "Index", "Categorias")</li>
+                    <li id="liCursos" role="presentation">@Html.ActionLink("Cursos", "Index", "Cursos")</li>
+                    <li id="liAlunos" role="presentation">@Html.ActionLink("Alunos", "Index", "Alunos")</li>
+                    <li id="liProfessores" role="presentation">@Html.ActionLink("Professores", "Index", "Professores")</li>
+                    <li id="liCategorias" role="presentation">@Html.ActionLink("Categorias", "Index", "Categorias")</li>
                 </ul>
             </div>
             <div class="col-xs-9 col-md-9">
@@ -39,12 +39,6 @@
     </div>
     <script src="@Url.Content("~/scripts/jquery-1.9.1.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('li').removeClass("active");
-            $('#liFabricantes').addClass("active");
-        });
-    </script>
     @RenderSection("styles", false)
     @RenderSection("ScriptPage", false);
 </body>
