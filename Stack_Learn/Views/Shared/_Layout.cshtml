@@ -7,6 +7,7 @@
     <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
 </head>
 <body>
+
     <div class="container">
         <div class="row">
             <div class="page-header">
@@ -18,19 +19,11 @@
         <div class="row">
             <div class="col-xs-3 col-md-3">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
-                    <li role="presentation">
-                        @Html.ActionLink("Cursos", "Index", "Cursos")
-                    </li>
-                    <li role="presentation">
-                        @Html.ActionLink("Alunos", "Index", "Alunos")
-                    </li>
-                    <li role="presentation">
-                        @Html.ActionLink("Professores", "Index", "Professores")
-                    </li>
-                    <li role="presentation">
-                        @Html.ActionLink("Categorias", "Index", "Categorias")
-                    </li>
+                    <li id="liHome" role="presentation" class="active"><a href="#">Home</a></li>
+                    <li id="liCategorias" role="presentation">@Html.ActionLink("Cursos", "Index", "Cursos")</li>
+                    <li id="liFabricantes" role="presentation">@Html.ActionLink("Alunos", "Index", "Alunos")</li>
+                    <li id="liCategorias" role="presentation">@Html.ActionLink("Professores", "Index", "Professores")</li>
+                    <li id="liFabricantes" role="presentation">@Html.ActionLink("Categorias", "Index", "Categorias")</li>
                 </ul>
             </div>
             <div class="col-xs-9 col-md-9">
@@ -46,7 +39,13 @@
     </div>
     <script src="@Url.Content("~/scripts/jquery-1.9.1.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
-    @RenderSection("styles",false) 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liFabricantes').addClass("active");
+        });
+    </script>
+    @RenderSection("styles", false)
     @RenderSection("ScriptPage", false);
 </body>
 </html>

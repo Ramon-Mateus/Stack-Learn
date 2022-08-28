@@ -3,6 +3,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Alunos";
 }
+
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
 <div class="panel panel-primary">
     <div class="panel-heading">
         Relação de Alunos registrados
