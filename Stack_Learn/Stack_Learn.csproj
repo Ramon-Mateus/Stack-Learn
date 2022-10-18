@@ -202,6 +202,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\EFContext.cs" />
     <Compile Include="Controllers\AlunosController.cs" />
+    <Compile Include="Controllers\AulasController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ProfessoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
@@ -209,6 +210,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Aluno.cs" />
+    <Compile Include="Models\Aula.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Professor.cs" />
@@ -242,6 +244,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Cursos\_PorProfessores.cshtml" />
     <Content Include="Views\Cursos\_PorCategorias.cshtml" />
+    <Content Include="Views\Aulas\Index.cshtml" />
+    <Content Include="Views\Aulas\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

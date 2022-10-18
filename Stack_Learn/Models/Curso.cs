@@ -18,5 +18,7 @@ namespace Stack_Learn.Models
 
         public Categoria Categoria { get; set; }
         public Professor Professor { get; set; }
+
+        public virtual ICollection<Aula> Aulas { get; set; }
     }
 }
