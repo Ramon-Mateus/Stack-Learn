@@ -35,73 +35,71 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-        /*
+        
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Find(id);
-            if (curso == null)
+            Aula aula = context.Aulas.Find(id);
+            if (aula == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", curso.CategoriaId);
-            ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome), "ProfessorId", "Nome", curso.ProfessorId);
-            return View(curso);
+            ViewBag.CursoId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", aula.CursoId);
+            return View(aula);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Curso curso)
+        public ActionResult Edit(Aula aula)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(curso).State = EntityState.Modified;
+                context.Entry(aula).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(aula);
         }
-
+        
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).First();
+            if (aula == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(aula);
         }
-
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).First();
+            if (aula == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(aula);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Curso curso = context.Cursos.Find(id);
-            context.Cursos.Remove(curso);
+            Aula aula = context.Aulas.Find(id);
+            context.Aulas.Remove(aula);
             context.SaveChanges();
-            TempData["Message"] = "Curso " + curso.Nome.ToUpper() + " foi removido";
+            TempData["Message"] = "Aula " + aula.Titulo.ToUpper() + " foi removido";
             return RedirectToAction("Index");
-        }*/
+        }
     }
 }

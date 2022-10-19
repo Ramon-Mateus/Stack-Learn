@@ -246,6 +246,9 @@
     <Content Include="Views\Cursos\_PorCategorias.cshtml" />
     <Content Include="Views\Aulas\Index.cshtml" />
     <Content Include="Views\Aulas\Create.cshtml" />
+    <Content Include="Views\Aulas\Edit.cshtml" />
+    <Content Include="Views\Aulas\Details.cshtml" />
+    <Content Include="Views\Aulas\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

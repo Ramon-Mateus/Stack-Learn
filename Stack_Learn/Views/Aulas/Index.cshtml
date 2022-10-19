@@ -8,9 +8,13 @@
 <!DOCTYPE html>
 
 <html>
+
+<!--<title>Index</title>-->
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
 </head>
 <body>
     <p>
@@ -32,29 +36,47 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Curso.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ordem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duracao)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.AulaId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.AulaId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.AulaId })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ordem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duracao)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.AulaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.AulaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.AulaId })
+                </td>
+            </tr>
+        }
+
     </table>
+        <div class="panel-footer panel-info">
+            @Html.ActionLink("Registrar um novo curso", "Create", null, new { @class = "btn btn-white" })
+        </div>
 </body>
 </html>
+@section styles{
+    <link href="@Url.Content("~/content/DataTables-1.10.2/css/dataTables.bootstrap.css")" rel="stylesheet" />
+}
+@section ScriptPage{
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.table').dataTable({ "order": [[1, "asc"]] });
+                $('li').removeClass("active");
+                $('#liAulas').addClass("active");
+            });
+    </script>
+}
