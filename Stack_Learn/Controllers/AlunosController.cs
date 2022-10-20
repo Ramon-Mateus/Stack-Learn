@@ -99,5 +99,19 @@ namespace Stack_Learn.Controllers
             TempData["Message"] = "Aluno(a) " + aluno.Nome.ToUpper() + " foi removido(a)";
             return RedirectToAction("Index");
         }
+
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastro(Aluno aluno)
+        {
+            context.Alunos.Add(aluno);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

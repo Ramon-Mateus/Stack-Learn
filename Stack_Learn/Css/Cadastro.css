@@ -1,0 +1,92 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+.body {
+    background-color: #454545;
+}
+
+.logo {
+    margin: 0 auto;
+    height: 64px;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    background-color: #70D7C7;
+    align-items: center;
+
+}
+.formgroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin: 0 auto;
+    color: white;
+
+}
+
+.cadastro-area {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 8px 32px;
+}
+
+
+
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.art {
+    background-color: white;
+    width: 100%;
+    right: 0;
+    top: 0;
+}
+
+.title {
+    color: white;
+    margin-top: 16px;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.cadastrotitle {
+    margin: 0 auto;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.button {
+    margin-top: 8px;
+    height: 48px;
+    width: 220px;
+    align-self: center;
+    align-items: center;
+   
+}
+
+    .button a {
+        text-decoration: none;
+        color: white;
+    }
+
+.background-purple {
+    background-color: #715AFF;
+}
+
+.mg-2 {
+    margin-right: 16px;
+}
+
+.size-editor {
+    width: 280px;
+}

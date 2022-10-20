@@ -153,10 +153,14 @@
     <Content Include="Content\DataTables-1.10.2\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\Adm.css" />
+    <Content Include="Css\Cadastro.css" />
     <Content Include="Css\LayAdm.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\admfoto.svg" />
+    <Content Include="img\ART %281%29.png" />
+    <Content Include="img\ART.png" />
+    <Content Include="img\HandsClapping.svg" />
     <Content Include="img\logo2.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -169,6 +173,7 @@
     <Content Include="Content\DataTables-1.10.2\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.2\css\dataTables.jqueryui.scss" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="img\part time student.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables-1.10.2\dataTables.autoFill.js" />
@@ -249,6 +254,7 @@
     <Content Include="Views\Aulas\Edit.cshtml" />
     <Content Include="Views\Aulas\Details.cshtml" />
     <Content Include="Views\Aulas\Delete.cshtml" />
+    <Content Include="Views\Alunos\Cadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
