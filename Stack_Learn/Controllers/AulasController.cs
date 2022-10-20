@@ -47,7 +47,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CursoId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", aula.CursoId);
+            ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome", aula.CursoId);
             return View(aula);
         }
         
