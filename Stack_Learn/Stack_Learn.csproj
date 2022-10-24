@@ -255,6 +255,7 @@
     <Content Include="Views\Aulas\Details.cshtml" />
     <Content Include="Views\Aulas\Delete.cshtml" />
     <Content Include="Views\Alunos\Cadastro.cshtml" />
+    <Content Include="Views\Professores\Cadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

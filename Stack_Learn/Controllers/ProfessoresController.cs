@@ -35,6 +35,20 @@ namespace Stack_Learn.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastro(Professor professor)
+        {
+            context.Alunos.Add(professor);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Edit(long? id)
         {
             if (id == null)
