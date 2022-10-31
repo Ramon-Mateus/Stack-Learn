@@ -210,6 +210,7 @@
     <Compile Include="Controllers\AulasController.cs" />
     <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ConclusoesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\ProfessoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\Aula.cs" />
     <Compile Include="Models\Avaliacao.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Conclusao.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Professor.cs" />
@@ -271,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Conclusoes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

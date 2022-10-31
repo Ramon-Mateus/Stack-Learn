@@ -23,5 +23,6 @@ namespace Stack_Learn.Context
         public DbSet<Aula> Aulas { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Conclusao> Conclusoes { get; set; }
     }
 }
