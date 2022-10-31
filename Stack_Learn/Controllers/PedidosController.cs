@@ -1,50 +1,35 @@
-﻿using System;
+﻿using Stack_Learn.Context;
+using Stack_Learn.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Stack_Learn.Context;
-using Stack_Learn.Models;
 
 namespace Stack_Learn.Controllers
 {
-    public class ProfessoresController : Controller
+    public class PedidosController : Controller
     {
-
         private EFContext context = new EFContext();
 
-        
+
         public ActionResult Index()
         {
-            return View(context.Professores.OrderBy(c => c.Nome));
+            return View(context.Pedidos.OrderBy(c => c.PedidoId));
         }
 
         public ActionResult Create()
         {
             return View();
         }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Professor professor)
-        {
-            context.Professores.Add(professor);
-            context.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Cadastro()
-        {
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastro(Professor professor)
+        public ActionResult Create(Pedido pedido)
         {
-            context.Professores.Add(professor);
+            context.Pedidos.Add(pedido);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -55,25 +40,25 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor professor = context.Professores.Find(id);
-            if (professor == null)
+            Pedido pedido = context.Pedidos.Find(id);
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(professor);
+            return View(pedido);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Professor professor)
+        public ActionResult Edit(Pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(professor).State = EntityState.Modified;
+                context.Entry(pedido).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(professor);
+            return View(pedido);
         }
 
         public ActionResult Details(long? id)
@@ -82,13 +67,12 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor professor = context.Professores.Where(f => f.ProfessorId == id).
-           Include("Cursos.Categoria").First();
-            if (professor == null)
+            Pedido pedido = context.Pedidos.Where(f => f.PedidoId == id).First();
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(professor);
+            return View(pedido);
         }
 
         public ActionResult Delete(long? id)
@@ -97,22 +81,22 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor professor = context.Professores.Find(id);
-            if (professor == null)
+            Pedido pedido = context.Pedidos.Find(id);
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(professor);
+            return View(pedido);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Professor professor = context.Professores.Find(id);
-            context.Professores.Remove(professor);
+            Pedido pedido = context.Pedidos.Find(id);
+            context.Pedidos.Remove(pedido);
             context.SaveChanges();
-            TempData["Message"] = "Professor " + professor.Nome.ToUpper() + " foi removido";
+            TempData["Message"] = "Pedidos " + pedido.PedidoId + " foi removido";
             return RedirectToAction("Index");
         }
     }

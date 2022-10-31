@@ -208,7 +208,9 @@
     <Compile Include="Context\EFContext.cs" />
     <Compile Include="Controllers\AlunosController.cs" />
     <Compile Include="Controllers\AulasController.cs" />
+    <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\ProfessoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,8 +218,10 @@
     </Compile>
     <Compile Include="Models\Aluno.cs" />
     <Compile Include="Models\Aula.cs" />
+    <Compile Include="Models\Avaliacao.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,6 +260,8 @@
     <Content Include="Views\Aulas\Delete.cshtml" />
     <Content Include="Views\Alunos\Cadastro.cshtml" />
     <Content Include="Views\Professores\Cadastro.cshtml" />
+    <Content Include="Views\Avaliacoes\Index.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
