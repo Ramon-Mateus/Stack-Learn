@@ -1,5 +1,5 @@
 ﻿using Stack_Learn.Context;
-using Stack_Learn.Models;
+using Modelos.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

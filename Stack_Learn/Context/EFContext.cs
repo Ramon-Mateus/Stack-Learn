@@ -4,8 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 //using System.Data.Entity;
-using Stack_Learn.Context;
-using Stack_Learn.Models;
+using Modelos.Models;
 
 namespace Stack_Learn.Context
 {

@@ -217,14 +217,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Aluno.cs" />
-    <Compile Include="Models\Aula.cs" />
-    <Compile Include="Models\Avaliacao.cs" />
-    <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\Conclusao.cs" />
-    <Compile Include="Models\Curso.cs" />
-    <Compile Include="Models\Pedido.cs" />
-    <Compile Include="Models\Professor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +266,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Conclusoes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modelos\Modelos.csproj">
+      <Project>{d2b50efa-89d6-4a0a-9a17-b72ce77da0df}</Project>
+      <Name>Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
