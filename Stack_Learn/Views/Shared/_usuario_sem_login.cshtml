@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
           charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Css/LayAdm.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet"/>
 </head>
 <body>
 
@@ -13,7 +14,7 @@
         <div class="row">
             <div class="page-header">
                 <figure>
-                    <img src="~/img/logo2.svg" />
+                    <a href="/Home/PaginaInicial"><img src="~/img/logo2.svg" /></a>
                 </figure>
                 <figure>
                     <img src="~/img/admfoto.svg" class="user"/>
@@ -23,11 +24,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <ul class="nav nav-pills btn-white300">
-                    <li id="liHome" role="presentation"> @Html.ActionLink("Home", "PaginaInicial", "Home")</li>
                     <li id="liCursos" role="presentation">@Html.ActionLink("Cursos", "Index", "Cursos")</li>
-                    <li id="liAlunos" role="presentation">@Html.ActionLink("Alunos", "Index", "Alunos")</li>
-                    <li id="liProfessores" role="presentation">@Html.ActionLink("Professores", "Index", "Professores")</li>
-                    <li id="liCategorias" role="presentation">@Html.ActionLink("Categorias", "Index", "Categorias")</li>
                     <li id="liAulas" role="presentation">@Html.ActionLink("Aulas", "Index", "Aulas")</li>
                 </ul>
             </div>

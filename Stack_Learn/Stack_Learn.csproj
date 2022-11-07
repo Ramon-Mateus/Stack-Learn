@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ConclusoesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\ProfessoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
@@ -256,6 +257,8 @@
     <Content Include="Views\Professores\Cadastro.cshtml" />
     <Content Include="Views\Avaliacoes\Index.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Home\PaginaInicial.cshtml" />
+    <Content Include="Views\Shared\_usuario_sem_login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
