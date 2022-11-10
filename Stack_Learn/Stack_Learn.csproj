@@ -208,17 +208,16 @@
     <Compile Include="Context\EFContext.cs" />
     <Compile Include="Controllers\AlunosController.cs" />
     <Compile Include="Controllers\AulasController.cs" />
+    <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ConclusoesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\ProfessoresController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Aluno.cs" />
-    <Compile Include="Models\Aula.cs" />
-    <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\Curso.cs" />
-    <Compile Include="Models\Professor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +254,11 @@
     <Content Include="Views\Aulas\Details.cshtml" />
     <Content Include="Views\Aulas\Delete.cshtml" />
     <Content Include="Views\Alunos\Cadastro.cshtml" />
+    <Content Include="Views\Professores\Cadastro.cshtml" />
+    <Content Include="Views\Avaliacoes\Index.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Home\PaginaInicial.cshtml" />
+    <Content Include="Views\Shared\_usuario_sem_login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,6 +268,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Conclusoes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modelos\Modelos.csproj">
+      <Project>{d2b50efa-89d6-4a0a-9a17-b72ce77da0df}</Project>
+      <Name>Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

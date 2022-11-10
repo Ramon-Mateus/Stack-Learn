@@ -6,7 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Stack_Learn.Context;
-using Stack_Learn.Models;
+using Modelos.Models;
 
 namespace Stack_Learn.Controllers
 {
@@ -35,31 +35,45 @@ namespace Stack_Learn.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastro(Professor professor)
+        {
+            context.Professores.Add(professor);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor categoria = context.Professores.Find(id);
-            if (categoria == null)
+            Professor professor = context.Professores.Find(id);
+            if (professor == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(professor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Professor categoria)
+        public ActionResult Edit(Professor professor)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(categoria).State = EntityState.Modified;
+                context.Entry(professor).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(categoria);
+            return View(professor);
         }
 
         public ActionResult Details(long? id)
@@ -68,13 +82,13 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor categoria = context.Professores.Where(f => f.ProfessorId == id).
+            Professor professor = context.Professores.Where(f => f.ProfessorId == id).
            Include("Cursos.Categoria").First();
-            if (categoria == null)
+            if (professor == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(professor);
         }
 
         public ActionResult Delete(long? id)
@@ -83,22 +97,22 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor categoria = context.Professores.Find(id);
-            if (categoria == null)
+            Professor professor = context.Professores.Find(id);
+            if (professor == null)
             {
                 return HttpNotFound();
             }
-            return View(categoria);
+            return View(professor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Professor categoria = context.Professores.Find(id);
-            context.Professores.Remove(categoria);
+            Professor professor = context.Professores.Find(id);
+            context.Professores.Remove(professor);
             context.SaveChanges();
-            TempData["Message"] = "Professor " + categoria.Nome.ToUpper() + " foi removido";
+            TempData["Message"] = "Professor " + professor.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }

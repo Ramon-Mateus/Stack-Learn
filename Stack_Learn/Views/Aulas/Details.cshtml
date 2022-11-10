@@ -1,56 +1,93 @@
-﻿@model Stack_Learn.Models.Aula
+﻿@model Modelos.Models.Aula
 
 @{
-    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalhes da Aula";
 }
-
-<!--<h2>Details</h2>-->
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
           charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
+    <style>
+        label {
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<div>
-    <h4>Aula</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Curso.Nome)
-        </dt>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Detalhes da Aula
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.Curso.Nome)
-        </dd>
+            @Html.LabelFor(model => model.Ordem)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-book"></i>
+                </span>
+                @Html.EditorFor(model => model.Ordem, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ordem)
-        </dt>
+            @Html.LabelFor(model => model.Titulo)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                </span>
+                @Html.EditorFor(model => model.Titulo, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ordem)
-        </dd>
+            @Html.LabelFor(model => model.Duracao)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                </span>
+                @Html.EditorFor(model => model.Duracao, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duracao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duracao)
-        </dd>
-
-    </dl>
+            @Html.LabelFor(model => model.Curso.Nome)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </span>
+                @Html.EditorFor(model => model.Curso.Nome, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
+            
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.AulaId },
+        new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar", "Index", null,
+        new { @class = "btn btn-info" })
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AulaId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liAulas').addClass("active");
+        });
+    </script>
+}

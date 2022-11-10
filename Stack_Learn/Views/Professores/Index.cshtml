@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Stack_Learn.Models.Professor>
+﻿@model IEnumerable<Modelos.Models.Professor>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Professores";
@@ -78,7 +78,7 @@
         </table>
     </div>
     <div class="panel-footer panel-info">
-        @Html.ActionLink("Registrar um novo professor", "Create", null, new { @class = "btn btn-white" })
+        @Html.ActionLink("Cadastro", "Cadastro", null, new { @class = "btn btn-white" })
     </div>
 </div>
 @section styles{

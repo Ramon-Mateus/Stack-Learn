@@ -1,71 +1,75 @@
-﻿@model IEnumerable<Stack_Learn.Models.Aula>
+﻿@model IEnumerable<Modelos.Models.Aula>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Aula";
 }
 
-<!DOCTYPE html>
-
-<html>
-
-<!--<title>Index</title>-->
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
           charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
 </head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Curso.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ordem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duracao)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Curso.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ordem)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titulo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duracao)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.AulaId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.AulaId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.AulaId })
-                </td>
-            </tr>
-        }
-
-    </table>
-        <div class="panel-footer panel-info">
-            @Html.ActionLink("Registrar um novo curso", "Create", null, new { @class = "btn btn-white" })
-        </div>
-</body>
-</html>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Relação de Aulas registradas
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Curso.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ordem)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titulo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duracao)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Curso.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ordem)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duracao)
+                        </td>
+                        <td class="crud">
+                            @Html.ActionLink("Alterar", "Edit", new { id = item.AulaId }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.AulaId }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.AulaId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Registrar uma nova aula", "Create", null, new { @class = "btn btn-white" })
+    </div>
+</div>
 @section styles{
     <link href="@Url.Content("~/content/DataTables-1.10.2/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
@@ -73,10 +77,10 @@
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
-            $(document).ready(function () {
-                $('.table').dataTable({ "order": [[1, "asc"]] });
-                $('li').removeClass("active");
-                $('#liAulas').addClass("active");
-            });
+        $(document).ready(function () {
+            $('.table').dataTable({ "order": [[1, "asc"]] });
+            $('li').removeClass("active");
+            $('#liAulas').addClass("active");
+        });
     </script>
 }

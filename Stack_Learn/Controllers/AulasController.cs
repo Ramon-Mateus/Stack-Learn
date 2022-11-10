@@ -6,7 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Stack_Learn.Context;
-using Stack_Learn.Models;
+using Modelos.Models;
 
 namespace Stack_Learn.Controllers
 {
@@ -47,7 +47,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CursoId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", aula.CursoId);
+            ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome", aula.CursoId);
             return View(aula);
         }
         

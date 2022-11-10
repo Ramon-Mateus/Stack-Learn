@@ -1,4 +1,4 @@
-﻿@model Stack_Learn.Models.Aluno
+﻿@model Modelos.Models.Aluno
 
 @{
     Layout = null;
@@ -83,27 +83,27 @@
 
                     <div class="form-group">
                         <div class="">
-                            <input type="submit" value="AGORA sou Aluno" class="btn btn-default button" />
+                            <input type="submit" value="Agora sou ALUNO" class="btn btn-default button strong" />
                         </div>
                     </div>
                 </div>
             }
-                <div class="btn btn-default button background-purple flex">
-                    <div>
-                        <figure>
-                            <img src="~/img/HandsClapping.svg" class="mg-2"/>
-                        </figure>
+                <div class="btn button background-purple hover-purple flex" id="btn-purple">
+                    <div class="flex align-center">
+                        <div>
+                            <figure>
+                                <img src="~/img/HandsClapping.svg" class="mg-2" />
+                            </figure>
+                        </div>
+                        <div>
+                            @Html.ActionLink("Quero Ser Professor", "../Professores/Cadastro")
+                        </div>
                     </div>
-                    <div>
-                        @Html.ActionLink("Quero Ser Professor", "Index")
-                    </div>
+                    
                     
                 </div>
         </div>
-        <div >
-            <figure >
-                <img src="~/img/ART.png" class="art"/>
-            </figure>
+        <div  class="art">
         </div>
     </div>
     

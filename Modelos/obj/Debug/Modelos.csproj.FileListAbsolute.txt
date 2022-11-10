@@ -1,0 +1,11 @@
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\bin\Debug\Modelos.dll
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\bin\Debug\Modelos.pdb
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.CoreCompileInputs.cache
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\obj\Debug\Modelos.dll
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\obj\Debug\Modelos.pdb
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\bin\Debug\Modelos.dll
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\bin\Debug\Modelos.pdb
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.AssemblyReference.cache
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.CoreCompileInputs.cache
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.dll
+C:\Users\pedro\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.pdb

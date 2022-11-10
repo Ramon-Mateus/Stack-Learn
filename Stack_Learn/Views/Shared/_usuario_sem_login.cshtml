@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet"/>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <figure>
+                    <a href="/Home/PaginaInicial"><img src="~/img/logo2.svg" /></a>
+                </figure>
+                <figure>
+                    <img src="~/img/admfoto.svg" class="user"/>
+                </figure>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <ul class="nav nav-pills btn-white300">
+                    <li id="liCursos" role="presentation">@Html.ActionLink("Cursos", "Index", "Cursos")</li>
+                    <li id="liAulas" role="presentation">@Html.ActionLink("Aulas", "Index", "Aulas")</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <br />
+                @RenderBody()
+            </div>
+        </div> <br />
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <small>Layout por StackLearn</small>
+            </div>
+        </div>
+    </div>
+    <script src="@Url.Content("~/scripts/jquery-1.9.1.js")"></script>
+    <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+    @RenderSection("styles", false)
+    @RenderSection("ScriptPage", false);
+</body>
+</html>

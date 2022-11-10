@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Stack_Learn.Models
+namespace Modelos.Models
 {
     public class Categoria
     {

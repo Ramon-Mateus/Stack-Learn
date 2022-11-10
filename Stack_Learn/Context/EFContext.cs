@@ -4,8 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 //using System.Data.Entity;
-using Stack_Learn.Context;
-using Stack_Learn.Models;
+using Modelos.Models;
 
 namespace Stack_Learn.Context
 {
@@ -21,5 +20,8 @@ namespace Stack_Learn.Context
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Aula> Aulas { get; set; }
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Conclusao> Conclusoes { get; set; }
     }
 }
