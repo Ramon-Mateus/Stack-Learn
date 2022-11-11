@@ -1,10 +1,26 @@
 ﻿@model IEnumerable<Modelos.Models.Curso>
 @{
     ViewBag.Title = "Home";
-    Layout = "~/Views/Shared/_usuario_sem_login.cshtml";
+    Layout = null;
 }
-
-<h2>Home</h2>
-<div class="panel-footer panel-info">
-    <h1>SOBRE</h1>
+<head>
+    <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
+</head>
+<div class="panel-footer panel-info flex center color-bg">
+    <img src="~/img/logo2.svg" />
+    <div class="flex-col center fontJost400">
+        <a href="#" class="linkPaginas">Cursos</a>
+        <a href="#" class="linkPaginas">Assinatura</a>
+    </div>
+    <div class="flex-col center fontJost400">
+        <button class="buttonCadastroLogin">
+            Entrar
+        </button>
+        <button class="buttonCadastroLogin">
+            Cadastro
+        </button>
+        <a>
+            <img src="~/img/carrinho.svg" />
+        </a>
+    </div>
 </div>
