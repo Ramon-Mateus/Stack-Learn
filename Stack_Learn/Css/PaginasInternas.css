@@ -1,0 +1,82 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Nunito:wght@400;700&display=swap');
+
+
+.flex-col {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.right {
+    justify-content: flex-start;
+}
+
+.center {
+    align-items: center;
+}
+.center-justify {
+    justify-content: center;
+}
+
+.fontJost400 {
+    font-weight: 400;
+    font-family: 'Jost';
+}
+.fontJost700 {
+    font-weight: 700;
+    font-family: 'Jost';
+    color: #715AFF;
+    font-size: 25px;
+}
+
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.formgroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: black;
+    font-family: 'Jost';
+
+    margin-left:12px;
+
+}
+.size-editor {
+    width: 280px;
+}
+.main-informations{
+    margin: 2em;
+}
+.content-informations {
+    margin-left: 22px;
+}
+.salvar_button {
+    margin-left: 40%;
+    margin-bottom: 2em;
+    border: 3px solid transparent;
+    box-shadow: 2px 1000px 1px #ffff inset;
+    background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+    font-size: 20px;
+    font-family: 'Jost';
+    padding: 4px 4em 4px 4em;
+
+    margin-top: 2em;
+}
+
+

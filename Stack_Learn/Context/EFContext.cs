@@ -6,6 +6,7 @@ using System.Web;
 //using System.Data.Entity;
 using Modelos.Models;
 
+
 namespace Stack_Learn.Context
 {
     public class EFContext : DbContext

@@ -156,6 +156,7 @@
     <Content Include="Css\Cadastro.css" />
     <Content Include="Css\HeaderFooter.css" />
     <Content Include="Css\LayAdm.css" />
+    <Content Include="Css\PaginasInternas.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\admfoto.svg" />
@@ -163,7 +164,11 @@
     <Content Include="img\ART.png" />
     <Content Include="img\carrinho.png" />
     <Content Include="img\carrinho.svg" />
+    <Content Include="img\Envelope.svg" />
+    <Content Include="img\FacebookLogo.svg" />
+    <Content Include="img\foto_estudantefoto.svg" />
     <Content Include="img\HandsClapping.svg" />
+    <Content Include="img\InstagramLogo.svg" />
     <Content Include="img\logo2.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -176,7 +181,11 @@
     <Content Include="Content\DataTables-1.10.2\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.2\css\dataTables.jqueryui.scss" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="img\logo_sem_palavras.svg" />
     <Content Include="img\part time student.png" />
+    <Content Include="img\Phone.svg" />
+    <Content Include="img\TwitterLogo.svg" />
+    <Content Include="img\WhatsappLogo.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables-1.10.2\dataTables.autoFill.js" />
@@ -261,7 +270,9 @@
     <Content Include="Views\Avaliacoes\Index.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
     <Content Include="Views\Home\PaginaInicial.cshtml" />
-    <Content Include="Views\Shared\_usuario_sem_login.cshtml" />
+    <Content Include="Views\Shared\_Header_Sem_Login.cshtml" />
+    <Content Include="Views\Shared\_Header_Aluno.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
