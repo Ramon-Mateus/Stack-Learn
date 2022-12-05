@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Modelos.Models.Curso>
+@{
+    Layout = null;
+}
+<head>
+    <title>Stack Learn | Lista cursos online</title>
+    <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+    <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:24px; text-align:center; padding: 1.5em; margin-bottom: 2em;">EXPLORAR CURSOS</h1>
+
+    <div class="flex-col space-around" style="margin-bottom:4em;">
+        <div class="flex-column" style="border-radius:5px;background-color:#515352; width:280px;">
+            <h2 class="fontJost700" style="color:white;margin-left:2em;">Categorias</h2>
+            <h2 class="fontJost700" style="color:white;margin-left:2em;">Faixa de preços</h2>
+        </div>
+
+        <div class="parte1-2 flex-col center-justify" style="margin-bottom: 2em;">
+            @foreach (var item in Model)
+            {
+                <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="        padding: 2em;
+        width: 225px;
+        height: 300px;
+        border: 3px solid transparent;
+        box-shadow: 2px 1000px 1px #ffff inset;
+        background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+        color: black;
+        margin: 0px 12px 0px 12px;
+
+        ">
+                    <img src="~/img/foto-card.svg" height="150" width="150" />
+                    <h3 class="fontJost400" style="height: 200px;">@item.Nome.ToUpper()</h3>
+                    <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
+                </a>
+            }
+        </div>
+
+        <div class="flex-column" style="border-radius:5px;background-color:#515352;">
+            <h2 class="fontJost700" style="color:white;margin-left:2em;">Destaques do mes</h2>
+            @foreach (var item in Model)
+            {
+                <div class="flex-col center" style="color:#515352; margin-left:2em;">
+                    <img src="~/img/foto-card.svg" height="150" width="150" />
+                    <h3 class="fontJost400" style="color:white; margin-left: 12px; width: 140px;">@item.Nome.ToUpper()</h3>
+                </div>
+            }
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
+</body>
+@section ScriptPage{
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
+}

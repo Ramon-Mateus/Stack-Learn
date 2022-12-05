@@ -6,25 +6,34 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
+    <script>
+        function paracadastro() {
+
+            window.location.href= "/Alunos/Cadastro"
+        }
+    </script>
 </head>
 <body>
     <div class="panel-footer panel-info flex center color-bg">
-        <img src="~/img/logo2.svg" />
-        <div class="flex-col center fontJost400">
-            <a href="/Cursos/Index" class="linkPaginas">Cursos</a>
-            <a href="#" class="linkPaginas">Assinatura</a>
+        <img src="~/img/logo2.svg" height="90" width="90"/>
+        <div class="flex-col center fontJost400" style="font-size: 20px;">
+            <a href="/Cursos/Lista" class="linkPaginas" id="aCursos" role="presentation">Cursos</a>
+            <a href="#" class="linkPaginas" id="aAssinatura" role="presentation">Assinatura</a>
         </div>
         <div class="flex-col center fontJost400">
             <button class="buttonCadastroLogin">
                 Entrar
             </button>
-            <button class="buttonCadastroLogin">
+            <button class="buttonCadastroLogin" onclick="paracadastro()">
                 Cadastro
             </button>
             <a>
-                <img src="~/img/carrinho.svg"height="40" width="40" />
+                <img src="~/img/carrinho.svg" height="40" width="40" />
             </a>
         </div>
     </div>
 </body>
 </html>
+<script src="@Url.Content("~/scripts/jquery-1.9.1.js")"></script>
+<script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+

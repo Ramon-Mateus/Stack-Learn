@@ -67,25 +67,9 @@
     }
 
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
-    <!--
-      <div class="panel-footer panel-info">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Gravar alterações" class="btn btn-info" />
-           @Html.ActionLink("Retornar", "Index", null,
-            new { @class = "btn btn-warning" })
-        </div>
-        <br />
-        <br />
-    </div>
-    -->
+
 </body>
 @section ScriptPage {
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('li').removeClass("active");
-            $('#liAlunos').addClass("active");
-        });
-    </script>
 }

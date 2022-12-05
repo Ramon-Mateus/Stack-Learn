@@ -162,10 +162,14 @@
     <Content Include="img\admfoto.svg" />
     <Content Include="img\ART %281%29.png" />
     <Content Include="img\ART.png" />
+    <Content Include="img\background1.svg" />
     <Content Include="img\carrinho.png" />
     <Content Include="img\carrinho.svg" />
     <Content Include="img\Envelope.svg" />
+    <Content Include="img\estrela-cheia.svg" />
+    <Content Include="img\estrela-vazia.svg" />
     <Content Include="img\FacebookLogo.svg" />
+    <Content Include="img\foto-card.svg" />
     <Content Include="img\foto_estudantefoto.svg" />
     <Content Include="img\HandsClapping.svg" />
     <Content Include="img\InstagramLogo.svg" />
@@ -185,6 +189,8 @@
     <Content Include="img\part time student.png" />
     <Content Include="img\Phone.svg" />
     <Content Include="img\TwitterLogo.svg" />
+    <Content Include="img\vetor-desenho-atras.svg" />
+    <Content Include="img\vetor-linha-atras.svg" />
     <Content Include="img\WhatsappLogo.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -273,6 +279,11 @@
     <Content Include="Views\Shared\_Header_Sem_Login.cshtml" />
     <Content Include="Views\Shared\_Header_Aluno.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Cursos\Lista.cshtml" />
+    <Content Include="Views\Aulas\_ParaDetailsAula.cshtml" />
+    <Content Include="Views\Avaliacoes\_ParaDetailsAvaliacoes.cshtml" />
+    <Content Include="Views\Professores\_ParaDetailsProfessorees.cshtml" />
+    <Content Include="Views\Cursos\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

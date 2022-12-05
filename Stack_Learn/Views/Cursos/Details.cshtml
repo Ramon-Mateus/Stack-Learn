@@ -1,112 +1,136 @@
 ﻿@model Modelos.Models.Curso
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Detalhes de Curso";
+    Layout = null;
 }
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
           charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
-    <style>
-        label {
-            margin-top: 10px;
-        }
-    </style>
+    <title>Stack Learn | @Model.Nome </title>
+    <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Detalhes do Curso
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-book"></i>
-                </span>
-                @Html.EditorFor(model => model.Nome, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
-            </div>
-            @Html.LabelFor(model => model.Descricao)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-briefcase"></i>
-                </span>
-                @Html.EditorFor(model => model.Descricao, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
-            </div>
-            @Html.LabelFor(model => model.Preco)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-piggy-bank"></i>
-                </span>
-                @Html.EditorFor(model => model.Preco, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
-            </div>
-            @Html.LabelFor(model => model.Qtd_Aulas)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-eye-open"></i>
-                </span>
-                @Html.EditorFor(model => model.Qtd_Aulas, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
-            </div>
-            @Html.LabelFor(model => model.Professor)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </span>
-                @Html.EditorFor(model => model.Professor.Nome, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
-            </div>
-            @Html.LabelFor(model => model.Categoria)
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-ok"></i>
-                </span>
-                @Html.EditorFor(model => model.Categoria.Nome, new
-                {
-                    htmlAttributes =
-                new { @class = "form-control", disabled = "disabled" }
-                })
+<body>
+    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+
+    <div class="part1 flex-col space-around" style="background-color: #454545; padding: 2em;">
+        <div class="sobre-curso" style="height: 100%; width: 50%;">
+            <h1 style="
+            font-family: 'Jost';
+            color: white;
+            font-size: 28px;
+            ">
+                @Model.Nome.ToUpper()
+            </h1>
+            <div class="foto-descricao flex-col">
+                <img src="~/img/foto-card.svg" width="400"/>
+                <h3
+                 style="
+                 font-family: 'Nunito';
+                 font-style: normal;
+                 font-weight: 400;
+                 color: white;
+                 margin-left: 12px;
+                 font-size: 20px;
+
+                 ">
+                    @Model.Descricao
+                </h3>
             </div>
         </div>
+        <div class="comprar flex-column center-justify center" 
+             style="
+             border: 3px solid transparent;
+             box-shadow: 2px 1000px 1px #ffff inset;
+             background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+             border-radius: 10px;
+             padding: 1px 2em 1px 2em;
+             ">
+            <h2 style="
+            font-family: 'Jost';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            margin: 0;
+            padding: 0;
+            ">
+                R$ @Model.Preco
+            </h2>
+            <h3 style="
+            font-family: 'Jost';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 0 40px 0;
+            padding: 0;
+            ">
+                à vista no cartão de crédito
+            </h3>
+            <a href="#" style="
+            font-family: 'Jost';
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 300;
+            text-decoration: none;
+            border: 1px solid #ECE8EF;
+            border-radius: 5px;
+            color: black;
+
+            padding: 4px 12px 4px 12px;
+            ">
+            COMPRAR
+            </a>
+        </div>
     </div>
-    <div class="panel-footer panel-info">
-        @Html.ActionLink("Alterar", "Edit", new { id = Model.CursoId },
-        new { @class = "btn btn-info" })
-        @Html.ActionLink("Retornar", "Index", null,
-        new { @class = "btn btn-info" })
+    <div class="part2 flex-col center-justify" style="margin-top: 2em; margin-bottom: 2em;">
+        <div class="more-information" style="width:70%; padding: 3em;">
+            <h3 style="
+            font-family: 'Jost';
+            font-size: 24px;">
+                SOBRE OS MÓDULOS
+            </h3>
+            <p style="font-family: Nunito; font-size: 15px; ">
+                De modo geral, o stacklearn funciona a partir de módulos de auals online, em que voce vai ter mais controle sobre seus estudos!
+                <br />
+                Este curso tem seus módulos com os seguinte títulos:
+            </p>
+            @Html.Partial("~/Views/Aulas/_ParaDetailsAula.cshtml", Model.Aulas.ToList())
+            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 0 2em 0;"></div>
+            <h3 style="
+            font-family: 'Jost';
+            font-size: 24px;">
+                SOBRE O PROFESSOR
+            </h3>
+            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 0 2em 0;"></div>
+        </div>
+        <div class="avaliations" style="width: 30%; background-color:#454545; border-radius: 5px;">
+            <h3 style="
+            font-family: 'Jost';
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            ">
+                Avaliação geral
+            </h3>
+            @Html.Partial("~/Views/Avaliacoes/_ParaDetailsAvaliacoes.cshtml", Model.Avaliacoes.ToList())
+        </div>
     </div>
-</div>
+    <div class="part3">
+        <h3 style="
+            font-family: 'Jost';
+            font-size: 24px;
+            text-align:center;">
+            QUEM CURSOU, GOSTOU TAMBÉM
+        </h3>
+
+    </div>
+    @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
+</body>
+
 @section ScriptPage {
     <script type="text/javascript">
         $(document).ready(function () {
-            $('li').removeClass("active");
-            $('#liCursos').addClass("active");
+            $('a').removeClass("active");
+            $('#aCursos').addClass("active");
         });
     </script>
 }

@@ -20,7 +20,10 @@ namespace Stack_Learn.Controllers
         {
             return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
         }
-
+        public ActionResult Lista()
+        {
+            return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
+        }
         public ActionResult Create()
         {
             ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome),"CategoriaId", "Nome");
@@ -77,6 +80,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Categoria = curso.CategoriaId;
             return View(curso);
         }
 

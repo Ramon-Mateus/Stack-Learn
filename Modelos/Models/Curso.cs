@@ -20,5 +20,6 @@ namespace Modelos.Models
         public Professor Professor { get; set; }
 
         public virtual ICollection<Aula> Aulas { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
     }
 }

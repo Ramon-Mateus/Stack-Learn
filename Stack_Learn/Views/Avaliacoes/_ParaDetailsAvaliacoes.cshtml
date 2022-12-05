@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Modelos.Models.Avaliacao>
+    @foreach(var item in Model)
+    {
+    <div class="box" style="display:flex; background-color: white; border-radius: 10px; ">
+        <img src="~/img/foto_estudantefoto.svg" height="10" width="10" />
+        <div class="nome-nota-comentario">
+            <div class="nome-nota" style="display:flex; font-family: 'Jost'; font-size: 14px; color: black;">
+                @item.Aluno.Nome
+                @for (int i = 0; i < 5; i++)
+                {
+                    if (@item.Nota <= 5)
+                    {
+                        <img src="~/img/estrela-cheia.svg" height="5" width="5" />
+                    }
+                    else
+                    {
+                        <img src="~/img/estrela-vazia.svg" height="5" width="5" />
+                    }
+                }
+            </div>
+            @item.Comentario
+        </div>
+    </div>
+    }
+
+
