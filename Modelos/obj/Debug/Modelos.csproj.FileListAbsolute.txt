@@ -14,3 +14,4 @@ C:\Users\Raquel\Source\Repos\Stack-Learn\Modelos\bin\Debug\Modelos.pdb
 C:\Users\Raquel\Source\Repos\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.CoreCompileInputs.cache
 C:\Users\Raquel\Source\Repos\Stack-Learn\Modelos\obj\Debug\Modelos.dll
 C:\Users\Raquel\Source\Repos\Stack-Learn\Modelos\obj\Debug\Modelos.pdb
+C:\Users\20201011110002\projetos\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.AssemblyReference.cache

@@ -7,7 +7,7 @@ namespace Modelos.Models
 {
     public class Curso
     {
-        public long CursoId { get; set; }
+        public long? CursoId { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public int Qtd_Aulas { get; set; }
@@ -21,5 +21,10 @@ namespace Modelos.Models
 
         public virtual ICollection<Aula> Aulas { get; set; }
         public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
+
+        public string LogotipoMimeType { get; set; }
+        public byte[] Logotipo { get; set; }
+        public string NomeArquivo { get; set; }
+        public long TamanhoArquivo { get; set; }
     }
 }
