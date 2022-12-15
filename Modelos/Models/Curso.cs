@@ -19,6 +19,8 @@ namespace Modelos.Models
         public Categoria Categoria { get; set; }
         public Professor Professor { get; set; }
 
+        public Professor RetornarProf() { return Professor; }
+
         public virtual ICollection<Aula> Aulas { get; set; }
         public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
     }
