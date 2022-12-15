@@ -15,7 +15,9 @@ namespace Stack_Learn.Context
         {
             Database.SetInitializer<EFContext>(
             new DropCreateDatabaseIfModelChanges<EFContext>());
+            //Configuration.ProxyCreationEnabled = false;
         }
+
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
