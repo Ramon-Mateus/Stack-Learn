@@ -172,6 +172,7 @@
     <Content Include="img\foto-card.svg" />
     <Content Include="img\foto_estudantefoto.svg" />
     <Content Include="img\HandsClapping.svg" />
+    <Content Include="img\ImgAula.svg" />
     <Content Include="img\InstagramLogo.svg" />
     <Content Include="img\logo2.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -236,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AulaDetails.cs" />
     <Compile Include="Models\CursoDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -286,6 +288,7 @@
     <Content Include="Views\Professores\_ParaDetailsProfessorees.cshtml" />
     <Content Include="Views\Cursos\View.cshtml" />
     <Content Include="Views\Cursos\View1.cshtml" />
+    <Content Include="Views\Aulas\AulaIndividual.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

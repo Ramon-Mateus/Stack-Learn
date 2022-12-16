@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Stack_Learn.Context;
+using Stack_Learn.Models;
 using Modelos.Models;
 
 namespace Stack_Learn.Controllers
@@ -18,7 +19,7 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Index()
         {
-            return View(context.Aulas.OrderBy(n => n.Titulo));
+            return View(context.Aulas.Include(c => c.Curso).OrderBy(n => n.Titulo));
         }
         
         public ActionResult Create()
@@ -100,6 +101,44 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             TempData["Message"] = "Aula " + aula.Titulo.ToUpper() + " foi removido";
             return RedirectToAction("Index");
+        }
+        public ActionResult AulaIndividual(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).First();
+            foreach (var item in context.Categorias)
+            {
+                if (aula.Curso.CategoriaId == item.CategoriaId)
+                {
+                    aula.Curso.Categoria = item;
+                }
+            }
+            if (aula == null)
+            {
+                return HttpNotFound();
+            }
+            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId }; 
+            var aulaDetails = new AulaDetails();
+            aulaDetails.AulaId = id.Value;
+            aulaDetails.Ordem = aula.Ordem;
+            aulaDetails.Titulo = aula.Titulo;
+            aulaDetails.Duracao = aula.Duracao;
+            aulaDetails.CursoId = aula.CursoId;
+            aulaDetails.Curso = aula.Curso;
+            aulaDetails.Curso.Categoria = aula.Curso.Categoria;
+            var ListaAulas = new List<Aula>();
+            foreach (var item in TodasAulas)
+            {
+                if (item.CursoId == aula.CursoId)
+                {
+                    ListaAulas.Add(new Aula { AulaId = item.AulaId, Titulo = item.Titulo, Ordem = item.Ordem, CursoId = item.CursoId });
+                }
+            }
+            aulaDetails.Aulas = ListaAulas;
+            return View(aulaDetails);
         }
     }
 }

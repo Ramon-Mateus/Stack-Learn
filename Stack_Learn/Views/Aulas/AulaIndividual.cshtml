@@ -1,0 +1,38 @@
+﻿@model Stack_Learn.Models.AulaDetails
+@{
+    Layout = null;
+    ViewBag.Title = "Detalhes da Aula";
+}
+<head>
+    <title>Stack Learn | Aula individual</title>
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+    <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:24px; text-align:center; padding: 1.5em; margin-bottom: 2em;">
+        @Model.Curso.Categoria.Nome > @Model.Curso.Nome
+    </h1>
+    <div>
+        @Model.Titulo <img src="~/img/ImgAula.svg" height="300" width="300"/>
+    </div>
+    <hr />
+    <p> Descrição do curso:</p> <br /><p> @Model.Curso.Descricao</p>
+    <hr />
+    <div>
+        Aulas <br />
+        @if (Model.Aulas != null)
+            {
+            foreach (var item in Model.Aulas)
+                {
+                    <div><a href="./@item.AulaId">@item.Ordem.  @item.Titulo</a></div>
+                }
+            }
+    </div>
+    <hr />
+    <p>Progresso</p> <br />
+    <p>(Sem Progresso ainda)</p>
+    @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
+</body>
+@section ScriptPage{
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
+}
