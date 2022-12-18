@@ -17,11 +17,12 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Index()
         {
-            return View(context.Pedidos.OrderBy(c => c.PedidoId));
+            return View(context.Pedidos.Include(a=>a.Aluno).OrderBy(c => c.PedidoId));
         }
 
         public ActionResult Create()
         {
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
             return View();
         }
 
@@ -45,6 +46,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome", pedido.Aluno);
             return View(pedido);
         }
 
@@ -67,7 +69,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = context.Pedidos.Where(f => f.PedidoId == id).First();
+            Pedido pedido = context.Pedidos.Where(f => f.PedidoId == id).Include(a=>a.Aluno).First();
             if (pedido == null)
             {
                 return HttpNotFound();
@@ -81,7 +83,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pedido pedido = context.Pedidos.Find(id);
+            Pedido pedido = context.Pedidos.Where(p => p.PedidoId == id).Include(c => c.Aluno).First();
             if (pedido == null)
             {
                 return HttpNotFound();

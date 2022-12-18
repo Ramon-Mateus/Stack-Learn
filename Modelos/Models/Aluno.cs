@@ -13,5 +13,10 @@ namespace Modelos.Models
         public string Login { get; set; }
         public string Senha { get; set; }
         public bool Assinatura { get; set; }
+
+        public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public ICollection<Pedido> Pedidos { get; set; }
+        public ICollection<Conclusao> Conclusoes { get; set; }
+
     }
 }

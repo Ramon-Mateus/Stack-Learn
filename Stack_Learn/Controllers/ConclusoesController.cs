@@ -1,10 +1,14 @@
 ﻿using Stack_Learn.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Modelos.Models;
+using System.IO;
+using Stack_Learn.Models;
 
 namespace Stack_Learn.Controllers
 {
@@ -12,55 +16,57 @@ namespace Stack_Learn.Controllers
     {
         private EFContext context = new EFContext();
 
-        /*
+        
         public ActionResult Index()
         {
-            return View(context.Conclusoes.Include(c => c.Aluno).Include(f => f.Professor).OrderBy(n => n.ConcluiId));
+            return View(context.Conclusoes.Include(c => c.Aluno));
         }
 
+        
         public ActionResult Create()
         {
-            ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome");
-            ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome), "ProfessorId", "Nome");
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
+            //ViewBag.AulaId = new SelectList(context.Aulas, "AulaId", "ordem");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Curso curso)
+        public ActionResult Create(Conclusao conclusao)
         {
-            context.Cursos.Add(curso);
+            context.Conclusoes.Add(conclusao);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Find(id);
-            if (curso == null)
+            Conclusao conclusao = context.Conclusoes.Find(id);
+            if (conclusao == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", curso.CategoriaId);
-            ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome), "ProfessorId", "Nome", curso.ProfessorId);
-            return View(curso);
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome", conclusao.Aluno);
+            //ViewBag.AulaId = new SelectList(context.Aulas, "AulaId", "ordem", conclusao.Aula);
+            return View(conclusao);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Curso curso)
+        public ActionResult Edit(Conclusao conclusao)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(curso).State = EntityState.Modified;
+                context.Entry(conclusao).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(curso);
+            return View(conclusao);
         }
 
         public ActionResult Details(long? id)
@@ -69,12 +75,12 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Conclusao conclusao = context.Conclusoes.Where(p => p.ConclusaoId == id).Include(c => c.Aluno).First();
+            if (conclusao == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(conclusao);
         }
 
         public ActionResult Delete(long? id)
@@ -83,23 +89,23 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = context.Cursos.Where(p => p.CursoId == id).Include(c => c.Categoria).Include(f => f.Professor).First();
-            if (curso == null)
+            Conclusao conclusao = context.Conclusoes.Where(p => p.ConclusaoId == id).Include(c => c.Aluno).First();
+            if (conclusao == null)
             {
                 return HttpNotFound();
             }
-            return View(curso);
+            return View(conclusao);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Curso curso = context.Cursos.Find(id);
-            context.Cursos.Remove(curso);
+            Conclusao conclusao = context.Conclusoes.Find(id);
+            context.Conclusoes.Remove(conclusao);
             context.SaveChanges();
-            TempData["Message"] = "Curso " + curso.Nome.ToUpper() + " foi removido";
+
             return RedirectToAction("Index");
-        }*/
+        }
     }
 }

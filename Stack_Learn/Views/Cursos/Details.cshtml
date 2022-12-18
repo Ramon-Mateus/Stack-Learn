@@ -1,4 +1,4 @@
-﻿@model Modelos.Models.Curso
+﻿@model Stack_Learn.Models.CursoDetails
 
 @{
     Layout = null;
@@ -6,23 +6,23 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
           charset="utf-8" />
-    <title>Stack Learn | @Model.Nome </title>
+    <title>Stack Learn | @Model.curso.Nome </title>
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
 <body>
     @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
 
-    <div class="part1 flex-col space-around" style="background-color: #454545; padding: 2em;">
+    <div class="part1 flex-col space-between" style="background-color: #454545; padding: 5em;">
         <div class="sobre-curso" style="height: 100%; width: 50%;">
             <h1 style="
             font-family: 'Jost';
             color: white;
             font-size: 28px;
             ">
-                @Model.Nome.ToUpper()
+                @Model.curso.Nome.ToUpper()
             </h1>
             <div class="foto-descricao flex-col">
-                <img src="~/img/foto-card.svg" width="400"/>
+                <img src="@Url.Action("GetLogotipo", "Cursos", new { id = Model.curso.CursoId })" width="250" height="250"/>
                 <h3
                  style="
                  font-family: 'Nunito';
@@ -30,10 +30,10 @@
                  font-weight: 400;
                  color: white;
                  margin-left: 12px;
-                 font-size: 20px;
+                 font-size: 19px;
 
                  ">
-                    @Model.Descricao
+                    @Model.curso.Descricao
                 </h3>
             </div>
         </div>
@@ -53,15 +53,15 @@
             margin: 0;
             padding: 0;
             ">
-                R$ @Model.Preco
+                R$ @Model.curso.Preco
             </h2>
             <h3 style="
             font-family: 'Jost';
             font-style: normal;
             font-weight: 700;
             font-size: 20px;
-            margin: 0 0 40px 0;
             padding: 0;
+            margin-top: -2px;
             ">
                 à vista no cartão de crédito
             </h3>
@@ -81,49 +81,75 @@
             </a>
         </div>
     </div>
-    <div class="part2 flex-col center-justify" style="margin-top: 2em; margin-bottom: 2em;">
-        <div class="more-information" style="width:70%; padding: 3em;">
+    <div class="part2 flex-col space-around" style="padding: 5em;">
+        <div class="more-information" style="width:70%;">
             <h3 style="
             font-family: 'Jost';
             font-size: 24px;">
                 SOBRE OS MÓDULOS
             </h3>
-            <p style="font-family: Nunito; font-size: 15px; ">
-                De modo geral, o stacklearn funciona a partir de módulos de auals online, em que voce vai ter mais controle sobre seus estudos!
+            <p style="font-family: Nunito; font-size: 20px; ">
+                De modo geral, o stacklearn funciona a partir de módulos de aulas online, em que você vai ter mais controle sobre seus estudos!
                 <br />
                 Este curso tem seus módulos com os seguinte títulos:
             </p>
-            @Html.Partial("~/Views/Aulas/_ParaDetailsAula.cshtml", Model.Aulas.ToList())
-            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 0 2em 0;"></div>
+            @Html.Partial("~/Views/Aulas/_ParaDetailsAula.cshtml", Model.curso.Aulas.ToList())
+            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 2em 2em 0;"></div>
             <h3 style="
             font-family: 'Jost';
             font-size: 24px;">
                 SOBRE O PROFESSOR
                  
-                @Html.Partial("~/Views/Professores/_ParaDetailsProfessorees.cshtml", Model.Professor)
+                @Html.Partial("~/Views/Professores/_ParaDetailsProfessorees.cshtml", Model.curso.Professor)
             </h3>
-            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 0 2em 0;"></div>
+            <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 2em 2em 0;"></div>
         </div>
-        <div class="avaliations" style="width: 30%; background-color:#454545; border-radius: 5px;">
+        <div class="avaliations" style="width: 30%; background-color:#515352; border-radius: 5px;">
             <h3 style="
             font-family: 'Jost';
             font-size: 24px;
             color: white;
             text-align: center;
             ">
-                Avaliação geral
+                AVALIAÇÃO GERAL
             </h3>
-            @Html.Partial("~/Views/Avaliacoes/_ParaDetailsAvaliacoes.cshtml", Model.Avaliacoes.ToList())
+            @Html.Partial("~/Views/Avaliacoes/_ParaDetailsAvaliacoes.cshtml", Model.curso.Avaliacoes.ToList())
         </div>
     </div>
-    <div class="part3">
+    <div class="part3" style="margin-top: 2em; margin-bottom:2em;">
         <h3 style="
             font-family: 'Jost';
             font-size: 24px;
-            text-align:center;">
-            QUEM CURSOU, GOSTOU TAMBÉM
-        </h3>
+            text-align:center;
+            margin-bottom: 1em;">
+            QUEM CURSOU, GOSTOU TAMBÉM</h3>
+        <div class="flex-col center-justify">
+            @foreach (var item in Model.cursos)
+            {
+                @Html.HiddenFor(model => model.curso.LogotipoMimeType)
+                @Html.HiddenFor(model => model.curso.Logotipo)
+                @Html.HiddenFor(model => model.curso.NomeArquivo)
+                @Html.HiddenFor(model => model.curso.TamanhoArquivo)
+                if (item.CategoriaId == Model.curso.CategoriaId && item.CursoId != Model.curso.CursoId)
+                {
+                    <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="
+                padding: 2em;
+                width: 225px;
+                height: 300px;
+                border: 3px solid transparent;
+                box-shadow: 2px 1000px 1px #ffff inset;
+                background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+                color: black;
+                margin: 0px 10px 0px 10px;
 
+                ">
+                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="100" width="100" style="margin:0;"/>
+                        <h3 class="fontJost400" style="height: 40px; text-align: center;">@item.Nome.ToUpper()</h3>
+                        <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
+                    </a>
+                }
+            }
+        </div>
     </div>
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
 </body>

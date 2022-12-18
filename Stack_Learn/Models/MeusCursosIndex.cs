@@ -6,10 +6,9 @@ using System.Web;
 
 namespace Stack_Learn.Models
 {
-    public class CursoDetails
+    public class MeusCursosIndex
     {
-        public Curso curso { get; set; }
-        public IQueryable<Curso> cursos { get; set; }
-
+        public List<Curso> em_andamento { get; set; }
+        public List<Curso> concluido { get; set; }
     }
 }

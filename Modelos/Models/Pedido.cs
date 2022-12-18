@@ -15,5 +15,8 @@ namespace Modelos.Models
         public double Valor_Total { get; set; }
 
         public virtual ICollection<Curso> Cursos { get; set; }
+        
+        public long? AlunoId { get; set; }
+        public Aluno Aluno { get; set; }
     }
 }

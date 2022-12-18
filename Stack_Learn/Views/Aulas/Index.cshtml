@@ -59,7 +59,8 @@
                         <td class="crud">
                             @Html.ActionLink("Alterar", "Edit", new { id = item.AulaId }) |
                             @Html.ActionLink("Detalhes", "Details", new { id = item.AulaId }) |
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.AulaId })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.AulaId }) |
+                            @Html.ActionLink("AulaIndividual", "AulaIndividual", new { id = item.AulaId })
                         </td>
                     </tr>
                 }

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Stack_Learn.Context;
 using Modelos.Models;
 using System.IO;
+using Stack_Learn.Models;
 
 namespace Stack_Learn.Controllers
 {
@@ -105,10 +106,50 @@ namespace Stack_Learn.Controllers
         {
             return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
         }
-        public ActionResult Lista()
+        public ActionResult Lista()//get, sem post
         {
             return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
         }
+        public ActionResult MeusCursosIndex()
+        {
+            List<Curso> concluidoo = new List<Curso>();
+            List<Curso> emm_andamento = new List<Curso>();
+
+            IQueryable<Curso> todos = context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome);
+
+            foreach (Curso item in todos)
+            {
+                int concluidos = 0;
+                int percorrer_list = item.Qtd_Aulas ;//10
+                int list_final = 0;
+
+                foreach(Aula subitem in item.Aulas)
+                {
+                    list_final++;
+                    if (subitem.TrueFalse == true)
+                    {
+                        concluidos++;//1
+                    }
+                    if(list_final == percorrer_list - 1 || list_final == item.Aulas.Count)//tem todas as aulas para serem analisadas x se só tem uma
+                    {
+                        if (concluidos < percorrer_list)
+                        {
+                            emm_andamento.Add(item);
+                        }
+                        if (concluidos == percorrer_list)
+                        {
+                            concluidoo.Add(item);
+                        }
+                    }
+                }
+            }
+            MeusCursosIndex index = new MeusCursosIndex();
+            index.em_andamento = emm_andamento;
+            index.concluido = concluidoo;
+            return View(index);
+
+
+       }
         public ActionResult Create()
         {
             ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome),"CategoriaId", "Nome");
@@ -159,8 +200,10 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Categoria = curso.CategoriaId;
-            return View(curso);
+            CursoDetails objeto = new CursoDetails();
+            objeto.curso = curso;
+            objeto.cursos = context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome);
+            return View(objeto);
         }
 
         public ActionResult Delete(long? id)

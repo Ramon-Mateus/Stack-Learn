@@ -1,0 +1,62 @@
+﻿@model Stack_Learn.Models.MeusCursosIndex
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MeusCursosIndex</title>
+</head>
+<body>
+    <h1>EM ANDAMENTO</h1>
+    @foreach (var item in Model.em_andamento)
+    {
+        <h3>@item.Nome</h3>
+
+
+        int aulasfeitas = 0;
+        int progresso = 0;
+
+
+        foreach (var subitem in item.Aulas)
+        {
+            if (subitem.TrueFalse == true)
+            {
+                aulasfeitas++;
+            }
+        }
+        progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
+
+
+        <h3>@progresso</h3>
+
+    }
+
+    <h1>CONCLUIDO</h1>
+    @foreach (var item in Model.concluido)
+    {
+        <h3>@item.Nome</h3>
+
+
+        int aulasfeitas = 0;
+        int progresso = 0;
+
+
+        foreach (var subitem in item.Aulas)
+        {
+            if (subitem.TrueFalse == true)
+            {
+                aulasfeitas++;
+            }
+        }
+        progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
+
+
+
+
+    }
+</body>
+</html>

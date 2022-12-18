@@ -17,11 +17,13 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Index()
         {
-            return View(context.Avaliacoes.OrderBy(c => c.Nota));
+            return View(context.Avaliacoes.Include(c => c.Curso).Include(a=>a.Aluno).OrderBy(c => c.Nota));
         }
 
         public ActionResult Create()
         {
+            ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
             return View();
         }
 
@@ -29,6 +31,7 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Avaliacao avaliacao)
         {
+            avaliacao.AlunoNome = context.Alunos.Where(a => a.AlunoId == avaliacao.AlunoId).First().Nome;//adicionar manualmente o nome do aluno, se editar não vai editar aqui também :/
             context.Avaliacoes.Add(avaliacao);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -45,6 +48,8 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome", avaliacao.Curso);
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome", avaliacao.Aluno);
             return View(avaliacao);
         }
 
@@ -54,6 +59,7 @@ namespace Stack_Learn.Controllers
         {
             if (ModelState.IsValid)
             {
+                avaliacao.AlunoNome = context.Alunos.Where(a => a.AlunoId == avaliacao.AlunoId).First().Nome;//adicionar manualmente o nome do aluno
                 context.Entry(avaliacao).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -67,8 +73,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Avaliacao avaliacao = context.Avaliacoes.Where(f => f.AvaliacaoId == id).
-           Include("Cursos.Aluno").First();
+            Avaliacao avaliacao = context.Avaliacoes.Where(p => p.AvaliacaoId == id).Include(c => c.Curso).Include(f => f.Aluno).First();
             if (avaliacao == null)
             {
                 return HttpNotFound();

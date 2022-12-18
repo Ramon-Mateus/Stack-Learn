@@ -1,0 +1,42 @@
+﻿@model Modelos.Models.Conclusao
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Conclusao</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Aluno.CPF)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Aluno.CPF)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Concluido)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Concluido)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ConclusaoId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

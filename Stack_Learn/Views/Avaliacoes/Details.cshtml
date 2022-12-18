@@ -1,4 +1,4 @@
-﻿@model Modelos.Models.Aula
+﻿@model Modelos.Models.Avaliacao
 
 @{
     Layout = null;
@@ -13,15 +13,15 @@
 </head>
 <body>
     <div>
-        <h4>Aula</h4>
+        <h4>Avaliacao</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Conclusao.ConclusaoId)
+                @Html.DisplayNameFor(model => model.Aluno.CPF)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Conclusao.ConclusaoId)
+                @Html.DisplayFor(model => model.Aluno.CPF)
             </dd>
     
             <dt>
@@ -33,41 +33,33 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Ordem)
+                @Html.DisplayNameFor(model => model.Data_hora)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Ordem)
+                @Html.DisplayFor(model => model.Data_hora)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Titulo)
+                @Html.DisplayNameFor(model => model.Nota)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Titulo)
+                @Html.DisplayFor(model => model.Nota)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Duracao)
+                @Html.DisplayNameFor(model => model.Comentario)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Duracao)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.TrueFalse)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.TrueFalse)
+                @Html.DisplayFor(model => model.Comentario)
             </dd>
     
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.AulaId }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AvaliacaoId }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

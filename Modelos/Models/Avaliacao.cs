@@ -12,6 +12,7 @@ namespace Modelos.Models
         public DateTime? Data_hora { get; set; }
         public long Nota { get; set; }
         public string Comentario { get; set; }
+        public string AlunoNome { get; set; }
 
         public long? CursoId { get; set; }
         public long? AlunoId { get; set; }

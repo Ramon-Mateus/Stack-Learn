@@ -16,15 +16,22 @@ namespace Stack_Learn.Controllers
 
         private EFContext context = new EFContext();
 
-
+        public ActionResult AulaAssistir()//get, pegar curso id
+        {
+            ViewBag.ID = Request.QueryString["idCurso"];
+            long id = ViewBag.ID;
+            //IQueryable<Aula> daquele_curso = context.Aulas.
+            return View(context.Aulas.Where(p => p.CursoId == id).Include(c=> c.Curso).Include(y => y.Conclusao).OrderBy(n=>n.Titulo));
+        }
         public ActionResult Index()
         {
-            return View(context.Aulas.Include(c => c.Curso).OrderBy(n => n.Titulo));
+            return View(context.Aulas.Include(c => c.Curso).Include(y=> y.Conclusao).OrderBy(n => n.Titulo));
         }
         
         public ActionResult Create()
         {
             ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
+            ViewBag.ConclusaoId = new SelectList(context.Conclusoes, "ConclusaoId", "Concluido");
             return View();
         }
         
@@ -32,6 +39,7 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Aula aula)
         {
+            aula.TrueFalse = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().Concluido;//adicionar manualmente a situação do curso
             context.Aulas.Add(aula);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -49,6 +57,7 @@ namespace Stack_Learn.Controllers
                 return HttpNotFound();
             }
             ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome", aula.CursoId);
+            ViewBag.ConclusaoId = new SelectList(context.Conclusoes, "ConclusaoId", "Concluido", aula.ConclusaoId);
             return View(aula);
         }
         
@@ -58,6 +67,7 @@ namespace Stack_Learn.Controllers
         {
             if (ModelState.IsValid)
             {
+                aula.TrueFalse = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().Concluido;//adicionar manualmente a situação do curso
                 context.Entry(aula).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,7 +81,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).First();
+            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).Include(y => y.Conclusao).First();
             if (aula == null)
             {
                 return HttpNotFound();
@@ -84,7 +94,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).First();
+            Aula aula = context.Aulas.Where(p => p.AulaId == id).Include(c => c.Curso).Include(y => y.Conclusao).First();
             if (aula == null)
             {
                 return HttpNotFound();
