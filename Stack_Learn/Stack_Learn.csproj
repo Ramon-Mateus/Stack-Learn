@@ -157,7 +157,6 @@
     <Content Include="Css\CarrinhoPagamento.css" />
     <Content Include="Css\HeaderFooter.css" />
     <Content Include="Css\LayAdm.css" />
-    <Content Include="Css\main.css" />
     <Content Include="Css\PaginasInternas.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fts\art1.svg" />
