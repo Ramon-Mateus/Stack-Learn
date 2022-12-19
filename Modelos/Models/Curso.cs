@@ -14,7 +14,10 @@ namespace Modelos.Models
         public double Preco { get; set; }
         
         public long? ProfessorId { get; set; }
+        public long? PedidoId { get; set; }
         public long? CategoriaId { get; set; }
+
+        public string NomeProfessor { get; set; }
 
         public Categoria Categoria { get; set; }
         public Professor Professor { get; set; }

@@ -19,6 +19,8 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.CursoId)
+            @Html.HiddenFor(model => model.NomeProfessor)
+            @Html.HiddenFor(model => model.PedidoId)
             <div class="form-group">
                 @Html.LabelFor(model => model.Nome, htmlAttributes: new
                 {
@@ -128,7 +130,7 @@
 
                                 </label>
                             </div>
-                            @Html.ActionLink("Baixar o arquivo : " + Model.NomeArquivo, "DownloadArquivo","Cursos", new { area = "Cadastros", id = Model.CursoId }, null)
+                            @Html.ActionLink("Baixar o arquivo : " + Model.NomeArquivo, "DownloadArquivo", "Cursos", new { area = "Cadastros", id = Model.CursoId }, null)
                         </div>
                     }
                 </div>

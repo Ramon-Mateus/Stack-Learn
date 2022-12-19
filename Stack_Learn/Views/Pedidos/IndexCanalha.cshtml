@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Modelos.Models.Pedido>
+
+@{
+    ViewBag.Title = "IndexCanalha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Aluno.CPF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cancelamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_cancelamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_Pagamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aluno.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cancelamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_cancelamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_Pagamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_Total)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PedidoId }) |
+            @Html.ActionLink("Details", "CarrrinhoCompra", new { id=item.PedidoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PedidoId })
+        </td>
+    </tr>
+}
+
+</table>

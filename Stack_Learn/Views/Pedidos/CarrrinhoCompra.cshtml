@@ -1,0 +1,193 @@
+﻿@model Modelos.Models.Pedido
+
+@{
+    long x = Model.Cursos.Count();
+    ViewBag.Title = "CarrrinhoCompra";
+    Layout = null;
+}
+
+
+@if (Model.AlunoId == null)
+{
+    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+}
+else
+{
+    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Css/CarrinhoPagamento.css">
+    <script src="~/Scripts/scripts/script.js" defer></script>
+    <title>Meu Carrinho</title>
+</head>
+
+<body>
+    <div class="body-carrinho">
+        <div class="conteiner-bar">
+
+            <div class="bar">
+
+
+                <div class="itens-bar ">
+
+
+                    <p>Carrinho</p>
+                    <div data-title="carrinho" class="bolacheck step"></div>
+
+
+                </div>
+                <div class="itens-bar">
+
+                    <p>Identificação</p>
+                    <div data-title="login" class="bolauncheck step"></div>
+
+                </div>
+                <div class="itens-bar">
+
+                    <p>Pagamento</p>
+                    <div data-title="pagamento" class="bolauncheck step"></div>
+
+                </div>
+
+            </div>
+            <div>
+                <div class="progresso-area">
+                    <div class="progresso" id="progress"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-step form-step-active" style="margin: 0 10%;">
+            <div class="cursos-carrinho">
+                <p><strong>MEU CARRINHO</strong></p>
+                <div class="flex-carrinho line-border" style="padding: 1em 0 1em 0;">
+                    <p style="width: 9em; text-align: center;"><spancolor>PRODUTO</spancolor> </p>
+                    <div class="flex-carrinho dados-nome" style="width: 100%;">
+                        <div style="width: 50%;"></div>
+                        <div style="width: 30%;">
+                            <p class=""><spancolor>PREÇO</spancolor> </p>
+                        </div>
+
+                        <div style="width: 5%;"></div>
+                    </div>
+
+                </div>
+
+                @Html.Partial("~/Views/Pedidos/_Carrinho_Curso.cshtml", Model.Cursos)
+            </div>
+            <aside class="aside">
+                <p class="line-border-aside m-1"><strong>RESUMO DO PEDIDO</strong> </p>
+                <p class="line-border-aside m-1">@x CURSOS</p>
+                <div class="flex-carrinho m-1">
+                    <p>TOTAL</p>
+                    <div style="text-align: right;">
+                        <p><strong>R$ @Html.DisplayFor(modalItem => Model.Valor_Total)</strong> </p>
+                        <p><span>ou 12x de x,00</span> </p>
+                    </div>
+                </div>
+                <div class="flex-carrinho" style="justify-content: center;">
+                    <a class="btn-prev-next btn-next">
+                        CONTINUAR
+                    </a>
+                </div>
+
+            </aside>
+        </div>
+        <div class="login form-step ">
+            <div>
+                <div style="text-align: center;">
+                    <h2>LOGIN</h2>
+                </div>
+
+                <form action="">
+                    <div>
+                        <label for="login">login</label>
+                        <br>
+                        <input id="email" type="text">
+                    </div>
+                    <div>
+                        <label for="senha">senha</label>
+                        <br>
+                        <input id="senha" type="password">
+                    </div>
+                </form>
+                <div class="btn-group">
+                    <a class="btn-prev-next btn-prev">
+                        VOLTAR
+                    </a>
+
+                    <a class="btn-prev-next btn-next">
+                        CONTINUAR
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-step" style="flex-direction: column;">
+            <div class="pagamento ">
+                <div style="text-align: center;">
+                    <h2>Pagamento</h2>
+                </div>
+                <div class="flex-carrinho" style="gap: 4em;">
+                    <div>
+                        <div>
+                            <form action="">
+                                <div>
+                                    <label for="login">Nome Completo</label>
+                                    <br>
+                                    <input id="email" type="text" class="input-payment">
+                                </div>
+                                <div>
+                                    <label for="senha">Número do Cartão</label>
+                                    <br>
+                                    <input id="senha" type="text" class="input-payment">
+                                </div>
+                                <div class="flex-carrinho">
+                                    <div>
+                                        <label for="val">Validade</label>
+                                        <br>
+                                        <input id="val" type="text" class="input-payment-half">
+                                    </div>
+                                    <div style="margin-left: 2em;">
+                                        <label for="cvv">CVV</label>
+                                        <br>
+                                        <input id="cvv" type="password" class="input-payment-half">
+                                        <button class="checkpass" onclick="showCvv()" id="icon"></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="" style="margin-top: 2em;">
+                                <a class="btn-prev-next btn-prev">
+                                    VOLTAR
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <figure>
+                            <img src="~/Fts/cartao.svg" alt="">
+                            <img src="~/Fts/art1.svg" class="art-pagamento">
+                        </figure>
+                    </div>
+                    <br>
+
+
+                </div>
+            </div>
+            <div class="flex-carrinho" style="justify-content: center; margin-top: 5em;">
+                <a class="btn-prev-next btn-next" style="width: 20em;">
+                    COMPRAR
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

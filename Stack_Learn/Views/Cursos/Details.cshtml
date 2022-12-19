@@ -22,9 +22,8 @@
                 @Model.curso.Nome.ToUpper()
             </h1>
             <div class="foto-descricao flex-col">
-                <img src="@Url.Action("GetLogotipo", "Cursos", new { id = Model.curso.CursoId })" width="250" height="250"/>
-                <h3
-                 style="
+                <img src="@Url.Action("GetLogotipo", "Cursos", new { id = Model.curso.CursoId })" width="250" height="250" />
+                <h3 style="
                  font-family: 'Nunito';
                  font-style: normal;
                  font-weight: 400;
@@ -37,7 +36,7 @@
                 </h3>
             </div>
         </div>
-        <div class="comprar flex-column center-justify center" 
+        <div class="comprar flex-column center-justify center"
              style="
              border: 3px solid transparent;
              box-shadow: 2px 1000px 1px #ffff inset;
@@ -77,9 +76,25 @@
 
             padding: 4px 12px 4px 12px;
             ">
-            COMPRAR
+                COMPRAR
             </a>
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="COMPRAR" style="
+                font-family: 'Jost';
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 300;
+                text-decoration: none;
+                border: 1px solid #ECE8EF;
+                border-radius: 5px;
+                color: black;
+
+                padding: 4px 12px 4px 12px;
+            " />
+            }
+            </div>
     </div>
     <div class="part2 flex-col space-around" style="padding: 5em;">
         <div class="more-information" style="width:70%;">
@@ -99,7 +114,7 @@
             font-family: 'Jost';
             font-size: 24px;">
                 SOBRE O PROFESSOR
-                 
+
                 @Html.Partial("~/Views/Professores/_ParaDetailsProfessorees.cshtml", Model.curso.Professor)
             </h3>
             <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 2em 2em 0;"></div>
@@ -122,7 +137,8 @@
             font-size: 24px;
             text-align:center;
             margin-bottom: 1em;">
-            QUEM CURSOU, GOSTOU TAMBÉM</h3>
+            QUEM CURSOU, GOSTOU TAMBÉM
+        </h3>
         <div class="flex-col center-justify">
             @foreach (var item in Model.cursos)
             {
@@ -143,7 +159,7 @@
                 margin: 0px 10px 0px 10px;
 
                 ">
-                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="100" width="100" style="margin:0;"/>
+                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="100" width="100" style="margin:0;" />
                         <h3 class="fontJost400" style="height: 40px; text-align: center;">@item.Nome.ToUpper()</h3>
                         <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
                     </a>
@@ -155,6 +171,8 @@
 </body>
 
 @section ScriptPage {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('a').removeClass("active");
@@ -162,3 +180,4 @@
         });
     </script>
 }
+        

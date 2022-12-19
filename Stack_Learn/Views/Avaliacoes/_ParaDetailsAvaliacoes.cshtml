@@ -2,13 +2,19 @@
 @{
     long soma = 0;
     long total = 0;
+    long media = 0;
 }
 @foreach (var item in Model)
 {
     soma = soma + item.Nota;
     total = total + 1;
 }
-@{long media = soma / total; }
+@if (total != 0)
+{
+    media = soma / total;
+ }
+
+
 
 <h1 style="text-align:center; font-family: 'Jost'; color:white; font-size: 42px;">@media</h1>
 <div class="stars" style="display:flex; justify-content: center;">

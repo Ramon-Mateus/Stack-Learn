@@ -154,20 +154,34 @@
     <Content Include="Content\Site.css" />
     <Content Include="Css\Adm.css" />
     <Content Include="Css\Cadastro.css" />
+    <Content Include="Css\CarrinhoPagamento.css" />
     <Content Include="Css\HeaderFooter.css" />
     <Content Include="Css\LayAdm.css" />
+    <Content Include="Css\main.css" />
     <Content Include="Css\PaginasInternas.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Fts\art1.svg" />
+    <Content Include="Fts\cartao.svg" />
+    <Content Include="Fts\curso.png" />
+    <Content Include="Fts\curso2.png" />
+    <Content Include="Fts\Eye.svg" />
+    <Content Include="Fts\EyeSlash.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\admfoto.svg" />
     <Content Include="img\ART %281%29.png" />
     <Content Include="img\ART.png" />
+    <Content Include="img\art1.svg" />
     <Content Include="img\background1.svg" />
     <Content Include="img\carrinho.png" />
     <Content Include="img\carrinho.svg" />
+    <Content Include="img\cartao.svg" />
+    <Content Include="img\curso.png" />
+    <Content Include="img\curso2.png" />
     <Content Include="img\Envelope.svg" />
     <Content Include="img\estrela-cheia.svg" />
     <Content Include="img\estrela-vazia.svg" />
+    <Content Include="img\Eye.svg" />
+    <Content Include="img\EyeSlash.svg" />
     <Content Include="img\FacebookLogo.svg" />
     <Content Include="img\foto-card.svg" />
     <Content Include="img\foto_estudantefoto.svg" />
@@ -220,6 +234,7 @@
     <Content Include="Scripts\DataTables-1.10.2\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\scripts\script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +316,10 @@
     <Content Include="Views\Conclusoes\Edit.cshtml" />
     <Content Include="Views\Conclusoes\Details.cshtml" />
     <Content Include="Views\Conclusoes\Delete.cshtml" />
+    <Content Include="Views\Pedidos\CarrrinhoCompra.cshtml" />
+    <Content Include="Views\Pedidos\IndexCanalha.cshtml" />
+    <Content Include="Views\Pedidos\Create.cshtml" />
+    <Content Include="Views\Pedidos\_Carrinho_Curso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,6 +329,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fotos\" />
+    <Folder Include="public\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelos\Modelos.csproj">

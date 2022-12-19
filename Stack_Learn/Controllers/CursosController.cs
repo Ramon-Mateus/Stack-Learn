@@ -161,6 +161,16 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Curso curso)
         {
+            
+            if (curso.Professor != null)
+            {
+                curso.NomeProfessor = curso.Professor.Nome;
+            }
+            else
+            {
+                curso.NomeProfessor = "Sem Professor";
+            }
+            curso.PedidoId = null;
             context.Cursos.Add(curso);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -204,6 +214,19 @@ namespace Stack_Learn.Controllers
             objeto.curso = curso;
             objeto.cursos = context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome);
             return View(objeto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(long id)
+        {
+            Curso curso = context.Cursos.Find(id);
+            Pedido pedido = context.Pedidos.Where(p => p.PedidoId == 1).First();
+            curso.PedidoId = pedido.PedidoId;
+            pedido.Cursos.Add(curso);
+   
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(long? id)

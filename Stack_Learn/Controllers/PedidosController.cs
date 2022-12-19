@@ -20,6 +20,11 @@ namespace Stack_Learn.Controllers
             return View(context.Pedidos.Include(a=>a.Aluno).OrderBy(c => c.PedidoId));
         }
 
+        public ActionResult IndexCanalha()
+        {
+            return View(context.Pedidos.Include(a => a.Aluno).OrderBy(c => c.PedidoId));
+        }
+
         public ActionResult Create()
         {
             ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
@@ -100,6 +105,33 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             TempData["Message"] = "Pedidos " + pedido.PedidoId + " foi removido";
             return RedirectToAction("Index");
+        }
+        public ActionResult CarrrinhoCompra(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Pedido pedido = context.Pedidos.Find(id);
+            if (pedido == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome", pedido.Aluno);
+            Console.WriteLine(pedido.Cursos);
+            return View(pedido);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExcluirCurso(long item_CursoId)
+        {
+            Curso curso = context.Cursos.Where(i => i.CursoId == item_CursoId).First();
+            Pedido pedido = context.Pedidos.Where(i => i.PedidoId == curso.PedidoId).First();
+            long id = pedido.PedidoId;
+            pedido.Cursos.Remove(curso);
+            context.SaveChanges();
+            return RedirectToAction("CarrrinhoCompra", new { id=id });
         }
     }
 }

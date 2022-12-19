@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Modelos.Models.Curso>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    
+
+
+
+<div class="flex-carrinho line-border">
+    <figure>
+        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" alt="" class="curso">
+    </figure>
+    <div class="flex-carrinho dados-curso">
+        <div style="width: 50%;">
+            <p><strong>@Html.DisplayFor(modalItem => item.Nome)</strong></p>
+            <p style="margin-top: 1em;">
+                <spancolor>
+                    @Html.DisplayFor(modalItem => item.NomeProfessor)
+                </spancolor>
+            </p>
+        </div>
+        <div style="width: 30%;">
+            <p>
+                <strong>
+                    R$ @Html.DisplayFor(modelItem => item.Preco)
+                </strong>
+            </p>
+        </div>
+        <div style="width: 5%;">
+            @using (Html.BeginForm("ExcluirCurso", "Pedidos", new { item_CursoId = item.CursoId }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(modelItem => item.CursoId)
+                <input id="input-excluir-curso" type="submit" value="X" class="strong excluir-compra" />
+            }
+        </div>
+    </div>
+</div>
+                }
