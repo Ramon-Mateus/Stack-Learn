@@ -37,7 +37,7 @@ namespace Stack_Learn.Controllers
         {
             context.Pedidos.Add(pedido);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexCanalha");
         }
 
         public ActionResult Edit(long? id)
@@ -119,6 +119,31 @@ namespace Stack_Learn.Controllers
             }
             ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome", pedido.Aluno);
             Console.WriteLine(pedido.Cursos);
+            pedido.Valor_Total = 0;
+            if(pedido.Cursos.Count() > 0)
+            {
+                foreach (Curso curso in pedido.Cursos)
+                {
+                    pedido.Valor_Total = pedido.Valor_Total + curso.Preco;
+                }
+            }
+
+            return View(pedido);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CarrrinhoCompra(Pedido pedido)
+        {
+            if (ModelState.IsValid)
+            {
+                pedido.Pago = true;
+                pedido.Data_Pagamento = DateTime.Now;
+                context.Entry(pedido).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("IndexCanalha");
+            }
             return View(pedido);
         }
 
