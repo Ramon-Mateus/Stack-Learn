@@ -152,6 +152,7 @@ namespace Stack_Learn.Controllers
        }
         public ActionResult Create()
         {
+            //para quem comprar, vir com todos os cursos falso
             ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome),"CategoriaId", "Nome");
             ViewBag.ProfessorId = new SelectList(context.Professores.OrderBy(b => b.Nome),"ProfessorId", "Nome");
             return View();

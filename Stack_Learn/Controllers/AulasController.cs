@@ -21,20 +21,20 @@ namespace Stack_Learn.Controllers
             ViewBag.ID = Request.QueryString["idCurso"];
             long id = ViewBag.ID;
             //IQueryable<Aula> daquele_curso = context.Aulas.
-            return View(context.Aulas.Where(p => p.CursoId == id).Include(c=> c.Curso).Include(y => y.Conclusao).OrderBy(n=>n.Titulo));
+            return View(context.Aulas.Where(p => p.CursoId == id).Include(c => c.Curso).Include(y => y.Conclusao).OrderBy(n => n.Titulo));
         }
         public ActionResult Index()
         {
-            return View(context.Aulas.Include(c => c.Curso).Include(y=> y.Conclusao).OrderBy(n => n.Titulo));
+            return View(context.Aulas.Include(c => c.Curso).Include(y => y.Conclusao).OrderBy(n => n.Titulo));
         }
-        
+
         public ActionResult Create()
         {
             ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
             ViewBag.ConclusaoId = new SelectList(context.Conclusoes, "ConclusaoId", "Concluido");
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Aula aula)
@@ -44,7 +44,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -60,7 +60,7 @@ namespace Stack_Learn.Controllers
             ViewBag.ConclusaoId = new SelectList(context.Conclusoes, "ConclusaoId", "Concluido", aula.ConclusaoId);
             return View(aula);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Aula aula)
@@ -74,7 +74,7 @@ namespace Stack_Learn.Controllers
             }
             return View(aula);
         }
-        
+
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -112,7 +112,7 @@ namespace Stack_Learn.Controllers
             TempData["Message"] = "Aula " + aula.Titulo.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
-        public ActionResult AulaIndividual(long? id)
+        public ActionResult AulaIndividual(long? id)//get
         {
             if (id == null)
             {
@@ -130,7 +130,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId }; 
+            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId };
             var aulaDetails = new AulaDetails();
             aulaDetails.AulaId = id.Value;
             aulaDetails.Ordem = aula.Ordem;
@@ -149,6 +149,14 @@ namespace Stack_Learn.Controllers
             }
             aulaDetails.Aulas = ListaAulas;
             return View(aulaDetails);
+        }
+
+        [HttpPost]
+        public ActionResult AulaIndividual(AulaDetails auladetails)
+        {
+            Aula aula = context.Aulas.Where(p => p.AulaId == auladetails.AulaId).Include(c => c.Curso).First();//achou a aula correspondente
+            aula.TrueFalse = auladetails.TrueFalse;
+            return View(auladetails);
         }
     }
 }

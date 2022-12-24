@@ -12,7 +12,7 @@
         @Model.Curso.Categoria.Nome > @Model.Curso.Nome
     </h1>
     <div>
-        @Model.Titulo <img src="~/img/ImgAula.svg" height="300" width="300"/>
+        @Model.Titulo <img src="~/img/ImgAula.svg" height="300" width="300" />
     </div>
     <hr />
     <p> Descrição do curso:</p> <br /><p> @Model.Curso.Descricao</p>
@@ -20,12 +20,22 @@
     <div>
         Aulas <br />
         @if (Model.Aulas != null)
-            {
+        {
             foreach (var item in Model.Aulas)
-                {
-                    <div><a href="./@item.AulaId">@item.Ordem.  @item.Titulo</a></div>
-                }
+            {
+                <div><a href="./@item.AulaId">@item.Ordem.  @item.Titulo</a></div>
             }
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TrueFalse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.TrueFalse)
+                @Html.ValidationMessageFor(model => model.TrueFalse, "", new { @class = "text-danger" })
+            </div>
+        </div>
     </div>
     <hr />
     <p>Progresso</p> <br />
