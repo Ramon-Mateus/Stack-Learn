@@ -30,8 +30,13 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> ConclusaoList = context.Conclusoes.AsEnumerable().Select(x => new SelectListItem
+            {
+                Value = x.ConclusaoId.ToString(),
+                Text = string.Format("{0} {1}", x.Concluido, x.AlunoId)
+            });
             ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
-            ViewBag.ConclusaoId = new SelectList(context.Conclusoes, "ConclusaoId", "Concluido");
+            ViewBag.ConclusaoId = ConclusaoList;
             return View();
         }
 
@@ -39,7 +44,11 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Aula aula)
         {
-            aula.TrueFalse = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().Concluido;//adicionar manualmente a situação do curso
+            if (aula.ConclusaoId != 0)
+            {
+                aula.TrueFalse = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().Concluido;//adicionar manualmente a situação do curso
+            }
+            
             context.Aulas.Add(aula);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -130,7 +139,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId };
+            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId, c.TrueFalse };
             var aulaDetails = new AulaDetails();
             aulaDetails.AulaId = id.Value;
             aulaDetails.Ordem = aula.Ordem;
@@ -139,12 +148,13 @@ namespace Stack_Learn.Controllers
             aulaDetails.CursoId = aula.CursoId;
             aulaDetails.Curso = aula.Curso;
             aulaDetails.Curso.Categoria = aula.Curso.Categoria;
+            aulaDetails.TrueFalse = aula.TrueFalse;
             var ListaAulas = new List<Aula>();
             foreach (var item in TodasAulas)
             {
                 if (item.CursoId == aula.CursoId)
                 {
-                    ListaAulas.Add(new Aula { AulaId = item.AulaId, Titulo = item.Titulo, Ordem = item.Ordem, CursoId = item.CursoId });
+                    ListaAulas.Add(new Aula { AulaId = item.AulaId, Titulo = item.Titulo, Ordem = item.Ordem, CursoId = item.CursoId, TrueFalse=item.TrueFalse});
                 }
             }
             aulaDetails.Aulas = ListaAulas;
@@ -152,10 +162,18 @@ namespace Stack_Learn.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AulaIndividual(AulaDetails auladetails)
         {
-            Aula aula = context.Aulas.Where(p => p.AulaId == auladetails.AulaId).Include(c => c.Curso).First();//achou a aula correspondente
-            aula.TrueFalse = auladetails.TrueFalse;
+            if (ModelState.IsValid)
+            {
+                Aula aula = context.Aulas.Where(p => p.AulaId == auladetails.AulaId).Include(c => c.Curso).First();//achou a aula correspondente
+                
+                aula.TrueFalse = auladetails.TrueFalse;
+                
+                context.SaveChanges();
+                return RedirectToAction("MeusCursosIndex", "Cursos");
+            }
             return View(auladetails);
         }
     }

@@ -138,6 +138,16 @@ namespace Stack_Learn.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
+                Aluno 1, pedido pago -> aula 1 false 1, aula 2 false 1, aula 3 false 1
+                aulaDetails.AulaId = id.Value;
+                aulaDetails.Ordem = aula.Ordem;
+                aulaDetails.Titulo = aula.Titulo;
+                aulaDetails.Duracao = aula.Duracao;
+                aulaDetails.CursoId = aula.CursoId;
+                aulaDetails.Curso = aula.Curso;
+                aulaDetails.Curso.Categoria = aula.Curso.Categoria;
+                */
                 pedido.Pago = true;
                 pedido.Data_Pagamento = DateTime.Now;
                 context.Entry(pedido).State = EntityState.Modified;

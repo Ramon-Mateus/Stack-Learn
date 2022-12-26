@@ -251,7 +251,7 @@ namespace Stack_Learn.Controllers
             Curso curso = context.Cursos.Find(id);
             context.Cursos.Remove(curso);
             context.SaveChanges();
-            TempData["Message"] = "Curso " + curso.Nome.ToUpper() + " foi removido";
+            //TempData["Message"] = "Curso " + curso.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }
