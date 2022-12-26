@@ -139,7 +139,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId, c.TrueFalse };
+            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId, c.TrueFalse, c.ConclusaoId, c.Conclusao};
             var aulaDetails = new AulaDetails();
             aulaDetails.AulaId = id.Value;
             aulaDetails.Ordem = aula.Ordem;
@@ -149,6 +149,8 @@ namespace Stack_Learn.Controllers
             aulaDetails.Curso = aula.Curso;
             aulaDetails.Curso.Categoria = aula.Curso.Categoria;
             aulaDetails.TrueFalse = aula.TrueFalse;
+            aulaDetails.Conclusao = aula.Conclusao;
+            aulaDetails.ConclusaoId = aula.ConclusaoId;
             var ListaAulas = new List<Aula>();
             foreach (var item in TodasAulas)
             {
@@ -170,7 +172,17 @@ namespace Stack_Learn.Controllers
                 Aula aula = context.Aulas.Where(p => p.AulaId == auladetails.AulaId).Include(c => c.Curso).First();//achou a aula correspondente
                 
                 aula.TrueFalse = auladetails.TrueFalse;
-                
+
+                foreach (var item in context.Conclusoes)
+                {
+                    if (aula.ConclusaoId == item.ConclusaoId)
+                    {
+                        aula.Conclusao = item;
+                    }
+                }
+                aula.ConclusaoId = context.Conclusoes.Where(c => c.AlunoId == aula.Conclusao.AlunoId && c.Concluido == aula.TrueFalse).First().ConclusaoId;
+
+                context.Entry(aula).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("MeusCursosIndex", "Cursos");
             }

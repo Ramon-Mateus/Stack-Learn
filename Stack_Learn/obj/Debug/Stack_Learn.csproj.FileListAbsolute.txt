@@ -1237,3 +1237,5 @@ C:\Users\Raquel\Source\Repos\Stack-Learn\Stack_Learn\bin\roslyn\vbc.exe.config
 C:\Users\Raquel\Source\Repos\Stack-Learn\Stack_Learn\bin\roslyn\vbc.rsp
 C:\Users\Raquel\Source\Repos\Stack-Learn\Stack_Learn\bin\roslyn\VBCSCompiler.exe
 C:\Users\Raquel\Source\Repos\Stack-Learn\Stack_Learn\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\20201011110002\Source\Repos\Stack-Learn\Stack_Learn\bin\Modelos.dll
+C:\Users\20201011110002\Source\Repos\Stack-Learn\Stack_Learn\bin\Modelos.pdb

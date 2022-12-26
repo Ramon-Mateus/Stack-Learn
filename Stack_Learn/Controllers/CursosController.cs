@@ -120,17 +120,17 @@ namespace Stack_Learn.Controllers
             foreach (Curso item in todos)
             {
                 int concluidos = 0;
-                int percorrer_list = item.Qtd_Aulas ;//10
-                int list_final = 0;
+                int percorrer_list = item.Qtd_Aulas ;//2
+                int list_final = 0;//0 1 2 
 
                 foreach(Aula subitem in item.Aulas)
                 {
-                    list_final++;
+                    list_final++;//1 2 3
                     if (subitem.TrueFalse == true)
                     {
                         concluidos++;//1
                     }
-                    if(list_final == percorrer_list - 1 || list_final == item.Aulas.Count)//tem todas as aulas para serem analisadas x se só tem uma
+                    if(list_final == percorrer_list  || list_final == item.Aulas.Count)//tem todas as aulas para serem analisadas x se só tem uma
                     {
                         if (concluidos < percorrer_list)
                         {
