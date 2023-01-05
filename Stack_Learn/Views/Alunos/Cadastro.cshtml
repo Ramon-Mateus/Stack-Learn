@@ -16,12 +16,14 @@
     <link href="@Url.Content("~/Css/Cadastro.css")" rel="stylesheet" />
 </head>
 <body class="body">
-    <header class="header">
-        <img src="~/img/logo2.svg" class="logo"/>
-    </header>
-    <div class="flex" >
 
-        <div class="cadastro-area">
+        <header class="header">
+            <a href="/Home/PaginaInicial" class="logo"><img src="~/img/logo2.svg" class="logo" /> </a>
+        </header>
+
+
+
+        <div class="cadastro-area" style="margin: 0 auto;">
             <div class="cadastrotitle">
                 <figure>
                     <img src="~/img/part time student.png" />
@@ -90,14 +92,14 @@
                     </div>
                 </div>
             }
-            <div class="btn button background-purple hover-purple flex" id="btn-purple">
-                <div class="flex align-center">
+            <div class="btn button background-purple hover-purple flex" id="btn-purple" style="margin: 0 auto;">
+                <div class="flex align-center" >
                     <div>
                         <figure>
                             <img src="~/img/HandsClapping.svg" class="mg-2" />
                         </figure>
                     </div>
-                    <div>
+                    <div >
                         @Html.ActionLink("Quero Ser Professor", "../Professores/Cadastro")
                     </div>
                 </div>
@@ -110,7 +112,7 @@
     </div>
     -->
 
-    </div>
+  
     
 </body>
 </html>

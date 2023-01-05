@@ -7,46 +7,59 @@
     <title>Stack Learn | Aula individual</title>
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
-    <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:24px; text-align:center; padding: 1.5em; margin-bottom: 2em;">
-        @Model.Curso.Categoria.Nome > @Model.Curso.Nome
+    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+    <h1 class="fontJost400" style="margin-top:0px; font-size:22px; text-align:left; padding: 1.5em 1.5em 0px 1.5em; ">
+        @Model.Curso.Categoria.Nome.ToUpper() <span style="opacity:0.4;"> > </span> @Model.Curso.Nome.ToUpper()
     </h1>
+    <div class="line" style="background-image: linear-gradient(to right, #70D7C7, #FFCB34); height: 2px; width: 50%; margin: 0px 33px"></div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.AulaId)
 
-        <div class="aulaindividual">
+<div class="aulaindividual flex-col" style="margin-top: 2em;">
+    <div class="aula-esquerda flex-column space-between" style="width: 50%; background-color:#515352; padding-left: 33px;">
+        <h2 style="font-family: 'Jost'; font-size: 22px; color: white;">@Model.Titulo.ToUpper()</h2> 
+        <img src="~/img/ImgAula.svg" height="300" width="300" />
 
-            @Model.Titulo <img src="~/img/ImgAula.svg" height="300" width="300" />
+       <div class="checkbox flex-col space-between" style="padding-left: 20px; padding-right: 20px;">
+                   <div> 
+                        @Html.EditorFor(model => model.TrueFalse)
+                        @Html.ValidationMessageFor(model => model.TrueFalse, "", new { @class = "text-danger" })
+                    </div>
+                    <div><input type="submit" value="Salvar progresso" class="btn btn-default" /></div>
+        </div>
 
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TrueFalse, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.TrueFalse)
-                            @Html.ValidationMessageFor(model => model.TrueFalse, "", new { @class = "text-danger" })
-                        </div>
+
+    </div>
+    <div class="aula-direita flex-column" style="width: 50%; ">
+        <h2 style="font-family: 'Jost'; font-size: 18px; color: black; text-align: center; margin:0px; font-weight: 500; background-color:#FFEB82; padding: 10px;">@Model.Curso.Nome.ToUpper()</h2>
+        @if (Model.Aulas != null)
+        {
+            foreach (var item in Model.Aulas)
+            {
+                <div class="outras flex-col space-between" style="color: black; padding:10px 4em;font-family: 'Jost'; font-size: 18px; background-color: #F8F8F8">
+
+                    <a href="./@item.AulaId" style="color:black;">@item.Ordem.  @item.Titulo</a>
+                    <div class="paracheck">
+                        @Html.DisplayFor(model => item.TrueFalse)
+                        <span class="checkkk"></span>
                     </div>
                 </div>
-            </div>
+                
+            }
+        }
+    </div>
 
+
+    </div>
+        <div class="information">
+            <div class="information-esquerda">
+
+            </div>
         </div>
-        <hr />
         <p> Descrição do curso:</p> <br /><p> @Model.Curso.Descricao</p>
         <hr />
-        <div class="outrasaulas">
-            Aulas <br />
-            @if (Model.Aulas != null)
-            {
-                foreach (var item in Model.Aulas)
-                {
-                    <div><a href="./@item.AulaId">@item.Ordem.  @item.Titulo</a></div>
-                }
-            }
-        </div>
 
         <hr />
         <p>Progresso</p> <br />

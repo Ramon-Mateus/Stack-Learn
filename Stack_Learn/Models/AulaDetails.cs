@@ -18,5 +18,6 @@ namespace Stack_Learn.Models
         public long? ConclusaoId { get; set; }
         public Conclusao Conclusao { get; set; }
         public Boolean TrueFalse { get; set; }
+        public long? AlunoId { get; set; }
     }
 }

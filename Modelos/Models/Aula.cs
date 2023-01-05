@@ -15,6 +15,7 @@ namespace Modelos.Models
         public long? ConclusaoId { get; set; }//include Conclusão
         public Conclusao Conclusao { get; set; }
         public Boolean TrueFalse { get; set; }
+        public long? AlunoId { get; set; }
 
         public long? CursoId { get; set; }//include Curso
         public Curso Curso { get; set; }

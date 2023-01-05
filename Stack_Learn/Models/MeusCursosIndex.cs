@@ -10,5 +10,7 @@ namespace Stack_Learn.Models
     {
         public List<Curso> em_andamento { get; set; }
         public List<Curso> concluido { get; set; }
+
+        public long? MeusCursosIndexId { get; set; }
     }
 }

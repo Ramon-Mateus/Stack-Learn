@@ -112,6 +112,8 @@ namespace Stack_Learn.Controllers
         }
         public ActionResult MeusCursosIndex()
         {
+            //aluno -> pedido ok -> curso ok
+            long? AlunoId = 1;//sempre o primeiro aluno
             List<Curso> concluidoo = new List<Curso>();
             List<Curso> emm_andamento = new List<Curso>();
 
@@ -125,27 +127,32 @@ namespace Stack_Learn.Controllers
 
                 foreach(Aula subitem in item.Aulas)
                 {
-                    list_final++;//1 2 3
-                    if (subitem.TrueFalse == true)
+                    if(subitem.AlunoId == AlunoId)
                     {
-                        concluidos++;//1
-                    }
-                    if(list_final == percorrer_list  || list_final == item.Aulas.Count)//tem todas as aulas para serem analisadas x se só tem uma
-                    {
-                        if (concluidos < percorrer_list)
+                        list_final++;//1 2 3
+                        if (subitem.TrueFalse == true)
                         {
-                            emm_andamento.Add(item);
+                            concluidos++;//1
                         }
-                        if (concluidos == percorrer_list)
+                        if (list_final == percorrer_list || list_final == item.Aulas.Count)//tem todas as aulas para serem analisadas x se só tem uma
                         {
-                            concluidoo.Add(item);
+                            if (concluidos < percorrer_list)
+                            {
+                                emm_andamento.Add(item);
+                            }
+                            if (concluidos == percorrer_list)
+                            {
+                                concluidoo.Add(item);
+                            }
                         }
                     }
                 }
             }
+
             MeusCursosIndex index = new MeusCursosIndex();
             index.em_andamento = emm_andamento;
             index.concluido = concluidoo;
+            index.MeusCursosIndexId = AlunoId;
             return View(index);
 
 
