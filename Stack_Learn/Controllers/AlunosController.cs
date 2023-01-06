@@ -7,13 +7,30 @@ using System.Web;
 using System.Web.Mvc;
 using Stack_Learn.Context;
 using Modelos.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Stack_Learn.Areas.Seguranca.Models;
+using Stack_Learn.Infraestrutura;
 
 namespace Stack_Learn.Controllers
 {
     public class AlunosController : Controller
     {
         private EFContext context = new EFContext();
-
+        private GerenciadorUsuario GerenciadorUsuario
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+            }
+        }
+        private GerenciadorUsuario UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+            }
+        }
 
         public ActionResult Index()
         {
@@ -99,7 +116,13 @@ namespace Stack_Learn.Controllers
             TempData["Message"] = "Aluno(a) " + aluno.Nome.ToUpper() + " foi removido(a)";
             return RedirectToAction("Index");
         }
-
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         public ActionResult Cadastro()
         {
             return View();
@@ -111,6 +134,23 @@ namespace Stack_Learn.Controllers
         {
             context.Alunos.Add(aluno);
             context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                Usuario user = new Usuario
+                {
+                    UserName = aluno.Login,
+                    Email = aluno.Login + "@email.com",
+                    AlunoId = aluno.AlunoId
+                };
+                IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);
+                UserManager.AddToRole(user.Id, "Aluno");
+                if (result.Succeeded)
+                { return RedirectToAction("Index"); }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
             return RedirectToAction("Index");
         }
     }

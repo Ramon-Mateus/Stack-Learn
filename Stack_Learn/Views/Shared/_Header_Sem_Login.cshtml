@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Stack_Learn.Infraestrutura
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -9,24 +10,38 @@
     <script>
         function paracadastro() {
 
-            window.location.href= "/Alunos/Cadastro"
+            window.location.href = "/Alunos/Cadastro"
+        }
+        function paralogin() {
+            window.location.href = "/Seguranca/Account/Login"
         }
     </script>
 </head>
 <body>
     <div class="panel-footer panel-info flex center color-bg">
-        <img src="~/img/logo2.svg" height="90" width="90"/>
+        <a href="/Home/PaginaInicial"><img src="~/img/logo2.svg" height="90" width="90" /></a>
         <div class="flex-col center fontJost400" style="font-size: 20px;">
             <a href="/Cursos/Lista" class="linkPaginas" id="aCursos" role="presentation">Cursos</a>
             <a href="#" class="linkPaginas" id="aAssinatura" role="presentation">Assinatura</a>
         </div>
         <div class="flex-col center fontJost400">
-            <button class="buttonCadastroLogin">
-                Entrar
-            </button>
-            <button class="buttonCadastroLogin" onclick="paracadastro()">
-                Cadastro
-            </button>
+            @{
+                if (Html.GetAuthenticatedUser().ToString() != "")
+                {
+                    @Html.GetAuthenticatedUser().ToString().ToUpper();
+                    @Html.ActionLink(" - Sair", "Logout", "Account")
+                }
+                else
+                {
+                    <button class="buttonCadastroLogin" onclick="paralogin()">
+                        Entrar
+                    </button>
+                    <button class="buttonCadastroLogin" onclick="paracadastro()">
+                        Cadastro
+                    </button>
+
+                }
+            }
             <a>
                 <img src="~/img/carrinho.svg" height="40" width="40" />
             </a>

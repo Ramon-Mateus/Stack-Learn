@@ -384,7 +384,6 @@
     <Folder Include="Areas\Seguranca\Views\Shared\" />
     <Folder Include="fotos\" />
     <Folder Include="public\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelos\Modelos.csproj">

@@ -22,7 +22,7 @@ namespace Stack_Learn.Areas.Seguranca.Controllers
             }
         }
         // GET: Seguranca/Admin
-        [Authorize(Roles = "ADM")]
+        //[Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(GerenciadorUsuario.Users);

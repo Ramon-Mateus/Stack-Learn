@@ -8,5 +8,7 @@ namespace Stack_Learn.Areas.Seguranca.Models
 {
     public class Usuario : IdentityUser
     {
+        public long? AlunoId { get; set; }
+        public long? ProfessorId { get; set; }
     }
 }
