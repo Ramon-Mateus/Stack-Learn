@@ -7,6 +7,10 @@ using System.Web;
 using System.Web.Mvc;
 using Stack_Learn.Context;
 using Modelos.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Stack_Learn.Areas.Seguranca.Models;
+using Stack_Learn.Infraestrutura;
 
 namespace Stack_Learn.Controllers
 {
@@ -14,8 +18,21 @@ namespace Stack_Learn.Controllers
     {
 
         private EFContext context = new EFContext();
+        private GerenciadorUsuario GerenciadorUsuario
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+            }
+        }
+        private GerenciadorUsuario UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+            }
+        }
 
-        
         public ActionResult Index()
         {
             return View(context.Professores.OrderBy(c => c.Nome));
@@ -34,7 +51,13 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         public ActionResult Cadastro()
         {
             return View();
@@ -46,6 +69,23 @@ namespace Stack_Learn.Controllers
         {
             context.Professores.Add(professor);
             context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                Usuario user = new Usuario
+                {
+                    UserName = professor.Login,
+                    Email = professor.Login + "@email.com",
+                    ProfessorId = professor.ProfessorId
+                };
+                IdentityResult result = GerenciadorUsuario.Create(user, professor.Senha);
+                UserManager.AddToRole(user.Id, "Professor");
+                if (result.Succeeded)
+                { return RedirectToAction("Index"); }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
             return RedirectToAction("Index");
         }
 
