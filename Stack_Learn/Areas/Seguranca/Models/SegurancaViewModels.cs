@@ -12,8 +12,6 @@ namespace Stack_Learn.Areas.Seguranca.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public string NomeUsuario { get; set; }
-        [Required]
         public string Email { get; set; }
         [Required]
         public string Senha { get; set; }
