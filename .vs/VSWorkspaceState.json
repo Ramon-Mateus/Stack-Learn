@@ -3,9 +3,9 @@
     "",
     "\\Stack_Learn",
     "\\Stack_Learn\\Views",
-    "\\Stack_Learn\\Views\\Alunos",
-    "\\Stack_Learn\\Views\\Aulas"
+    "\\Stack_Learn\\Views\\Aulas",
+    "\\Stack_Learn\\Views\\Cursos"
   ],
-  "SelectedNode": "\\Stack_Learn.sln",
+  "SelectedNode": "\\Stack_Learn\\Views\\Cursos\\Details.cshtml",
   "PreviewInSolutionExplorer": false
 }
