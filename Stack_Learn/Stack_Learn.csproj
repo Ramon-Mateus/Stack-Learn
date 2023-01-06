@@ -234,6 +234,10 @@
     <Content Include="Areas\Seguranca\Views\Admin\Edit.cshtml" />
     <Content Include="Areas\Seguranca\Views\Admin\Delete.cshtml" />
     <Content Include="Areas\Seguranca\Views\Admin\Details.cshtml" />
+    <Content Include="Areas\Seguranca\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Seguranca\Views\PapelAdmin\Index.cshtml" />
+    <Content Include="Areas\Seguranca\Views\PapelAdmin\Create.cshtml" />
+    <Content Include="Areas\Seguranca\Views\PapelAdmin\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="img\logo_sem_palavras.svg" />
     <Content Include="img\part time student.png" />
@@ -274,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Seguranca\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Seguranca\Controllers\PapelAdminController.cs" />
+    <Compile Include="Areas\Seguranca\Models\Papel.cs" />
     <Compile Include="Areas\Seguranca\Models\SegurancaViewModels.cs" />
     <Compile Include="Areas\Seguranca\Models\Usuario.cs" />
     <Compile Include="Areas\Seguranca\SegurancaAreaRegistration.cs" />
@@ -292,8 +299,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infraestrutura\GerenciadorPapel.cs" />
     <Compile Include="Infraestrutura\GerenciadorUsuario.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="Infraestrutura\IdentityHelpers.cs" />
     <Compile Include="Models\AulaDetails.cs" />
     <Compile Include="Models\CursoDetails.cs" />
     <Compile Include="Models\MeusCursosIndex.cs" />

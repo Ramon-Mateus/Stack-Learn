@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Stack_Learn.Infraestrutura
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -15,9 +16,23 @@
                 <figure>
                     <img src="~/img/logo2.svg" />
                 </figure>
-                <figure>
-                    <img src="~/img/admfoto.svg" class="user"/>
-                </figure>
+                <div style="text-align:right;">
+                    <figure>
+                        <img src="~/img/admfoto.svg" class="user" />
+                    </figure>
+                    @{
+                        if (Html.GetAuthenticatedUser().ToString() != "")
+                        {
+                            @Html.GetAuthenticatedUser();
+                            @Html.ActionLink(" - Sair", "Logout", "Account")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Acessar", "Login", "Account", new { area = "Seguranca" }, null);
+
+                        }
+                    }
+                </div>
             </div>
         </div>
         <div class="row">
@@ -31,6 +46,7 @@
                     <li id="liAulas" role="presentation">@Html.ActionLink("Aulas", "Index", "Aulas", new { Area = "" }, null)</li>
                     <li id="liPedidos" role="presentation">@Html.ActionLink("Pedidos", "IndexCanalha", "Pedidos", new { Area = "" }, null)</li>
                     <li id="liUsuarios" role="presentation">@Html.ActionLink("Usuários", "Index", "Admin", new { area = "Seguranca" }, null)</li>
+                    <li id="liPapeis" role="presentation">@Html.ActionLink("Papéis", "Index", "PapelAdmin", new { area = "Seguranca" }, null)</li>
                 </ul>
             </div>
             <div class="col-xs-12 col-md-12">

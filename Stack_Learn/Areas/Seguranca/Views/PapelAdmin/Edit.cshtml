@@ -1,0 +1,94 @@
+﻿@using Stack_Learn.Areas.Seguranca.Models
+@model PapelEditModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Alteração de usuários em um papel";
+}
+@Html.ValidationSummary()
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
+</head>
+@using (Html.BeginForm())
+{
+    <input type="hidden" name="nomePapel" value="@Model.Papel.Name" />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Adicionar para @Model.Papel.Name
+        </div>
+        <table class="table table-striped">
+            @if (Model.NaoMembros.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2">
+                        Todos os usuários são membros
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Usuários</td>
+                    <td>
+                        Adicionar ao Papel
+                    </td>
+                </tr>
+                foreach (Usuario usuario in Model.NaoMembros)
+                {
+                    <tr>
+                        <td>@usuario.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsParaAdicionar"
+                                   value="@usuario.Id">
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Remover de @Model.Papel.Name
+        </div>
+        <table class="table table-striped">
+            @if (Model.Membros.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2">Sem usuários membros</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Usuários</td>
+                    <td>Remover do Papel</td>
+                </tr>
+                foreach (Usuario usuario in Model.Membros)
+                {
+                    <tr>
+                        <td>@usuario.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsParaRemover"
+                                   value="@usuario.Id">
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        Gravar alterações
+    </button>
+
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+}
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liPapeis').addClass("active");
+        });
+    </script>
+}
