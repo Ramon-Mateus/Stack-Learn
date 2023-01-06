@@ -19,7 +19,7 @@
         <div class="flex-col " style="flex-wrap: wrap;">
             @foreach (var item in Model.em_andamento)
             {
-            <div class="card part1 flex-col" style="
+                <div class="card part1 flex-col" style="
             border: 3px solid transparent;
             box-shadow: 2px 1000px 1px #ffff inset;
             background-image: linear-gradient(to right, #70D7C7, #FFCB34);
@@ -27,22 +27,22 @@
             margin: 12px 20px 0px 0px;
             padding: 16px;
 ">
-                @{
-                    int aulasfeitas = 0;
-                    int progresso = 0;
+                    @{
+                        int aulasfeitas = 0;
+                        int progresso = 0;
 
 
-                    foreach (var subitem in item.Aulas)
-                    {
-                        if (subitem.TrueFalse == true)
+                        foreach (var subitem in item.Aulas)
                         {
-                            aulasfeitas++;
+                            if (subitem.TrueFalse == true)
+                            {
+                                aulasfeitas++;
+                            }
                         }
-                    }
-                    progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
+                        progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
 
-                    int tamanho = item.Categoria.Nome.Length;
-                    <div class="esquerda flex-column">
+                        int tamanho = item.Categoria.Nome.Length;
+                        <div class="esquerda flex-column">
                             <a style="
                         font-family:'Jost';
                         font-size: 14px;
@@ -63,33 +63,33 @@
 
 
 
-                </div>
+                    </div>
 
 
-                <div class="direita flex-column" style="
+                    <div class="direita flex-column" style="
                 align-items:center;
                 justify-content: flex-end;
                 margin-left: 10px;
 
                    ">
-                    <h4 style="
+                        <h4 style="
                     border-radius: 1000%;
                     background-color:#70D7C7;
                     padding: 8px;
                     font-family: 'Jost';
                     font-size:16px;
                     ">
-                        @progresso%
-                    </h4>
+                            @progresso%
+                        </h4>
 
 
-                    @foreach (var subitem in item.Aulas)
-                    {
-                        long? AulaaId = 0;
-                        if (subitem.CursoId == item.CursoId && subitem.AlunoId == Model.MeusCursosIndexId)
+                        @foreach (var subitem in item.Aulas)
                         {
-                            AulaaId = subitem.AulaId;
-                            <h4 style="
+                            long? AulaaId = 0;
+                            if (subitem.CursoId == item.CursoId && subitem.AlunoId == Model.MeusCursosIndexId)
+                            {
+                                AulaaId = subitem.AulaId;
+                                <h4 style="
                         background-color:#FFCC36;
                         padding: 10px;
                         font-family: 'Jost';
@@ -98,23 +98,23 @@
                         margin: 0px;
                         border-radius: 5px;
                         ">
-                                <a href="/Aulas/AulaIndividual/@AulaaId" style="color:black;">Continuar Aulas</a>
+                                    <a href="/Aulas/AulaIndividual/@AulaaId" style="color:black;">Continuar Aulas</a>
 
-                            </h4>
-                            break;
+                                </h4>
+                                break;
+                            }
+
                         }
+                    </div>
 
                     }
+
                 </div>
+            }
 
-                }
-
-            </div>
-                    }
-
-            </div>
+        </div>
     </div>
-    
+
     <div class="part 2 flex-column center" style="background-color:#515352;">
         <h1 class="fontJost400" style="font-size: 24px;color: white; margin: 0px;">CONCLUIDO</h1>
         <div class="flex-col">
@@ -137,9 +137,9 @@
                 progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
             }
         </div>
-        
+
     </div>
-    
+
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
 </body>
 </html>

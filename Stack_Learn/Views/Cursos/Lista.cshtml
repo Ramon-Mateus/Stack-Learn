@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Modelos.Models.Curso>
+@using Stack_Learn.Infraestrutura
 @{
     Layout = null;
     int verificar = 0;
@@ -8,7 +9,16 @@
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+    @{
+        if (Html.GetAuthenticatedUser().ToString() != "")
+        {
+            @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+        }
+        else
+        {
+            @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+        }
+    }
     <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:22px; text-align:center; padding: 1.5em; ">EXPLORAR CURSOS</h1>
 
     <div class="flex-col space-around" style="margin-bottom:4em;">
@@ -19,10 +29,10 @@
 
         <div class="parte1-2 flex-col center-justify" style="margin-bottom: 2em; width:100%; height: 100%; flex-wrap: wrap; padding: 10px;">
             @foreach (var item in Model)
-                {
+            {
 
 
-                <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="        
+                <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="
     padding: 2em;
         width: 225px;
         height: 300px;

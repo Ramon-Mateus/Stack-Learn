@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Stack_Learn.Infraestrutura
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -8,22 +9,24 @@
     <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
 </head>
 <body>
-    <div class="panel-footer panel-info flex center color-bg">
-        <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
-        <div class="flex-col center fontJost400" style="font-size: 20px;">
-            <a href="/Cursos/MeusCursosIndex" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
-            <a href="/Cursos/Index" class="linkPaginas" id="aCursos">Cursos</a>
-            <a href= "#" class="linkPaginas" id="aAssinatura">Assinatura</a>
+        <div class="panel-footer panel-info flex center color-bg">
+            <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
+            <div class="flex-col center fontJost400" style="font-size: 20px;">
+                <a href="/Cursos/MeusCursosIndex@*/@Html.GetAuthenticatedUserId()*@" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+                <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
+                <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
+            </div>
+            <div class="flex-col center fontJost400">
+                <a>
+                    <img src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+                </a>
+                @Html.GetAuthenticatedUser().ToString().ToUpper()
+                @Html.ActionLink(" - Sair", "Logout", "Account")
+                <a>
+                    <img src="~/img/carrinho.svg" height="40" width="40" />
+                </a>
+            </div>
         </div>
-        <div class="flex-col center fontJost400">
-            <a>
-                <img src="~/img/foto_estudantefoto.svg" height="40" width="40"/>
-            </a>
-            <a>
-                <img src="~/img/carrinho.svg" height="40" width="40" />
-            </a>
-        </div>
-    </div>
 </body>
 </html>
 

@@ -2,10 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Stack_Learn",
+    "\\Stack_Learn\\Areas",
+    "\\Stack_Learn\\Areas\\Seguranca",
+    "\\Stack_Learn\\Areas\\Seguranca\\Views",
+    "\\Stack_Learn\\Areas\\Seguranca\\Views\\PapelAdmin",
     "\\Stack_Learn\\Views",
     "\\Stack_Learn\\Views\\Aulas",
     "\\Stack_Learn\\Views\\Cursos"
   ],
-  "SelectedNode": "\\Stack_Learn\\Views\\Cursos\\Details.cshtml",
+  "SelectedNode": "\\Stack_Learn\\Areas\\Seguranca\\Views\\PapelAdmin\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

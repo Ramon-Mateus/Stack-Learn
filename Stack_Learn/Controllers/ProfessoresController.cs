@@ -67,8 +67,6 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastro(Professor professor)
         {
-            context.Professores.Add(professor);
-            context.SaveChanges();
             if (ModelState.IsValid)
             {
                 Usuario user = new Usuario
@@ -79,6 +77,8 @@ namespace Stack_Learn.Controllers
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, professor.Senha);
                 UserManager.AddToRole(user.Id, "Professor");
+                context.Professores.Add(professor);
+                context.SaveChanges();
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
                 else
@@ -122,8 +122,7 @@ namespace Stack_Learn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Professor professor = context.Professores.Where(f => f.ProfessorId == id).
-           Include("Cursos.Categoria").First();
+            Professor professor = context.Professores.Where(f => f.ProfessorId == id).Include("Cursos.Categoria").First();
             if (professor == null)
             {
                 return HttpNotFound();

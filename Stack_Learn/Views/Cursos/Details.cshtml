@@ -1,5 +1,5 @@
 ﻿@model Stack_Learn.Models.CursoDetails
-
+@using Stack_Learn.Infraestrutura
 @{
     Layout = null;
 }
@@ -10,7 +10,16 @@
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+    @{
+        if (Html.GetAuthenticatedUser().ToString() != "")
+        {
+            @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+        }
+        else
+        {
+            @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
+        }
+    }
 
     <div class="part1 flex-col space-between" style="background-color: #454545; padding: 5em;">
         <div class="sobre-curso" style="height: 100%; width: 50%;">
@@ -80,7 +89,7 @@
                 padding: 4px 12px 4px 12px;
             " />
             }
-            </div>
+        </div>
     </div>
     <div class="part2 flex-col space-around" style="padding: 5em;">
         <div class="more-information" style="width:70%;">
@@ -94,7 +103,10 @@
                 <br />
                 Este curso tem seus módulos com os seguinte títulos:
             </p>
-            @Html.Partial("~/Views/Aulas/_ParaDetailsAula.cshtml", Model.curso.Aulas.ToList())
+            <select style="font-family: 'Nunito' ;color: black;background-color: #FFEB82;text-align: center;width: 30%;padding: 8px;font-size: 18px;" onchange="location.href=this.value">
+                <option value="#">Aulas</option>
+                @Html.Partial("~/Views/Aulas/_ParaDetailsAula.cshtml", Model.curso.Aulas.ToList())
+            </select>
             <div class="line" style="height: 2px; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin: 2em 2em 2em 0;"></div>
             <h3 style="
             font-family: 'Jost';
@@ -166,4 +178,3 @@
         });
     </script>
 }
-        

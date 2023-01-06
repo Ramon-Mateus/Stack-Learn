@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace Stack_Learn.Infraestrutura
         public static MvcHtmlString GetAuthenticatedUser(this HtmlHelper html)
         {
             return new MvcHtmlString(HttpContext.Current.User.Identity.Name);
+        }
+        public static MvcHtmlString GetAuthenticatedUserId(this HtmlHelper html)
+        {
+            return new MvcHtmlString(HttpContext.Current.User.Identity.GetUserId());
         }
     }
 }

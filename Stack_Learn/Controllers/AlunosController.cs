@@ -132,8 +132,7 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastro(Aluno aluno)
         {
-            context.Alunos.Add(aluno);
-            context.SaveChanges();
+            
             if (ModelState.IsValid)
             {
                 Usuario user = new Usuario
@@ -144,6 +143,8 @@ namespace Stack_Learn.Controllers
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);
                 UserManager.AddToRole(user.Id, "Aluno");
+                context.Alunos.Add(aluno);
+                context.SaveChanges();
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
                 else
