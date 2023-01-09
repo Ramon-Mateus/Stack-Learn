@@ -135,6 +135,8 @@ namespace Stack_Learn.Controllers
             
             if (ModelState.IsValid)
             {
+                context.Alunos.Add(aluno);
+                context.SaveChanges();
                 Usuario user = new Usuario
                 {
                     UserName = aluno.Login,
@@ -143,8 +145,7 @@ namespace Stack_Learn.Controllers
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);
                 UserManager.AddToRole(user.Id, "Aluno");
-                context.Alunos.Add(aluno);
-                context.SaveChanges();
+               
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
                 else

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Stack_Learn.Models.CursosUsuarios>
+﻿@model Stack_Learn.Models.CursosUsuarios
 @using Stack_Learn.Infraestrutura
 @{
     Layout = null;
@@ -35,7 +35,7 @@
         </div>
         <h1 class="fontJost400" style="font-size:28px; text-align:center; margin-bottom: 2em;">MAIS COMPRADOS</h1>
         <div class="parte1-2 flex-col center-justify" style="margin-bottom: 4em;">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Cursos)
             {
                 a = a + 1;
                 if (a != 4)

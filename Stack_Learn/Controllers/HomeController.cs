@@ -29,8 +29,12 @@ namespace Stack_Learn.Controllers
         public ActionResult PaginaInicial()
         {
             var Cursos_Usuarios = new CursosUsuarios();
-            Usuario user = GerenciadorUsuario.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            Cursos_Usuarios.AlunoId = user.AlunoId;
+            if (System.Web.HttpContext.Current.User.Identity.Name.ToString() != "")
+            {
+                var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                Usuario user = GerenciadorUsuario.FindById(userid);
+                Cursos_Usuarios.AlunoId = user.AlunoId;
+            }
             var Cursos_totais = new List<Curso>();
             foreach (var item in context.Cursos.Include(c => c.Categoria).Include(f => f.Professor))
             {
