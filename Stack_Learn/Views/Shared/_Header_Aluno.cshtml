@@ -1,4 +1,5 @@
 ﻿@using Stack_Learn.Infraestrutura
+@using Stack_Learn.Models;
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +10,10 @@
     <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
 </head>
 <body>
-        <div class="panel-footer panel-info flex center color-bg">
-            <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
+    <div class="panel-footer panel-info flex center color-bg">
+        <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
             <div class="flex-col center fontJost400" style="font-size: 20px;">
-                <a href="/Cursos/MeusCursosIndex@*/@Html.GetAuthenticatedUserId()*@" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+                <a href="/Cursos/MeusCursosIndex/" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
                 <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
                 <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
             </div>
@@ -26,7 +27,7 @@
                     <img src="~/img/carrinho.svg" height="40" width="40" />
                 </a>
             </div>
-        </div>
+    </div>
 </body>
 </html>
 
