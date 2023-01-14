@@ -10,11 +10,17 @@ html {
     
 }
 
+.divdivider {
+    display: flex;
+
+}
+
 .body {
     font-family: 'Nunito';
     background-color: #454545;
-    width: 100%;
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    
 }
 
 .logo {
@@ -25,9 +31,10 @@ html {
 .header {
     display: flex;
     width: 100%;
-    background-color: #70D7C7;
-    align-items: center;
 
+    background-color: #70D7C7;
+    height: 10vh;
+    align-items: center;
 }
 .formgroup {
     display: flex;
@@ -40,7 +47,7 @@ html {
 }
 
 .cadastro-area {
-    margin: 2em 2em;
+    margin: 5em 5em 5em 5em;
 }
 
 
@@ -59,9 +66,9 @@ html {
 .art {
    
     width: 90vw;
-    height: 100%;
+    height: 90vh;
     background-color: white;
-    background-image: url("../img/ART.png")
+    background-image: url("../img/ART.png");
 }
 
 .title {
@@ -83,6 +90,7 @@ html {
     width: 220px;
     align-self: center;
     align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #btn-purple:hover {
@@ -108,4 +116,14 @@ html {
 
 .strong {
     font-weight: bold;
+}
+
+.cadastro-btn a {
+    align-text: center;
+    color: white;
+    text-decoration: underline;
+}
+.cadastro-btn a:hover {
+    color: #70D7C7;
+    ;
 }

@@ -1,50 +1,90 @@
 ﻿@model Stack_Learn.Areas.Seguranca.Models.LoginViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
     ViewBag.Title = "Acessando o sistema";
 }
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Css/Adm.css")" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>Cadastro</title>
+
+    <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/Cadastro.css")" rel="stylesheet" />
 </head>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Acessando o sistema
-        </div>
-        <div class="panel-body">
-            <div class="form-horizontal">
-                @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Count() > 0))
-                {
-                    <div class="alert alert-danger alert-dismissable">
-                        @Html.ValidationSummary(false, "Verifique os seguintes erros:")
+<body class="body">
+    <header class="header">
+            <a href="/Home/PaginaInicial" class="logo"><img src="~/img/logo2.svg" class="logo" /> </a>
+    </header>
+
+
+    <div class="divdivider">
+        <div class="cadastro-area">
+            <div class="cadastrotitle">
+                <figure>
+                    <img src="~/img/teacher.svg" />
+                </figure>
+                <p class="title">
+                    LOGIN
+                </p>
+            </div>
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="formgroup">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(model => model.Nome, "Login", htmlAttributes: new { @class = "control-label" })
+                        </div>
+
+                        <div class="size-editor">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                }
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+
+                
+
+                    <div class="form-group">
+                        <div>
+                            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label" })
+                        </div>
+
+                        <div class="size-editor">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <div class="">
+                            <input type="submit" value="ENTRAR" class="btn btn-default button strong" />
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-                    </div>
+            }
+            <div style="margin-top: 1em;">
+                <p class="align-center" style="color: white; text-align: center;">Ainda não esta cadastrado?</p>
+                <div class="cadastro-btn" style="text-align: center;">
+                        @Html.ActionLink("Cadastre-se", "../Professores/Cadastro")
                 </div>
             </div>
+
         </div>
-        <div class="panel-footer panel-info">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Acessar" class="btn btn-danger" />
-            </div>
-            <br />
-            <br />
+
+        <div  class="art">
         </div>
     </div>
-}
+        
+</body>
+
+
+  
+    
