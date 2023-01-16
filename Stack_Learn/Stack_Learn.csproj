@@ -307,7 +307,6 @@
     <Compile Include="Infraestrutura\IdentityHelpers.cs" />
     <Compile Include="Models\AulaDetails.cs" />
     <Compile Include="Models\CursoDetails.cs" />
-    <Compile Include="Models\CursosUsuarios.cs" />
     <Compile Include="Models\MeusCursosIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

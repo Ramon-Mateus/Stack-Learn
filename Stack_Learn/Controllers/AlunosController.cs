@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Stack_Learn.Areas.Seguranca.Models;
 using Stack_Learn.Infraestrutura;
+using Stack_Learn.Models;
 
 namespace Stack_Learn.Controllers
 {
@@ -53,11 +54,15 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Edit(long? id)
         {
+            var CursosUsuarios = new CursosUsuarios();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Aluno aluno = context.Alunos.Find(id);
+            CursosUsuarios.AlunoId = id;
+            CursosUsuarios.CursosUsuariosId = id;
+            aluno.curso_usuario = CursosUsuarios;
             if (aluno == null)
             {
                 return HttpNotFound();
@@ -140,7 +145,7 @@ namespace Stack_Learn.Controllers
                 Usuario user = new Usuario
                 {
                     UserName = aluno.Login,
-                    Email = aluno.Login + "@email.com",
+                    Email = aluno.Email,
                     AlunoId = aluno.AlunoId
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);

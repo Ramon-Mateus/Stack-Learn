@@ -48,6 +48,7 @@
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Conclusao.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\CursosUsuarios.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
