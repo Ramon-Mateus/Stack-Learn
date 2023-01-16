@@ -23,7 +23,7 @@ namespace Stack_Learn.Controllers
         public ActionResult Create()
         {
             ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
-            ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
+            ViewBag.IdAluno = Request.QueryString["IdAluno"];
             return View();
         }
 

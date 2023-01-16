@@ -1,11 +1,6 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Jost&family=Nunito&display=swap');
 
-a {
-    /* color: #337ab7; */
-    color: black;
-    text-decoration: none;
-}
-    .flex-col {
+.flex-col {
     display: flex;
     flex-direction: row;
 }
@@ -59,7 +54,7 @@ a {
     width: 100%;
     object-fit: cover;
 }
-a:hover {
+.direita flex-column a:hover {
     text-decoration: none;
     color: black;
 }
@@ -112,3 +107,41 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     cursor: not-allowed;
     display: none;
 }
+
+
+/*
+.next, .prev {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+
+}
+
+    .next:hover, .prev:hover {
+        background-color: white;
+        cursor: pointer;
+    }
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+*/

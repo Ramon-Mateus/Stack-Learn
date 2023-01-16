@@ -12,9 +12,9 @@
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+
     <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:22px; text-align:center; padding: 1.5em; ">EXPLORAR CURSOS</h1>
-    <div class="part1 flex-column " style="padding: 3em; flex-wrap: wrap; width: 100%;">
+    <div class="part1 flex-column " style="padding: 3em; flex-wrap: wrap; width: 100%; width: 50%; margin: 0 auto;">
         <h1 class="fontJost400" style="font-size: 26px; font-weight: 500; margin: 0px 0px 10px 0px;text-align: left;">EM ANDAMENTO</h1>
         <div class="flex-col " style="flex-wrap: wrap;">
             @foreach (var item in Model.em_andamento)
@@ -110,36 +110,85 @@
                     }
 
                 </div>
-            }
+                        }
 
         </div>
     </div>
 
-    <div class="part 2 flex-column center" style="background-color:#515352;">
-        <h1 class="fontJost400" style="font-size: 24px;color: white; margin: 0px;">CONCLUIDO</h1>
-        <div class="flex-col">
-            @foreach (var item in Model.concluido)
-            {
-                <h3>@item.Nome</h3>
+    <div class="outside part 2" style=" background-color: #515352">
+        <div class="button-wrap flex-col space-between" style="z-index: 10; padding: 10px 400px; top: 300px; position: relative">
+            <button class="arrow" id="arrow-left" onclick="slideLeft()"> &#10094;</button>
+            <button class="arrow" id="arrow-right" onclick="slideRight()"> &#10095;</button>
+        </div>
+        <div class="part 2 flex-column" style="background-color:#515352;padding: 1em; flex-wrap: wrap; width: 50%; margin: 0 auto;">
+            <h1 class="fontJost400" style="font-size: 26px;color: white; margin: 0px 0px 15px 0px;">CONCLUIDO</h1>
+
+            <div class="carrosel flex-col" style="flex-wrap: wrap; overflow: hidden; height: 442px;">
 
 
-                int aulasfeitas = 0;
-                int progresso = 0;
-
-
-                foreach (var subitem in item.Aulas)
+                @foreach (var item in Model.concluido)
                 {
-                    if (subitem.TrueFalse == true)
-                    {
-                        aulasfeitas++;
-                    }
+                <div class=" slide" style="width: 100%;">
+                    <div class=" card part 2 flex-col space-between" style="
+                border: 1px solid transparent;
+                box-shadow: 2px 1000px 1px #ffff inset;
+                background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+                color: black;
+                padding: 16px;
+                width: 100%;
+
+                ">
+
+                        <div class="esquerda flex-column ">
+                            <div class="esquerda top" style="
+                            width: 200px;
+                            font-family:'Jost';
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            text-decoration: none;
+                            border: 1px solid #ECE8EF;
+                            border-radius: 5px;
+                            color: black;
+                            text-align:center;
+                            margin-bottom: 15px;
+                            ">
+                                @item.Categoria.Nome.ToUpper()
+                            </div>
+                            <div class="esquerda bottom flex-col">
+                                <div class="imagem esquerda bottom">
+                                    @Html.HiddenFor(m => item.LogotipoMimeType)
+                                    @Html.HiddenFor(m => item.Logotipo)
+                                    @Html.HiddenFor(m => item.NomeArquivo)
+                                    @Html.HiddenFor(m => item.TamanhoArquivo)
+                                    <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" width="200" height="150" />
+                                </div>
+                                <div class="texto esquerda bottom" style="margin-left: 15px;">
+                                    <h3 style="font-family:'Jost'; font-size: 16px; font-weight: 600; margin: 0px 0px 5px 0px;">@item.Nome</h3>
+                                    <h4 style="font-family:'Jost'; font-size: 13px; font-weight: 400; margin: 0px;">feito por @item.Professor.Nome</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="direita">
+                            <a href="/Avaliacoes/Create?AlunoId=@Model.MeusCursosIndexId"> AVALIE</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
                 }
-                progresso = (aulasfeitas * 100) / item.Qtd_Aulas;
-            }
+
+            </div>
+
+
+
+
         </div>
 
     </div>
-
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
+    <script src="~/Scripts/scripts/slider.js"></script>
 </body>
 </html>
