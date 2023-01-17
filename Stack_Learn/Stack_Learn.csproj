@@ -373,6 +373,7 @@
     <Content Include="Views\Pedidos\IndexCanalha.cshtml" />
     <Content Include="Views\Pedidos\Create.cshtml" />
     <Content Include="Views\Pedidos\_Carrinho_Curso.cshtml" />
+    <Content Include="Views\Shared\_Header_Professor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

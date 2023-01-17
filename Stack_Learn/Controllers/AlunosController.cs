@@ -77,6 +77,11 @@ namespace Stack_Learn.Controllers
             if (ModelState.IsValid)
             {
                 context.Entry(aluno).State = EntityState.Modified;
+                Usuario usuario = GerenciadorUsuario.FindById(aluno.Id_do_usuario);
+                usuario.UserName = aluno.Login;
+                usuario.Email = aluno.Email;
+                usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.HashPassword(aluno.Senha);
+                GerenciadorUsuario.Update(usuario);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -118,6 +123,8 @@ namespace Stack_Learn.Controllers
             Aluno aluno = context.Alunos.Find(id);
             context.Alunos.Remove(aluno);
             context.SaveChanges();
+            Usuario user = GerenciadorUsuario.FindById(aluno.Id_do_usuario);
+            GerenciadorUsuario.Delete(user);
             TempData["Message"] = "Aluno(a) " + aluno.Nome.ToUpper() + " foi removido(a)";
             return RedirectToAction("Index");
         }
@@ -150,7 +157,9 @@ namespace Stack_Learn.Controllers
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);
                 UserManager.AddToRole(user.Id, "Aluno");
-               
+                aluno.Id_do_usuario = user.Id;
+                context.SaveChanges();
+
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
                 else

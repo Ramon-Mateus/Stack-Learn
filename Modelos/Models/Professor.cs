@@ -16,5 +16,6 @@ namespace Modelos.Models
         public string CEP { get; set; }
         public string Endereco { get; set; }
         public virtual ICollection<Curso> Cursos { get; set; }
+        public string Id_do_usuario { get; set; }
     }
 }

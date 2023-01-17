@@ -45,6 +45,18 @@
                 new { @class = "form-control", disabled = "disabled" }
                 })
             </div>
+            @Html.LabelFor(model => model.Email)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                </span>
+                @Html.EditorFor(model => model.Email, new
+                {
+                    htmlAttributes =
+                new { @class = "form-control", disabled = "disabled" }
+                })
+            </div>
             @Html.LabelFor(model => model.Login)
             <br />
             <div class="input-group">

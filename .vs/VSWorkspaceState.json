@@ -2,9 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Stack_Learn",
-    "\\Stack_Learn\\Views",
-    "\\Stack_Learn\\Views\\Categorias"
+    "\\Stack_Learn\\Areas",
+    "\\Stack_Learn\\Areas\\Seguranca",
+    "\\Stack_Learn\\Areas\\Seguranca\\Views",
+    "\\Stack_Learn\\Areas\\Seguranca\\Views\\Admin",
+    "\\Stack_Learn\\Areas\\Seguranca\\Views\\PapelAdmin",
+    "\\Stack_Learn\\Views"
   ],
-  "SelectedNode": "\\Stack_Learn\\Views\\Categorias\\Index.cshtml",
+  "SelectedNode": "\\Stack_Learn\\Areas\\Seguranca\\Views\\Admin\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

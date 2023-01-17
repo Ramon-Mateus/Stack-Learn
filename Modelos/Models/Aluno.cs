@@ -15,6 +15,7 @@ namespace Modelos.Models
         public string Senha { get; set; }
         public bool Assinatura { get; set; }
         public CursosUsuarios curso_usuario { get; set; }
+        public string Id_do_usuario { get; set; }
 
         public ICollection<Avaliacao> Avaliacoes { get; set; }
         public ICollection<Pedido> Pedidos { get; set; }

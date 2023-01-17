@@ -74,12 +74,14 @@ namespace Stack_Learn.Controllers
                 Usuario user = new Usuario
                 {
                     UserName = professor.Login,
-                    Email = professor.Login + "@email.com",
+                    Email = professor.Email,
                     ProfessorId = professor.ProfessorId
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, professor.Senha);
                 UserManager.AddToRole(user.Id, "Professor");
-                
+                professor.Id_do_usuario = user.Id;
+                context.SaveChanges();
+
                 if (result.Succeeded)
                 { return RedirectToAction("Index"); }
                 else
@@ -92,6 +94,7 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Edit(long? id)
         {
+            var CursosUsuarios = new CursosUsuarios();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,6 +114,11 @@ namespace Stack_Learn.Controllers
             if (ModelState.IsValid)
             {
                 context.Entry(professor).State = EntityState.Modified;
+                Usuario usuario = GerenciadorUsuario.FindById(professor.Id_do_usuario);
+                usuario.UserName = professor.Login;
+                usuario.Email = professor.Email;
+                usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.HashPassword(professor.Senha);
+                GerenciadorUsuario.Update(usuario);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -152,6 +160,8 @@ namespace Stack_Learn.Controllers
             Professor professor = context.Professores.Find(id);
             context.Professores.Remove(professor);
             context.SaveChanges();
+            Usuario user = GerenciadorUsuario.FindById(professor.Id_do_usuario);
+            GerenciadorUsuario.Delete(user);
             TempData["Message"] = "Professor " + professor.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }

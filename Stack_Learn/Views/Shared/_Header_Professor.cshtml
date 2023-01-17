@@ -1,0 +1,31 @@
+﻿@using Stack_Learn.Infraestrutura;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+          charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="panel-footer panel-info flex center color-bg">
+        <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
+        <div class="flex-col center fontJost400" style="font-size: 20px;">
+            <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
+            <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
+        </div>
+        <div class="flex-col center fontJost400">
+            <a>
+                <img src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+            </a>
+            @Html.GetAuthenticatedUser().ToString().ToUpper()
+            @Html.ActionLink(" - Sair", "Logout", "Account")
+            <a>
+                <img src="~/img/carrinho.svg" height="40" width="40" />
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

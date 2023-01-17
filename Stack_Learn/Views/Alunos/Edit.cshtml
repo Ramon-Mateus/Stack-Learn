@@ -26,6 +26,7 @@
             <div class="formgroup ">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.AlunoId)
+                @Html.HiddenFor(model => model.Id_do_usuario)
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nome)
                     <div class="size-editor">
