@@ -13,7 +13,7 @@
     @{
         if (Html.GetAuthenticatedUser().ToString() != "")
         {
-            @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+            @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model.cursos_usuarios)
         }
         else
         {

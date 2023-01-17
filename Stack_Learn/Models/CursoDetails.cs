@@ -10,6 +10,7 @@ namespace Stack_Learn.Models
     {
         public Curso curso { get; set; }
         public IQueryable<Curso> cursos { get; set; }
+        public CursosUsuarios cursos_usuarios { get; set; }
 
     }
 }

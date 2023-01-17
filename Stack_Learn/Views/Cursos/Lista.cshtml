@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Modelos.Models.Curso>
+﻿@model Modelos.Models.CursosUsuarios
 @using Stack_Learn.Infraestrutura
 @{
     Layout = null;
@@ -28,7 +28,7 @@
         </div>
 
         <div class="parte1-2 flex-col center-justify" style="margin-bottom: 2em; width:100%; height: 100%; flex-wrap: wrap; padding: 10px;">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Cursos)
             {
 
 
@@ -52,7 +52,7 @@
 
         <div class="flex-column" style="border-radius:5px;background-color:#515352;">
             <h2 class="fontJost700" style="color:white;margin-left:2em; margin-top: 16px;">Destaques do mes</h2>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Cursos)
             {
                 <div class="flex-col center" style="color:#515352; margin-left:2em;">
                     <img src="~/img/foto-card.svg" height="150" width="150" />

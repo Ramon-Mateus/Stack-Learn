@@ -127,6 +127,10 @@ namespace Stack_Learn.Controllers
                     pedido.Valor_Total = pedido.Valor_Total + curso.Preco;
                 }
             }
+            var CursosUsuarios = new CursosUsuarios();
+            CursosUsuarios.AlunoId = pedido.AlunoId;
+            CursosUsuarios.CursosUsuariosId = pedido.AlunoId;
+            pedido.curso_usuario = CursosUsuarios;
 
             return View(pedido);
         }

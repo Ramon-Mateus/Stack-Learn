@@ -2,7 +2,7 @@
 
 @{
     long x = Model.Cursos.Count();
-    ViewBag.Title = "CarrrinhoCompra";
+    ViewBag.Title = "CarrinhoCompra";
     Layout = null;
 }
 
@@ -13,7 +13,7 @@
 }
 else
 {
-    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model.curso_usuario)
 }
 <!DOCTYPE html>
 <html lang="en">

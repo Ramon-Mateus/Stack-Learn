@@ -18,5 +18,6 @@ namespace Modelos.Models
 
         public long? AlunoId { get; set; }
         public Aluno Aluno { get; set; }
+        public CursosUsuarios curso_usuario { get; set; }
     }
 }
