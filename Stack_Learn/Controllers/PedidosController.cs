@@ -7,13 +7,23 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Stack_Learn.Areas.Seguranca.Models;
+using Stack_Learn.Infraestrutura;
 
 namespace Stack_Learn.Controllers
 {
     public class PedidosController : Controller
     {
         private EFContext context = new EFContext();
-
+        private GerenciadorUsuario GerenciadorUsuario
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
+            }
+        }
 
         public ActionResult Index()
         {
@@ -166,7 +176,9 @@ namespace Stack_Learn.Controllers
         public ActionResult ExcluirCurso(long item_CursoId)
         {
             Curso curso = context.Cursos.Where(i => i.CursoId == item_CursoId).First();
-            Pedido pedido = context.Pedidos.Where(i => i.PedidoId == curso.PedidoId).First();
+            var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            Usuario user = GerenciadorUsuario.FindById(userid);
+            Pedido pedido = context.Pedidos.Where(p => p.PedidoId == user.AlunoId).First();
             long id = pedido.PedidoId;
             pedido.Cursos.Remove(curso);
             context.SaveChanges();

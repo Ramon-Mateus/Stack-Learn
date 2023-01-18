@@ -24,9 +24,9 @@
             @Html.GetAuthenticatedUser().ToString().ToUpper()
             @Html.ActionLink(" - Sair", "Logout", "Account")
             <a>
-                <img src="~/img/carrinho.svg" height="40" width="40" />
+                <a href="/Pedidos/CarrrinhoCompra/@Model.AlunoId"><img src="~/img/carrinho.svg" height="40" width="40" /></a>
             </a>
-        </div>
+</div>
     </div>
 </body>
 </html>

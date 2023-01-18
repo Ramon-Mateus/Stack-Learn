@@ -203,7 +203,6 @@ namespace Stack_Learn.Controllers
             {
                 curso.NomeProfessor = "Sem Professor";
             }
-            curso.PedidoId = null;
             context.Cursos.Add(curso);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -262,12 +261,23 @@ namespace Stack_Learn.Controllers
         public ActionResult Details(long id)
         {
             Curso curso = context.Cursos.Find(id);
-            Pedido pedido = context.Pedidos.Where(p => p.PedidoId == 1).First();
-            curso.PedidoId = pedido.PedidoId;
-            pedido.Cursos.Add(curso);
+            if (System.Web.HttpContext.Current.User.Identity.Name.ToString() != "")
+            {
+                var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                Usuario user = GerenciadorUsuario.FindById(userid);
+                Pedido pedido = context.Pedidos.Where(p => p.PedidoId == user.AlunoId).First();
+                pedido.Cursos.Add(curso);
+                context.SaveChanges();
+                return RedirectToAction("../Pedidos/CarrrinhoCompra/"+pedido.PedidoId);
+            }
+            else
+            {
+                return RedirectToAction("../Seguranca/Account/Login");
+            }
+
+            
    
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            
         }
 
         public ActionResult Delete(long? id)

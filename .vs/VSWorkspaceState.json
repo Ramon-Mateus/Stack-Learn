@@ -7,8 +7,9 @@
     "\\Stack_Learn\\Areas\\Seguranca\\Views",
     "\\Stack_Learn\\Areas\\Seguranca\\Views\\Admin",
     "\\Stack_Learn\\Areas\\Seguranca\\Views\\PapelAdmin",
-    "\\Stack_Learn\\Views"
+    "\\Stack_Learn\\Views",
+    "\\Stack_Learn\\Views\\Cursos"
   ],
-  "SelectedNode": "\\Stack_Learn\\Areas\\Seguranca\\Views\\Admin\\Index.cshtml",
+  "SelectedNode": "\\Stack_Learn\\Views\\Cursos\\Details.cshtml",
   "PreviewInSolutionExplorer": false
 }

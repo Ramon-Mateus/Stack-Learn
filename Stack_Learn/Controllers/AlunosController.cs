@@ -25,13 +25,6 @@ namespace Stack_Learn.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
             }
         }
-        private GerenciadorUsuario UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
-            }
-        }
 
         public ActionResult Index()
         {
@@ -156,8 +149,11 @@ namespace Stack_Learn.Controllers
                     AlunoId = aluno.AlunoId
                 };
                 IdentityResult result = GerenciadorUsuario.Create(user, aluno.Senha);
-                UserManager.AddToRole(user.Id, "Aluno");
+                GerenciadorUsuario.AddToRole(user.Id, "Aluno");
                 aluno.Id_do_usuario = user.Id;
+                Pedido pedido = new Pedido();
+                pedido.AlunoId = aluno.AlunoId;
+                context.Pedidos.Add(pedido);
                 context.SaveChanges();
 
                 if (result.Succeeded)
