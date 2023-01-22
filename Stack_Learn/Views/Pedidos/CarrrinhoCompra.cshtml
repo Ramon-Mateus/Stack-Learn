@@ -25,9 +25,11 @@ else
     <script src="~/Scripts/scripts/script.js" defer></script>
     <title>Meu Carrinho</title>
 </head>
+@using (Html.BeginForm("CarrrinhoCompra", "Pedidos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.PedidoId)
 
-
-<body>
+    <body>
         <div class="body-carrinho">
             <div class="conteiner-bar">
 
@@ -192,11 +194,12 @@ else
                     </div>
                 </div>
                 <div class="flex-carrinho" style="justify-content: center; margin-top: 5em;">
-                    <input class="btn-prev-next" style="width: 20em;" value="COMPRAR" />
+                    <input class="btn-prev-next" style="width: 20em;" value="COMPRAR" type="submit"/>
 
                 </div>
             </div>
         </div>
         <div class="footer">@Html.Partial("~/Views/Shared/_Footer.cshtml", Model)</div>
-</body>
+    </body>
+}
 </html>

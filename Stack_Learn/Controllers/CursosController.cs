@@ -261,6 +261,8 @@ namespace Stack_Learn.Controllers
         public ActionResult Details(long id)
         {
             Curso curso = context.Cursos.Find(id);
+            Professor professor = context.Professores.Find(curso.ProfessorId);
+            curso.NomeProfessor = professor.Nome;
             if (System.Web.HttpContext.Current.User.Identity.Name.ToString() != "")
             {
                 var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
