@@ -25,7 +25,7 @@ namespace Stack_Learn.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
             }
         }
-
+        
         public ActionResult Index()
         {
             return View(context.Alunos.OrderBy(c => c.Nome));

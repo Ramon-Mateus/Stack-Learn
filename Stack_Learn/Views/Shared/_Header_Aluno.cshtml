@@ -8,21 +8,34 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
+    <script src="~/Scripts/scripts/modal.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body>
-    <div class="panel-footer panel-info flex center color-bg">
+<body >
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <div class="panel-footer panel-info flex center color-bg" style="height: 6em;">
         <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
         <div class="flex-col center fontJost400" style="font-size: 20px;">
             <a href="/Cursos/MeusCursosIndex/@Model.AlunoId" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
             <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
             <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
         </div>
-        <div class="flex-col center fontJost400">
-            <a>
-                <img src="~/img/foto_estudantefoto.svg" height="40" width="40" />
-            </a>
+        <div class="flex-col center fontJost400">   
+            <div class="dropdown">
+                <button data-bs-toggle="dropdown" aria-expanded="false" style="border: none; background-color: transparent; margin-right: 1em;">
+                    <img id="perfil" src="~/img/foto_estudantefoto.svg" height="40" width="40" on="test()"/>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><div class="dropdown-item" href="#" style="display: flex; text-decoration: none; color: black;">@Html.ActionLink("Meu Perfil", "../Alunos/Edit", new { id = Model.AlunoId })</div></li>
+                    <li><div class="dropdown-item" href="#" style="display: flex; border-top: 1px solid #ECE8EF; ">
+                            <img src="../../img/SignIn.svg" alt="" style="margin-right:0.4em;">
+                            @Html.ActionLink("Log Out", "Logout", "Account")
+                        </div>
+                    </li>
+                </ul>
+            </div>
             @Html.GetAuthenticatedUser().ToString().ToUpper()
-            @Html.ActionLink(" - Sair", "Logout", "Account")
+            
             <a>
                 <a href="/Pedidos/CarrrinhoCompra/@Model.AlunoId"><img src="~/img/carrinho.svg" height="40" width="40" /></a>
             </a>

@@ -162,6 +162,7 @@ namespace Stack_Learn.Controllers
                 aulaDetails.Curso = aula.Curso;
                 aulaDetails.Curso.Categoria = aula.Curso.Categoria;
                 */
+
                 pedido.Pago = true;
                 pedido.Data_Pagamento = DateTime.Now;
                 context.Entry(pedido).State = EntityState.Modified;
@@ -172,7 +173,6 @@ namespace Stack_Learn.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult ExcluirCurso(long item_CursoId)
         {
             Curso curso = context.Cursos.Where(i => i.CursoId == item_CursoId).First();

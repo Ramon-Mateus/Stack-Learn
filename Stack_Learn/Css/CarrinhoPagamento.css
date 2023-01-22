@@ -5,10 +5,11 @@
     padding: 0;
 }
 .footer{
-    bottom: 0;
+    bottom: -300;
     position: absolute;
     width: 100%;
     left: 0;
+    margin-top: 2em;    
 }
 
 .body-carrinho {

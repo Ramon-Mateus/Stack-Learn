@@ -7,6 +7,33 @@
     text-decoration: none;
 }
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    align-items: left ; /* Pack items from the end */
+}
+.drop.content {
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    margin: 0;
+    padding: 10px;
+}
+
+.item-modal {
+    padding: 10px;
+}
+
+.line-white {
+    border-top: 1px solid #ECE8EF;
+}
+
 .flex {
     display: flex;
     justify-content: space-between;

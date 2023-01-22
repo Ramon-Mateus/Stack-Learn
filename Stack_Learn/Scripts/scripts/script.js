@@ -60,12 +60,12 @@ function updateBallStepsBack() {
 }
 
 function updateProgressSteps() {
-    progress.style.width = (formStepsNum * 50 + "%")
+    progress.style.width = (formStepsNum * 200 + "%")
     
 }
 
 function updateProgressStepsBack() {
-    progress.style.width = (formStepsNum * 50 + "%")
+    progress.style.width = (formStepsNum * 200 + "%")
 }
 
 function showCvv() {
