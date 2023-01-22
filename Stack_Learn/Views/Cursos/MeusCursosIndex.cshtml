@@ -1,4 +1,5 @@
 ﻿@model Stack_Learn.Models.MeusCursosIndex
+@using Stack_Learn.Infraestrutura
 @{
     Layout = null;
 }
@@ -12,9 +13,31 @@
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
 </head>
 <body>
+    <div class="panel-footer panel-info flex center color-bg">
+        <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
+        <div class="flex-col center fontJost400" style="font-size: 20px;">
+            @if (Model.MeusCursosIndexId == 0)
+            {
+                <a href="#" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+            }
+            <a href="/Cursos/MeusCursosIndex/@Model.MeusCursosIndexId" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+            <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
+            <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
+        </div>
+        <div class="flex-col center fontJost400">
+            <a>
+                <img src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+            </a>
+            @Html.GetAuthenticatedUser().ToString().ToUpper()
+            @Html.ActionLink(" - Sair", "Logout", "Account")
+            <a>
+                <img src="~/img/carrinho.svg" height="40" width="40" />
+            </a>
+        </div>
+    </div>
 
     <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:22px; text-align:center; padding: 1.5em; ">EXPLORAR CURSOS</h1>
-    <div class="part1 flex-column " style="padding: 3em; flex-wrap: wrap; width: 100%; width: 50%; margin: 0 auto;">
+    <div class="part1 flex-column " style="padding: 1em; flex-wrap: wrap; width: 100%; width: 50%; margin: 0 auto;">
         <h1 class="fontJost400" style="font-size: 26px; font-weight: 500; margin: 0px 0px 10px 0px;text-align: left;">EM ANDAMENTO</h1>
         <div class="flex-col " style="flex-wrap: wrap;">
             @foreach (var item in Model.em_andamento)
@@ -110,15 +133,24 @@
                     }
 
                 </div>
-                        }
+            }
 
         </div>
     </div>
 
     <div class="outside part 2" style=" background-color: #515352">
         <div class="button-wrap flex-col space-between" style="z-index: 10; padding: 10px 400px; top: 300px; position: relative">
-            <button class="arrow" id="arrow-left" onclick="slideLeft()"> &#10094;</button>
-            <button class="arrow" id="arrow-right" onclick="slideRight()"> &#10095;</button>
+            <button class="arrow text" id="arrow-left" onclick="slideLeft()" style="background: #515352; border: none;">
+                <span style="
+            color: white;
+            font-size: 40px;
+            ">&#10094;</span>
+            </button>
+            <button class="arrow" id="arrow-right" onclick="slideRight()" style="background: #515352; border: none;">
+                <span style="
+            color: white;
+            font-size: 40px;">&#10095;</span>
+            </button>
         </div>
         <div class="part 2 flex-column" style="background-color:#515352;padding: 1em; flex-wrap: wrap; width: 50%; margin: 0 auto;">
             <h1 class="fontJost400" style="font-size: 26px;color: white; margin: 0px 0px 15px 0px;">CONCLUIDO</h1>
@@ -128,22 +160,22 @@
 
                 @foreach (var item in Model.concluido)
                 {
-                <div class=" slide" style="width: 100%;">
-                    <div class=" card part 2 flex-col space-between" style="
+                    <div class=" slide" style="width: 100%;">
+                        <div class=" card part 2 flex-col space-between" style="
                 border: 1px solid transparent;
                 box-shadow: 2px 1000px 1px #ffff inset;
                 background-image: linear-gradient(to right, #70D7C7, #FFCB34);
                 color: black;
-                padding: 16px;
+                padding: 1em;
                 width: 100%;
 
                 ">
 
-                        <div class="esquerda flex-column ">
-                            <div class="esquerda top" style="
+                            <div class="esquerda flex-column" style="margin-left: 12px;">
+                                <div class="esquerda top" style="
                             width: 200px;
                             font-family:'Jost';
-                            font-size: 14px;
+                            font-size: 15px;
                             font-style: normal;
                             font-weight: 300;
                             text-decoration: none;
@@ -153,30 +185,43 @@
                             text-align:center;
                             margin-bottom: 15px;
                             ">
-                                @item.Categoria.Nome.ToUpper()
-                            </div>
-                            <div class="esquerda bottom flex-col">
-                                <div class="imagem esquerda bottom">
-                                    @Html.HiddenFor(m => item.LogotipoMimeType)
-                                    @Html.HiddenFor(m => item.Logotipo)
-                                    @Html.HiddenFor(m => item.NomeArquivo)
-                                    @Html.HiddenFor(m => item.TamanhoArquivo)
-                                    <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" width="200" height="150" />
+                                    @item.Categoria.Nome.ToUpper()
                                 </div>
-                                <div class="texto esquerda bottom" style="margin-left: 15px;">
-                                    <h3 style="font-family:'Jost'; font-size: 16px; font-weight: 600; margin: 0px 0px 5px 0px;">@item.Nome</h3>
-                                    <h4 style="font-family:'Jost'; font-size: 13px; font-weight: 400; margin: 0px;">feito por @item.Professor.Nome</h4>
+                                <div class="esquerda bottom flex-col">
+                                    <div class="imagem esquerda bottom">
+                                        @Html.HiddenFor(m => item.LogotipoMimeType)
+                                        @Html.HiddenFor(m => item.Logotipo)
+                                        @Html.HiddenFor(m => item.NomeArquivo)
+                                        @Html.HiddenFor(m => item.TamanhoArquivo)
+                                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" width="200" height="150" />
+                                    </div>
+                                    <div class="texto esquerda bottom" style="margin-left: 15px;">
+                                        <h3 style="font-family:'Jost'; font-size: 20px; font-weight: 600; margin: 0px 0px 5px 0px;">@item.Nome</h3>
+                                        <h4 style="font-family:'Jost'; font-size: 16px; font-weight: 400; margin: 0px;">feito por @item.Professor.Nome</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="direita">
-                            <a href="/Avaliacoes/Create?AlunoId=@Model.MeusCursosIndexId"> AVALIE</a>
+                            <div class="direita" style="position:relative;">
+                                @*<a href="/Avaliacoes/Create?AlunoId=@Model.MeusCursosIndexId?CursoId=@item.CursoId"> AVALIE</a>*@
+                                <a href="@Url.Action("Create", "Avaliacoes", new { AlunoId = Model.MeusCursosIndexId, CursoId = item.CursoId})" style="
+                            background-color: #FFEB82;
+                            color: black;
+                            font-weight: 600;
+                            padding: 10px 1.6em;
+                            top: 35%;
+                            right: 10%;
+                            position: absolute;
+                            border-radius: 10px;
+                            margin-right: 40px;
+                            font-family: 'Jost';
+                            font-size: 18px;
+                            "> AVALIE</a>
+                            </div>
+
                         </div>
 
                     </div>
-
-                </div>
 
                 }
 

@@ -147,7 +147,6 @@ namespace Stack_Learn.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult CarrrinhoCompra(Pedido pedido)
         {
             if (ModelState.IsValid)
@@ -162,12 +161,33 @@ namespace Stack_Learn.Controllers
                 aulaDetails.Curso = aula.Curso;
                 aulaDetails.Curso.Categoria = aula.Curso.Categoria;
                 */
-
-                pedido.Pago = true;
-                pedido.Data_Pagamento = DateTime.Now;
-                context.Entry(pedido).State = EntityState.Modified;
+                Pedido pedido2 = context.Pedidos.Find(pedido.PedidoId);
+                pedido2.Pago = true;
+                pedido2.Data_Pagamento = DateTime.Now;
+                context.Entry(pedido2).State = EntityState.Modified;
+                Conclusao conclusao_false = new Conclusao();
+                foreach (var conclusao in context.Conclusoes.Include(c => c.Aluno))
+                {
+                    if (conclusao.Concluido == false && conclusao.AlunoId == pedido2.AlunoId)
+                    {
+                        conclusao_false = conclusao;
+                    }
+                }
+                foreach (var curso in pedido2.Cursos)
+                {
+                    foreach (var aula in curso.Aulas)
+                    {
+                        Aula aula_adicionar = new Aula();
+                        aula_adicionar = aula;
+                        aula_adicionar.AlunoId = pedido2.AlunoId;
+                        aula_adicionar.Conclusao = conclusao_false;
+                        aula_adicionar.ConclusaoId = conclusao_false.ConclusaoId;
+                        context.Aulas.Add(aula_adicionar);
+                    }
+                }
+                pedido2.Cursos.Clear();
                 context.SaveChanges();
-                return RedirectToAction("IndexCanalha");
+                return RedirectToAction("../Home/PaginaInicial");
             }
             return View(pedido);
         }
@@ -182,7 +202,7 @@ namespace Stack_Learn.Controllers
             long id = pedido.PedidoId;
             pedido.Cursos.Remove(curso);
             context.SaveChanges();
-            return RedirectToAction("CarrrinhoCompra", new { id=id });
+            return RedirectToAction("CarrrinhoCompra", new { id = id });
         }
     }
 }

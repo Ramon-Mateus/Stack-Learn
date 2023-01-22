@@ -154,6 +154,20 @@ namespace Stack_Learn.Controllers
                 Pedido pedido = new Pedido();
                 pedido.AlunoId = aluno.AlunoId;
                 context.Pedidos.Add(pedido);
+                Conclusao conclusao_false = new Conclusao
+                {
+                    Aluno = aluno,
+                    AlunoId = aluno.AlunoId,
+                    Concluido = false
+                };
+                context.Conclusoes.Add(conclusao_false);
+                Conclusao conclusao_true = new Conclusao
+                {
+                    Aluno = aluno,
+                    AlunoId = aluno.AlunoId,
+                    Concluido = true
+                };
+                context.Conclusoes.Add(conclusao_true);
                 context.SaveChanges();
 
                 if (result.Succeeded)

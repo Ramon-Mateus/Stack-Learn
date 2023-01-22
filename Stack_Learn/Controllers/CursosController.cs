@@ -135,10 +135,10 @@ namespace Stack_Learn.Controllers
             Cursos_Usuarios.Cursos = Cursos_totais;
             return View(Cursos_Usuarios);
         }
-        public ActionResult MeusCursosIndex()
+        public ActionResult MeusCursosIndex(long? id)
         {
             //aluno -> pedido ok -> curso ok
-            long? AlunoId = 1;//sempre o primeiro aluno
+            long? AlunoId = id;//sempre o primeiro
             List<Curso> concluidoo = new List<Curso>();
             List<Curso> emm_andamento = new List<Curso>();
 
@@ -261,6 +261,8 @@ namespace Stack_Learn.Controllers
         public ActionResult Details(long id)
         {
             Curso curso = context.Cursos.Find(id);
+            Professor professor = context.Professores.Find(curso.ProfessorId);
+            curso.NomeProfessor = professor.Nome;
             if (System.Web.HttpContext.Current.User.Identity.Name.ToString() != "")
             {
                 var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();

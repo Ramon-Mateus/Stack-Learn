@@ -22,8 +22,11 @@ namespace Stack_Learn.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.CursoId = new SelectList(context.Cursos.OrderBy(b => b.Nome), "CursoId", "Nome");
-            ViewBag.IdAluno = Request.QueryString["IdAluno"];
+
+            ViewBag.IdCurso = Request.QueryString["CursoId"];
+            ViewBag.IdAluno = Request.QueryString["AlunoId"];
+
+            ViewBag.NomeCurso = context.Cursos.OrderBy(b => b.Nome);
             return View();
         }
 
@@ -31,11 +34,34 @@ namespace Stack_Learn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Avaliacao avaliacao)
         {
+
+            /*
             avaliacao.AlunoNome = context.Alunos.Where(a => a.AlunoId == avaliacao.AlunoId).First().Nome;//adicionar manualmente o nome do aluno, se editar não vai editar aqui também :/
+            avaliacao.Curso.Nome = context.Cursos.Where(a => a.CursoId == avaliacao.CursoId).First().Nome;//adicionar manualmente o nome do curso, objetos vem nulos
+            avaliacao.curso_usuario.AlunoId = avaliacao.AlunoId;
+            
+            if (ModelState.IsValid)
+            {
+                context.Entry(avaliacao).State = EntityState.Modified;
+                avaliacao.AlunoNome = context.Alunos.Where(a => a.AlunoId == avaliacao.AlunoId).First().Nome;//adicionar manualmente o nome do aluno, se editar não vai editar aqui também :/
+                avaliacao.Curso.Nome = context.Cursos.Where(a => a.CursoId == avaliacao.CursoId).First().Nome;//adicionar manualmente o nome do curso, objetos vem nulos
+                avaliacao.curso_usuario.AlunoId = avaliacao.AlunoId;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            //se estiver vazio, volta de boa
+            Avaliacao avaliacaooo = context.Avaliacoes.Find(avaliacao.AvaliacaoId);
+            context.Avaliacoes.Remove(avaliacaooo);
+            context.SaveChanges();
+            return View("MeusCursosIndex");
+            */
+            avaliacao.AlunoNome = context.Alunos.Where(a => a.AlunoId == avaliacao.AlunoId).First().Nome;//adicionar manualmente o nome do aluno, se editar não vai editar aqui também :/
+            avaliacao.Data_hora = DateTime.Now;
             context.Avaliacoes.Add(avaliacao);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         public ActionResult Edit(long? id)
         {

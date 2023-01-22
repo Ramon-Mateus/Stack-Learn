@@ -29,8 +29,7 @@ else
 @using (Html.BeginForm("CarrrinhoCompra", "Pedidos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(model => model.PedidoId)
-
-<body>
+    <body>
         <div class="body-carrinho">
             <div class="conteiner-bar">
 
@@ -196,6 +195,7 @@ else
                 </div>
                 <div class="flex-carrinho" style="justify-content: center; margin-top: 5em;">
                     <input type="submit" value="COMPRAR" class="btn-prev-next" style="height: 50px;"/>
+                    <input class="btn-prev-next" style="width: 20em;" value="COMPRAR" type="submit"/>
 
                 </div>
             </div>
