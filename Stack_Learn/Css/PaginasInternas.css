@@ -108,7 +108,13 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     display: none;
 }
 
+.baixo .form-group label {
+    font-size: 17px;
+}
 
+.size-editor input{
+    width: 100%;
+}
 /*
 .next, .prev {
     position: absolute;

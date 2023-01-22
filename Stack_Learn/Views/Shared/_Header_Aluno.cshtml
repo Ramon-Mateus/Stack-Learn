@@ -35,10 +35,15 @@
                 </ul>
             </div>
             @Html.GetAuthenticatedUser().ToString().ToUpper()
+<<<<<<< HEAD
             
             <a>
+=======
+            @Html.ActionLink(" - Sair", "Logout", "Account")
+            
+>>>>>>> 4a7a168be52c10795c6c6caf6a0f44665d309a82
                 <a href="/Pedidos/CarrrinhoCompra/@Model.AlunoId"><img src="~/img/carrinho.svg" height="40" width="40" /></a>
-            </a>
+            
 </div>
     </div>
 </body>
