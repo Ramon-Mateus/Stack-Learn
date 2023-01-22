@@ -1,4 +1,5 @@
 ﻿@model Modelos.Models.Avaliacao
+@using Stack_Learn.Infraestrutura;
 
 @{
     Layout = null;
@@ -9,61 +10,90 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <link href="@Url.Content("~/Css/HeaderFooter.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
+    <title>Stack Learn | Avaliação individual</title>
 </head>
 <body>
-    @using (Html.BeginForm()) 
+    @Html.HiddenFor(Model => Model.AlunoId, new { Value = long.Parse(@ViewBag.IdAluno) })
+    @Html.HiddenFor(Model => Model.CursoId, new { Value = long.Parse(@ViewBag.IdCurso) })
+
+    <div class="panel-footer panel-info flex center color-bg">
+        <a href="/Home/PaginaInicial"> <img src="~/img/logo2.svg" /> </a>
+        <div class="flex-col center fontJost400" style="font-size: 20px;">
+            @if (long.Parse(@ViewBag.IdAluno) == 0)
+            {
+                <a href="#" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+            }
+            <a href="/Cursos/MeusCursosIndex/@ViewBag.IdAluno" class="linkPaginas" id="aMeusCursos">Meus cursos</a>
+            <a href="/Cursos/Lista" class="linkPaginas" id="aCursos">Cursos</a>
+            <a href="#" class="linkPaginas" id="aAssinatura">Assinatura</a>
+        </div>
+        <div class="flex-col center fontJost400">
+            <a>
+                <img src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+            </a>
+            @Html.GetAuthenticatedUser().ToString().ToUpper()
+            @Html.ActionLink(" - Sair", "Logout", "Account")
+            <a>
+                <img src="~/img/carrinho.svg" height="40" width="40" />
+            </a>
+        </div>
+    </div>
+
+    @foreach (var item in ViewBag.NomeCurso)
+    {
+        if (item.CursoId == long.Parse(@ViewBag.IdCurso))
+        {
+            <h1 class="fontJost400" style="background-color:#FFCC36; margin:0px; font-size:22px; text-align:center; padding: 1.5em; ">AVALIAR - @item.Nome</h1>
+        }
+    }
+
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
-    <div class="form-horizontal">
-        <h4>Avaliacao</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(Model => Model.AlunoId, new { Value = @ViewBag.IdAluno})
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Data_hora, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Data_hora, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Data_hora, "", new { @class = "text-danger" })
+
+
+        <div style="background-color:#515352; margin: 0px; padding: 3em; display: flex;  justify-content: center; ">
+
+
+            <div class="avaliar formgroup " style="width: 20%; margin: 0; color: white;">
+
+
+                <div class="form-group" style="width: 100%; margin-bottom: 2em;">
+                    @Html.LabelFor(model => model.Nota)
+                    <div class="size-editor" style="width: 100%;">
+                        @Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nota, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 2em;">
+                    @Html.LabelFor(model => model.Comentario)
+                    <div class="size-editor" style="width: 100%; color: black;">
+                        @Html.TextAreaFor(model => model.Comentario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comentario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-items: flex-end;">
+
+                    <input type="submit" value="ENVIAR" style="
+                    background-color:#ECE8EF;
+                    border: none;
+                    border-radius: 10px;
+                    padding: 3px 16px;
+                    font-weight: 300;
+                    color: black;
+                        " />
+
+                </div>
+
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nota, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nota, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Comentario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Comentario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CursoId, "CursoId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CursoId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CursoId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
 </body>
 </html>

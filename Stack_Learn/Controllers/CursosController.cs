@@ -135,10 +135,10 @@ namespace Stack_Learn.Controllers
             Cursos_Usuarios.Cursos = Cursos_totais;
             return View(Cursos_Usuarios);
         }
-        public ActionResult MeusCursosIndex()
+        public ActionResult MeusCursosIndex(long? id)
         {
             //aluno -> pedido ok -> curso ok
-            long? AlunoId = 1;//sempre o primeiro aluno
+            long? AlunoId = id;//sempre o primeiro
             List<Curso> concluidoo = new List<Curso>();
             List<Curso> emm_andamento = new List<Curso>();
 
