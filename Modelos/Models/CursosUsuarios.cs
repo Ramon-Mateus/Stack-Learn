@@ -9,6 +9,7 @@ namespace Modelos.Models
     {
         public long? CursosUsuariosId { get; set; }
         public long? AlunoId { get; set; }
+        public long? ProfessorId { get; set; }
         public List<Curso> Cursos {get; set; }
         public List<Categoria> Categorias { get; set; }
     }

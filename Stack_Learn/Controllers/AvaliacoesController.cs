@@ -25,7 +25,6 @@ namespace Stack_Learn.Controllers
 
             ViewBag.IdCurso = Request.QueryString["CursoId"];
             ViewBag.IdAluno = Request.QueryString["AlunoId"];
-
             ViewBag.NomeCurso = context.Cursos.OrderBy(b => b.Nome);
             return View();
         }

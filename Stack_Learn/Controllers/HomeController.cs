@@ -34,6 +34,7 @@ namespace Stack_Learn.Controllers
                 var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 Usuario user = GerenciadorUsuario.FindById(userid);
                 Cursos_Usuarios.AlunoId = user.AlunoId;
+                Cursos_Usuarios.ProfessorId = user.ProfessorId;
             }
             var Cursos_totais = new List<Curso>();
             foreach (var item in context.Cursos.Include(c => c.Categoria).Include(f => f.Professor))

@@ -100,6 +100,9 @@ namespace Stack_Learn.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Professor professor = context.Professores.Find(id);
+            CursosUsuarios.ProfessorId = id;
+            CursosUsuarios.CursosUsuariosId = id;
+            professor.curso_usuario = CursosUsuarios;
             if (professor == null)
             {
                 return HttpNotFound();
@@ -120,7 +123,7 @@ namespace Stack_Learn.Controllers
                 usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.HashPassword(professor.Senha);
                 GerenciadorUsuario.Update(usuario);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Home/PaginaInicial");
             }
             return View(professor);
         }

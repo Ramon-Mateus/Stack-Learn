@@ -19,8 +19,9 @@
             margin: 12px;
         }
 
-            .filter-btn:hover, .filter-btn.active {
-                border-bottom: 1px solid white;
+        .filter-btn:hover, .filter-btn.active {
+            border-bottom: 1px solid white;
+            
             }
     </style>
 </head>
@@ -38,7 +39,7 @@
     <h1 class="fontJost400" style="background-color:#FFCC36; margin-top:0px; font-size:22px; text-align:center; padding: 1.5em; ">EXPLORAR CURSOS</h1>
 
     <div class="flex-col space-around" style="margin-bottom:4em;">
-        <div class="flex-column" style="border-radius:5px;background-color:#515352; width:280px; margin-top: 16px;">
+        <div class="flex-column" style="border-radius: 5px; background-color: #515352; width: 280px; margin-top: 16px; height: 350px;">
             <h2 class="fontJost700" style="color:white;margin-left:2em;">Categorias</h2>
             <button class="main-btn filter-btn active" id="all-btn">Todos</button>
             @for (int i = 0; i < Model.Categorias.Count; i++)
@@ -63,9 +64,10 @@
                     background-image: linear-gradient(to right, #70D7C7, #FFCB34);
                     color: black;
                     margin: 16px 12px 0px 12px;
+                    border-radius: 20px;
 
             ">
-                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="200" width="160" style="margin: 12px 0;" />
+                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="150" width="150" style="margin: 12px 0;" />
                         <h3 class="fontJost400" style="height: 200px; text-align:center;">@item.Nome.ToUpper()</h3>
                         <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
                     </a>
@@ -74,19 +76,27 @@
             }
         </div>
 
-        <div class="flex-column" style="border-radius:5px;background-color:#515352;">
+        <div class="flex-column" style="border-radius:5px;background-color:#515352; height: 540px;">
             <h2 class="fontJost700" style="color:white;margin-left:2em; margin-top: 16px;">Destaques do mes</h2>
             @foreach (var item in Model.Cursos)
             {
-                <div class="flex-col center" style="color:#515352; margin-left:2em;">
-                    <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="125" width="100" />
-                    <h3 class="fontJost400" style="color:white; margin-left: 12px; margin-bottom: 12px; width: 140px;">@item.Nome.ToUpper()</h3>
-                </div>
+                verificar++;
+                if (verificar < 4)
+                {
+                    <div class="flex-col center" style="color:#515352; margin-left:2em; margin-bottom: 2em;">
+                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="125" width="100" />
+                        <h3 class="fontJost400" style="color:white; margin-left: 12px; margin-bottom: 12px; width: 140px;">@item.Nome.ToUpper()</h3>
+                    </div>
+                }
+                if(verificar >= 4)
+                {
+                    break;
+                }
             }
         </div>
     </div>
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
-    <script src="~/Scripts/scripts/flitro.js"></script>
+    <script src="~/Scripts/scripts/filtro.js"></script>
 </body>
 @section ScriptPage{
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>

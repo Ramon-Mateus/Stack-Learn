@@ -274,6 +274,7 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\scripts\filtro.js" />
+    <Content Include="Scripts\scripts\relatos.js" />
     <Content Include="Scripts\scripts\script.js" />
     <Content Include="Scripts\scripts\slider.js" />
     <Content Include="Web.config" />

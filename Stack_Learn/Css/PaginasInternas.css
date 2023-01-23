@@ -1,4 +1,14 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Jost&family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.nunito400 {
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+body {
+    min-width: 1024px;
+}
 
 .flex-col {
     display: flex;
@@ -25,23 +35,29 @@
 .center {
     align-items: center;
 }
+
 .center-justify {
     justify-content: center;
 }
-.center-text{
-    text-align:center;
+
+.center-text {
+    text-align: center;
 }
-.fontSize28px{
+
+.fontSize28px {
     font-size: 28px;
 }
-.card-curso{
-    padding:12px;
+
+.card-curso {
+    padding: 12px;
     border: 1px solid black;
 }
+
 .fontJost400 {
     font-weight: 400;
     font-family: 'Jost';
 }
+
 .fontJost700 {
     font-weight: 700;
     font-family: 'Jost';
@@ -54,6 +70,7 @@
     width: 100%;
     object-fit: cover;
 }
+
 .direita flex-column a:hover {
     text-decoration: none;
     color: black;
@@ -65,19 +82,21 @@
     align-items: flex-start;
     color: black;
     font-family: 'Jost';
-
-    margin-left:12px;
-
+    margin-left: 12px;
 }
+
 .size-editor {
     width: 280px;
 }
-.main-informations{
+
+.main-informations {
     margin: 2em;
 }
+
 .content-informations {
     margin-left: 22px;
 }
+
 .salvar_button {
     margin-left: 40%;
     margin-bottom: 2em;
@@ -87,22 +106,24 @@
     font-size: 20px;
     font-family: 'Jost';
     padding: 4px 4em 4px 4em;
-
     margin-top: 2em;
 }
 
-.banner-titulo{
-    width:100%;
+.banner-titulo {
+    width: 100%;
     height: 20%;
 }
-.continuar-aulas:link{
+
+.continuar-aulas:link {
     color: black;
 }
-.bodar:before{
+
+.bodar:before {
     content: "";
     width: 50%;
     border: 1px solid black;
 }
+
 input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="radio"].disabled, input[type="checkbox"].disabled, fieldset[disabled] input[type="radio"], fieldset[disabled] input[type="checkbox"] {
     cursor: not-allowed;
     display: none;
@@ -112,7 +133,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     font-size: 17px;
 }
 
-.size-editor input{
+.size-editor input {
     width: 100%;
 }
 
@@ -121,27 +142,115 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     align-items: center;
     justify-content: center;
     background-image: url("../img/minhoca1.svg");
-    width:100%;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 3em; 
-}
-.filter-btn {
-    background: transparent;
-    font-family: 'Jost';
-    font-size: 16px;
-    font-weight: 400;
-    color: white;
-    text-align: right;
-    border: none;
-    margin: 12px;
+    margin-top: 3em;
 }
 
-.filter-btn:hover, .filter-btn.active {
-   border-bottom: 1px solid white;
+.section-1 {
+    display: flex;
+    align-items: center;
+    background-image: url("../img/minhoca1.svg");
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 4em;
 }
 
-/*
+.section-2 {
+    background-position: center;
+    display: flex;
+    align-items: center;
+    background-color: #454545;
+    background-image: url("../img/enembackground.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.section-3 {
+    background-image: url("../img/OAB.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80%;
+}
+
+.section-4 {
+    background-color: #454545
+}
+
+.displayFlexRelato {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 2em;
+    padding: 16px;
+    border: 5px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to bottom, #70D7C7, #715AFF) border-box;
+    border-radius: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.relatoAluno {
+    color: black;
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    height: 8em;
+    gap: 2em;
+    padding: 16px;
+    border: 5px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to bottom, #70D7C7, #715AFF) border-box;
+    border-radius: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.itemSobreNos {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2em;
+    padding: 16px;
+    border: 5px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to bottom, #70D7C7, #FFCB34) border-box;
+    border-radius: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.borderCurso {
+    border: 2px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to bottom, #70D7C7, #FFCB34) border-box;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.border-top-linear {
+    height: 5px;
+    background: linear-gradient(to left, #70D7C7, #FFCB34);
+}
+
+.bolacheck {
+    height: 35px;
+    width: 35px;
+    background: linear-gradient(to left, #70D7C7, #715AFF);
+    border-radius: 100%;
+    transition: 1s;
+}
+
+.bolauncheck {
+    height: 35px;
+    width: 35px;
+    background: white;
+    border-radius: 100%;
+    transition: 1s;
+}
+/*i
 .next, .prev {
     position: absolute;
     top: 50%;

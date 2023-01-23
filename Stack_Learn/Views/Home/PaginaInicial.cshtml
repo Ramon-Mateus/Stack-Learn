@@ -3,22 +3,32 @@
 @{
     Layout = null;
     var a = 0;
+    int limite = 0;
+    int limitee = 0;
 }
 <head>
     <title>Stack Learn | Cursos online</title>
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
+    <script src="~/Scripts/scripts/relatos.js" defer></script>
 </head>
 <body>
     @{
         if (Html.GetAuthenticatedUser().ToString() != "")
         {
+            if (Model.AlunoId == null)
+            {
+                @Html.Partial("~/Views/Shared/_Header_Professor.cshtml", Model)
+            }
+            else
+            {
             @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model)
+            }
         }
         else
         {
             @Html.Partial("~/Views/Shared/_Header_Sem_Login.cshtml", Model)
         }
-    }
+        }
 
     <div class="banner">
         <h1 class="fontJost700" style="color:white; position:absolute; font-size:30px; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding: 1% 35% 1% 10%;">
@@ -31,48 +41,217 @@
 
     <div class="part1">
 
-        <div class="part1-1" style="display: flex; flex-direction: column;">
+        <div class="section-1" style="display: flex; flex-direction: column;">
             <div>
                 <iframe width="649" height="496" src="https://www.youtube.com/embed/yoPni8pJZxU" style="border-radius: 20px;">
                 </iframe>
             </div>
-            <h1 class="fontJost700" style="color: #715AFF; font-size: 30px; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-bottom: 10em; ">
+            <h1 class="fontJost700" style="color: #715AFF; font-size: 30px; margin-bottom: 10em; ">
                 SUA JORNADA COMEÇA AQUI!
             </h1>
         </div>
-        <h1 class="fontJost400" style="font-size:28px; text-align:center; margin-bottom: 2em;">MAIS COMPRADOS</h1>
-        
-        <div class="parte1-2 flex-col center-justify" style="margin-bottom: 4em;">
-            @foreach (var item in Model.Cursos)
-            {
-                a = a + 1;
-                if (a != 4)
+        <div>
+            <h1 class="fontJost400" style="font-size:28px; text-align:center; margin-bottom: 2em;">MAIS COMPRADOS</h1>
+
+            <div class="parte1-2 flex-col center-justify" style="margin-bottom: 4em; gap: 2em;">
+                @foreach (var item in Model.Cursos)
                 {
-                    <div class="flex-column center space-around" style="padding:2em; width: 225px; border: 3px solid transparent; box-shadow: 2px 1000px 1px #ffff inset; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin-left: 2em;">
-                        <a href="../Cursos/Details/@item.CursoId"><img src="~/img/foto-card.svg" height="150" width="150" /></a>
-                        <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
-                        <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
-                    </div>
+                    limite++;
+                    if (limite < 4)
+                    {
+                        a = a + 1;
+                        if (a != 4)
+                        {
+                            <div class="flex-column center space-around borderCurso" style="padding:2em; width: 225px;; box-shadow: 2px 1000px 1px #ffff inset;">
+                                <a href="../Cursos/Details/@item.CursoId"><img src="~/img/foto-card.svg" height="150" width="150" /></a>
+                                <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
+                                <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px; border-radius: 3px;">R$ @item.Preco</h3>
+                            </div>
+                        }
+
+
+
+                        if (a == 4)
+                        {
+                            <div class="flex-column center space-around borderCurso" style="padding:2em; width: 225px;; box-shadow: 2px 1000px 1px #ffff inset;">
+                                <img src="~/img/foto-card.svg" height="150" width="150" />
+                                <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
+                                <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px; border-radius: 3px;">R$ @item.Preco</h3>
+                            </div>
+                            <figure> <img src="~/img/vetor-desenho-atras.svg" height="300" width="300" style="position: absolute; right:13%; margin-top: 60px; z-index:-1;" /></figure>
+                        }
+                    }
+
+                    if (limite >= 4)
+                    {
+                        break;
+                    }
+
                 }
-
-
-
-                if (a == 4)
-                {
-                    <div class="flex-column center space-around" style="padding:2em; width: 225px; border: 3px solid transparent; box-shadow: 2px 1000px 1px #ffff inset; background-image: linear-gradient(to right, #70D7C7, #FFCB34); margin-left: 2em;">
-                        <img src="~/img/foto-card.svg" height="150" width="150" />
-                        <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
-                        <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
-                    </div>
-                    <figure> <img src="~/img/vetor-desenho-atras.svg" height="300" width="300" style="position: absolute; right:13%; margin-top: 60px; z-index:-1;" /></figure>
-                }
-
-            }
+            </div>
         </div>
+        <div class="border-top-linear"></div>
+        <div class="section-2" style="color:#fff; padding: 56px; align-items: center; display: flex; flex-direction: column;">
+            <img src="~/img/Student.svg" alt="" style="z-index: 2;">
+            <h1 class="fontJost400" style="font-size:28px; text-align:center; margin-bottom: 2em; z-index: 2; ">ENEM</h1>
+
+            <div class="parte1-2 flex-col center-justify" style="margin-bottom: 4em;   gap: 2em;  z-index: 2;">
+
+
+                @foreach (var item in Model.Cursos)
+                {
+                    limitee++;
+                    if (limitee < 4)
+                    {
+                        a = a + 1;
+                        if (a != 4)
+                        {
+                            <div class="flex-column center space-around borderCurso" style="padding:2em; width: 225px; box-shadow: 2px 1000px 1px #515352 inset;">
+                                <a href="../Cursos/Details/@item.CursoId"><img src="~/img/foto-card.svg" height="150" width="150" /></a>
+                                <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
+                                <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px; border-radius: 3px;">R$ @item.Preco</h3>
+                            </div>
+                        }
+
+
+
+                        if (a == 4)
+                        {
+                            <div class="flex-column center space-around borderCurso" style="padding:2em; width: 225px; box-shadow: 2px 1000px 1px #515352 inset;">
+                                <img src="~/img/foto-card.svg" height="150" width="150" />
+                                <h3 class="fontJost400">@item.Nome.ToUpper()</h3>
+                                <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px; border-radius: 3px;">R$ @item.Preco</h3>
+                            </div>
+                        }
+                    }
+
+                    if (limitee >= 4)
+                    {
+                        break;
+                    }
+                }
+            </div>
+            <h1 class="fontJost700" style="color: #FFF; font-size: 30px; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-top: 5em; text-align: center;">
+                NUNCA <br /> FOI TÃO FACIL <br /> STACKAR <br /> CONTEÚDO
+            </h1>
+        </div>
+        <div class="border-top-linear"></div>
+        <div class="section-3">
+            <h1 class="fontJost700" style="font-size:28px; text-align:center; margin-top: 2em; color: black;">CONHEÇA NOSSO MÉTODO</h1>
+            <div style="display: flex; gap: 4em; padding: 4em;">
+                <div class="itemSobreNos">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>PODER DA ESCOLHA</strong></h4>
+                        <img src="~/img/CaretCircleRight.svg" alt="">
+                    </div>
+
+                    <p class="nunito400">COM MAIS DE 100 MIL CURSOS DISPONIVEIS NÃO HÁ PRA ONDE FUGIR. TODOS OS CURSOS SÃO ESCOLHIDOS A DEDOS PRA VOCÊ, ENTÃO SE DIVIRTA PROCURANDO! E BOA SORTE!</p>
+                </div>
+                <div class="itemSobreNos">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>MUITO CONTEÚDO</strong></h4>
+                        <img src="~/img/CaretCircleRight.svg" alt="">
+                    </div>
+
+                    <p class="nunito400">DIVERSOS CURSOS COM PREÇOS INPERDIVEIS COM MAIS DE 32 H AULAS COM DIVERSOS CONTEUDOS E MATERIAIS</p>
+                    <img src="~/img/Barbell.svg" alt="" height="50px" width="50px" style="margin-top: 7em;">
+                </div>
+                <div class="itemSobreNos">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>COMUNIDADE</strong></h4>
+                        <img src="~/img/CaretCircleRight.svg" alt="">
+                    </div>
+                    <p class="nunito400">DECOLE SOBRE A CONCORRÊNCIA TEMOS FORUM E COMUNIDADES QUE SE AJUDA O TEMPO TODO. PROFESSORES ESTARÃO ATENTOS PARA QUALQUER IMPREVISTO DENTRO DA PLATAFORMA</p>
+                    <p class="nunito400">SE LIGA MEU BOM E ASSINA LOGO!</p>
+                    <img src="~/img/Rocket.svg" alt="" height="50px" width="50px">
+                </div>
+
+            </div>
+        </div>
+        <div class="border-top-linear"></div>
+        <div class="section-4" style="color:#fff; padding: 56px; align-items: center; display: flex; flex-direction: column;">
+            <h1 class="fontJost400" style="font-size:28px; text-align:center; margin-bottom: 2em; z-index: 2; ">Depoimento dos Alunos</h1>
+            </h1>
+            <div class=" displayFlexRelato relato-step" id="relato1">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                    <div style="display: flex; gap: 2em;">
+                        <img id="perfil" src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>Vinicius</strong></h4>
+
+                    </div>
+                    <img src="~/img/CaretCircleRight.svg" alt="">
+
+
+                </div>
+
+                <p class="nunito400">DIVERSOS CURSOS COM PREÇOS INPERDIVEIS COM MAIS DE 32 H AULAS COM DIVERSOS CONTEUDOS E MATERIAIS</p>
+            </div>
+            <div class="relatoAluno relato-step" id="relato2">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                    <div style="display: flex; gap: 2em;">
+                        <img id="perfil" src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>Raquel Garcia</strong></h4>
+
+                    </div>
+                    <img src="~/img/CaretCircleRight.svg" alt="">
+
+
+                </div>
+
+                <p class="nunito400">DIVERSOS CURSOS COM PREÇOS INPERDIVEIS COM MAIS DE 32 H AULAS COM DIVERSOS CONTEUDOS E MATERIAIS</p>
+            </div>
+            <div class="relatoAluno relato-step" id="relato3">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                    <div style="display: flex; gap: 2em;">
+                        <img id="perfil" src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>Pedro Varela</strong></h4>
+
+                    </div>
+                    <img src="~/img/CaretCircleRight.svg" alt="">
+
+
+                </div>
+
+                <p class="nunito400">DIVERSOS CURSOS COM PREÇOS INPERDIVEIS COM MAIS DE 32 H AULAS COM DIVERSOS CONTEUDOS E MATERIAIS</p>
+            </div>
+            <div class="relatoAluno relato-step" id="relato4">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1em;">
+                    <div style="display: flex; gap: 2em;">
+                        <img id="perfil" src="~/img/foto_estudantefoto.svg" height="40" width="40" />
+                        <h4 class="fontJost400" style="font-size: 20;"><strong>Ramom</strong></h4>
+
+                    </div>
+                    <img src="~/img/CaretCircleRight.svg" alt="">
+
+
+                </div>
+
+                <p class="nunito400">DIVERSOS CURSOS COM PREÇOS INPERDIVEIS COM MAIS DE 32 H AULAS COM DIVERSOS CONTEUDOS E MATERIAIS</p>
+            </div>
+            <div style="display: flex; gap: 2em; margin: 2em;">
+
+                <div class="">
+                    <div id="1" class="btn-relato bolacheck"></div>
+                </div>
+                <div class="">
+                    <div id="2" class="btn-relato bolauncheck"></div>
+                </div>
+                <div class="">
+                    <div id="3" class="btn-relato bolauncheck"></div>
+                </div>
+                <div class="">
+                    <div id="4" class="btn-relato bolauncheck"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="footerS">
+        @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
     </div>
 
-    <div class="part2" style="color:#454545;">
 
-    </div>
-    @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
 </body>
