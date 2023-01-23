@@ -15,12 +15,12 @@ namespace Stack_Learn.Controllers
 
         private EFContext context = new EFContext();
 
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Categorias.OrderBy(c => c.Nome));
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             return View();
@@ -34,7 +34,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -61,7 +61,7 @@ namespace Stack_Learn.Controllers
             }
             return View(categoria);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -76,7 +76,7 @@ namespace Stack_Learn.Controllers
             }
             return View(categoria);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)

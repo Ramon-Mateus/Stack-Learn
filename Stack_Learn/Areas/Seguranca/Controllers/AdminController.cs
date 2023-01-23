@@ -27,6 +27,7 @@ namespace Stack_Learn.Areas.Seguranca.Controllers
         {
             return View(GerenciadorUsuario.Users);
         }
+        //[Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             return View();
@@ -58,6 +59,7 @@ namespace Stack_Learn.Areas.Seguranca.Controllers
             }
             return View(model);
         }
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -93,6 +95,7 @@ namespace Stack_Learn.Areas.Seguranca.Controllers
             }
             return View(uvm);
         }
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -129,6 +132,7 @@ namespace Stack_Learn.Areas.Seguranca.Controllers
                 return HttpNotFound();
             }
         }
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(string id)
         {
             if (id == null)

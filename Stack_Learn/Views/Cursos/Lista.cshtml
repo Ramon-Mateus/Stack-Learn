@@ -7,6 +7,22 @@
 <head>
     <title>Stack Learn | Lista cursos online</title>
     <link href="@Url.Content("~/Css/PaginasInternas.css")" rel="stylesheet" />
+    <style>
+        .filter-btn {
+            background: transparent;
+            font-family: 'Jost';
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            text-align: right;
+            border: none;
+            margin: 12px;
+        }
+
+            .filter-btn:hover, .filter-btn.active {
+                border-bottom: 1px solid white;
+            }
+    </style>
 </head>
 <body>
     @{
@@ -24,29 +40,37 @@
     <div class="flex-col space-around" style="margin-bottom:4em;">
         <div class="flex-column" style="border-radius:5px;background-color:#515352; width:280px; margin-top: 16px;">
             <h2 class="fontJost700" style="color:white;margin-left:2em;">Categorias</h2>
-            <h2 class="fontJost700" style="color:white;margin-left:2em;">Faixa de preços</h2>
+            <button class="main-btn filter-btn active" id="all-btn">Todos</button>
+            @for (int i = 0; i < Model.Categorias.Count; i++)
+            {
+                <button class="main-btn filter-btn" id="@Model.Categorias[i].Nome-btn">@Model.Categorias[i].Nome</button>
+            }
+
+
         </div>
 
         <div class="parte1-2 flex-col center-justify" style="margin-bottom: 2em; width:100%; height: 100%; flex-wrap: wrap; padding: 10px;">
+
             @foreach (var item in Model.Cursos)
             {
+                <div class="project-box @item.Categoria.Nome">
+                    <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="
+                    padding: 2em;
+                    width: 225px;
+                    height: 300px;
+                    border: 3px solid transparent;
+                    box-shadow: 2px 1000px 1px #ffff inset;
+                    background-image: linear-gradient(to right, #70D7C7, #FFCB34);
+                    color: black;
+                    margin: 16px 12px 0px 12px;
 
+            ">
+                        <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="200" width="160" style="margin: 12px 0;" />
+                        <h3 class="fontJost400" style="height: 200px; text-align:center;">@item.Nome.ToUpper()</h3>
+                        <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
+                    </a>
+                </div>
 
-                <a href="/Cursos/Details/@item.CursoId" class="flex-column center space-around" style="
-    padding: 2em;
-        width: 225px;
-        height: 300px;
-        border: 3px solid transparent;
-        box-shadow: 2px 1000px 1px #ffff inset;
-        background-image: linear-gradient(to right, #70D7C7, #FFCB34);
-        color: black;
-        margin: 16px 12px 0px 12px;
-
-        ">
-                    <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="200" width="160" style="margin: 12px 0;" />
-                    <h3 class="fontJost400" style="height: 200px; text-align:center;">@item.Nome.ToUpper()</h3>
-                    <h3 class="fontJost400" style="background-color:#FFCC36; padding: 5px;">R$ @item.Preco</h3>
-                </a>
             }
         </div>
 
@@ -55,13 +79,14 @@
             @foreach (var item in Model.Cursos)
             {
                 <div class="flex-col center" style="color:#515352; margin-left:2em;">
-                    <img src="~/img/foto-card.svg" height="150" width="150" />
-                    <h3 class="fontJost400" style="color:white; margin-left: 12px; width: 140px;">@item.Nome.ToUpper()</h3>
+                    <img src="@Url.Action("GetLogotipo", "Cursos", new { id = item.CursoId })" height="125" width="100" />
+                    <h3 class="fontJost400" style="color:white; margin-left: 12px; margin-bottom: 12px; width: 140px;">@item.Nome.ToUpper()</h3>
                 </div>
             }
         </div>
     </div>
     @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
+    <script src="~/Scripts/scripts/flitro.js"></script>
 </body>
 @section ScriptPage{
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>

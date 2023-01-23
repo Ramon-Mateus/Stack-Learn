@@ -126,6 +126,20 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     background-repeat: no-repeat;
     margin-top: 3em; 
 }
+.filter-btn {
+    background: transparent;
+    font-family: 'Jost';
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    text-align: right;
+    border: none;
+    margin: 12px;
+}
+
+.filter-btn:hover, .filter-btn.active {
+   border-bottom: 1px solid white;
+}
 
 /*
 .next, .prev {

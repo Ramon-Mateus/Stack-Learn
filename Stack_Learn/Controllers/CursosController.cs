@@ -113,7 +113,7 @@ namespace Stack_Learn.Controllers
                 return View(curso);
             }
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome));
@@ -133,8 +133,16 @@ namespace Stack_Learn.Controllers
                 Cursos_totais.Add(item);
             }
             Cursos_Usuarios.Cursos = Cursos_totais;
+
+            var Categorias_totais = new List<Categoria>();
+            foreach (var item in context.Categorias.OrderBy(c => c.Nome))
+            {
+                Categorias_totais.Add(item);
+            }
+            Cursos_Usuarios.Categorias = Categorias_totais;
             return View(Cursos_Usuarios);
         }
+        [Authorize(Roles = "Aluno")]
         public ActionResult MeusCursosIndex(long? id)
         {
             //aluno -> pedido ok -> curso ok
@@ -182,6 +190,7 @@ namespace Stack_Learn.Controllers
 
 
        }
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             //para quem comprar, vir com todos os cursos falso
@@ -207,7 +216,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -290,7 +299,7 @@ namespace Stack_Learn.Controllers
    
             
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -312,7 +321,6 @@ namespace Stack_Learn.Controllers
             Curso curso = context.Cursos.Find(id);
             context.Cursos.Remove(curso);
             context.SaveChanges();
-            //TempData["Message"] = "Curso " + curso.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
     }

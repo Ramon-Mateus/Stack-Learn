@@ -14,12 +14,12 @@ namespace Stack_Learn.Controllers
     {
         private EFContext context = new EFContext();
 
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Avaliacoes.Include(c => c.Curso).Include(a=>a.Aluno).OrderBy(c => c.Nota));
         }
-
+        [Authorize(Roles = "Aluno")]
         public ActionResult Create()
         {
 
@@ -62,7 +62,7 @@ namespace Stack_Learn.Controllers
             return RedirectToAction("../Cursos/MeusCursosIndex/" + avaliacao.AlunoId);
         }
 
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -92,7 +92,7 @@ namespace Stack_Learn.Controllers
             }
             return View(avaliacao);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -106,7 +106,7 @@ namespace Stack_Learn.Controllers
             }
             return View(avaliacao);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)

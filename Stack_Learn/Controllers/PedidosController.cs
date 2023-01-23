@@ -24,17 +24,17 @@ namespace Stack_Learn.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
             }
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Pedidos.Include(a=>a.Aluno).OrderBy(c => c.PedidoId));
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult IndexCanalha()
         {
             return View(context.Pedidos.Include(a => a.Aluno).OrderBy(c => c.PedidoId));
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
@@ -49,7 +49,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("IndexCanalha");
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace Stack_Learn.Controllers
             }
             return View(pedido);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -91,7 +91,7 @@ namespace Stack_Learn.Controllers
             }
             return View(pedido);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -116,6 +116,7 @@ namespace Stack_Learn.Controllers
             TempData["Message"] = "Pedidos " + pedido.PedidoId + " foi removido";
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Aluno")]
         public ActionResult CarrrinhoCompra(long? id)
         {
             if (id == null)

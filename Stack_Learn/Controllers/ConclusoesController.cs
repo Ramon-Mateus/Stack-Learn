@@ -16,13 +16,13 @@ namespace Stack_Learn.Controllers
     {
         private EFContext context = new EFContext();
 
-        
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Conclusoes.Include(c => c.Aluno));
         }
 
-        
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             ViewBag.AlunoId = new SelectList(context.Alunos.OrderBy(b => b.Nome), "AlunoId", "Nome");
@@ -39,7 +39,7 @@ namespace Stack_Learn.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -68,7 +68,7 @@ namespace Stack_Learn.Controllers
             }
             return View(conclusao);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -82,7 +82,7 @@ namespace Stack_Learn.Controllers
             }
             return View(conclusao);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)

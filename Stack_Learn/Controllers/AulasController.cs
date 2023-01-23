@@ -23,11 +23,12 @@ namespace Stack_Learn.Controllers
             //IQueryable<Aula> daquele_curso = context.Aulas.
             return View(context.Aulas.Where(p => p.CursoId == id).Include(c => c.Curso).Include(y => y.Conclusao).OrderBy(n => n.Titulo));
         }
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Aulas.Include(c => c.Curso).Include(y => y.Conclusao).OrderBy(n => n.Titulo));
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             IEnumerable<SelectListItem> ConclusaoList = context.Conclusoes.AsEnumerable().Select(x => new SelectListItem
@@ -54,7 +55,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -84,7 +85,7 @@ namespace Stack_Learn.Controllers
             }
             return View(aula);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -98,6 +99,7 @@ namespace Stack_Learn.Controllers
             }
             return View(aula);
         }
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -122,6 +124,7 @@ namespace Stack_Learn.Controllers
             TempData["Message"] = "Aula " + aula.Titulo.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Aluno,ADM")]
         public ActionResult AulaIndividual(long? id)//get
         {
             if (id == null)
@@ -171,7 +174,6 @@ namespace Stack_Learn.Controllers
             aulaDetails.Aulas = ListaAulas;
             return View(aulaDetails);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AulaIndividual(AulaDetails auladetails)//post

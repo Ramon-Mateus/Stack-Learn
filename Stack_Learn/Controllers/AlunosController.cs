@@ -25,12 +25,12 @@ namespace Stack_Learn.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<GerenciadorUsuario>();
             }
         }
-        
+        [Authorize(Roles = "ADM")]
         public ActionResult Index()
         {
             return View(context.Alunos.OrderBy(c => c.Nome));
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Create()
         {
             return View();
@@ -44,7 +44,7 @@ namespace Stack_Learn.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Aluno")]
         public ActionResult Edit(long? id)
         {
             var CursosUsuarios = new CursosUsuarios();
@@ -80,7 +80,7 @@ namespace Stack_Learn.Controllers
             }
             return View(aluno);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -94,7 +94,7 @@ namespace Stack_Learn.Controllers
             }
             return View(aluno);
         }
-
+        [Authorize(Roles = "ADM")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
