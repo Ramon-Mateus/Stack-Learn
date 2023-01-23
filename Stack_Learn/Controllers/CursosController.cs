@@ -245,12 +245,21 @@ namespace Stack_Learn.Controllers
             CursoDetails objeto = new CursoDetails();
             objeto.curso = curso;
             objeto.cursos = context.Cursos.Include(c => c.Categoria).Include(f => f.Professor).OrderBy(n => n.Nome);
+            
             var Cursos_Usuarios = new CursosUsuarios();
             if (System.Web.HttpContext.Current.User.Identity.Name.ToString() != "")
             {
                 var userid = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 Usuario user = GerenciadorUsuario.FindById(userid);
                 Cursos_Usuarios.AlunoId = user.AlunoId;
+                objeto.curso.Aulas.Clear();
+                foreach (var aula in context.Aulas.Where(a => a.CursoId == objeto.curso.CursoId))
+                {
+                    if (aula.AlunoId == user.AlunoId)
+                    {
+                        objeto.curso.Aulas.Add(aula);
+                    }
+                }
             }
             objeto.cursos_usuarios = Cursos_Usuarios;
             return View(objeto);

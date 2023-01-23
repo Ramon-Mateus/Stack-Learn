@@ -49,7 +49,7 @@ namespace Stack_Learn.Controllers
                 aula.TrueFalse = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().Concluido;//adicionar manualmente a situação do curso
                 aula.AlunoId = context.Conclusoes.Where(a => a.ConclusaoId == aula.ConclusaoId).First().AlunoId;//adicionar manualmente o alunoid do curso
             }
-            
+
             context.Aulas.Add(aula);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -140,7 +140,7 @@ namespace Stack_Learn.Controllers
             {
                 return HttpNotFound();
             }
-            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId, c.TrueFalse, c.ConclusaoId, c.Conclusao, c.AlunoId};
+            var TodasAulas = from c in context.Aulas select new { c.AulaId, c.Titulo, c.Ordem, c.CursoId, c.TrueFalse, c.ConclusaoId, c.Conclusao, c.AlunoId };
             var aulaDetails = new AulaDetails();
             aulaDetails.AulaId = id.Value;
             aulaDetails.Ordem = aula.Ordem;
@@ -149,16 +149,23 @@ namespace Stack_Learn.Controllers
             aulaDetails.CursoId = aula.CursoId;
             aulaDetails.Curso = aula.Curso;
             aulaDetails.Curso.Categoria = aula.Curso.Categoria;
+            aulaDetails.Curso.Descricao = aula.Curso.Descricao;
             aulaDetails.TrueFalse = aula.TrueFalse;
             aulaDetails.Conclusao = aula.Conclusao;
             aulaDetails.ConclusaoId = aula.ConclusaoId;
             aulaDetails.AlunoId = aula.AlunoId;
+
+            var CursosUsuarios = new CursosUsuarios();
+            CursosUsuarios.AlunoId = id;
+            CursosUsuarios.CursosUsuariosId = id;
+            aulaDetails.curso_usuario = CursosUsuarios;
+
             var ListaAulas = new List<Aula>();
             foreach (var item in TodasAulas)
             {
-                if (item.CursoId == aula.CursoId)
+                if (item.CursoId == aula.CursoId && item.AlunoId == aula.AlunoId)
                 {
-                    ListaAulas.Add(new Aula { AulaId = item.AulaId, Titulo = item.Titulo, Ordem = item.Ordem, CursoId = item.CursoId, TrueFalse=item.TrueFalse, AlunoId=item.AlunoId});
+                    ListaAulas.Add(new Aula { AulaId = item.AulaId, Titulo = item.Titulo, Ordem = item.Ordem, CursoId = item.CursoId, TrueFalse = item.TrueFalse, AlunoId = item.AlunoId });
                 }
             }
             aulaDetails.Aulas = ListaAulas;
@@ -172,7 +179,7 @@ namespace Stack_Learn.Controllers
             if (ModelState.IsValid)
             {
                 Aula aula = context.Aulas.Where(p => p.AulaId == auladetails.AulaId).Include(c => c.Curso).First();//achou a aula correspondente
-                
+
                 aula.TrueFalse = auladetails.TrueFalse;
 
                 foreach (var item in context.Conclusoes)
@@ -187,7 +194,7 @@ namespace Stack_Learn.Controllers
 
                 context.Entry(aula).State = EntityState.Modified;
                 context.SaveChanges();
-                return RedirectToAction("MeusCursosIndex", "Cursos");
+                return RedirectToAction("MeusCursosIndex/" + aula.AlunoId, "Cursos");
             }
             return View(auladetails);
         }

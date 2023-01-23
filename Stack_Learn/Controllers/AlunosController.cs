@@ -76,7 +76,7 @@ namespace Stack_Learn.Controllers
                 usuario.PasswordHash = GerenciadorUsuario.PasswordHasher.HashPassword(aluno.Senha);
                 GerenciadorUsuario.Update(usuario);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Home/PaginaInicial");
             }
             return View(aluno);
         }

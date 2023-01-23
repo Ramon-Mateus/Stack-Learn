@@ -20,6 +20,8 @@ namespace Modelos.Models
         public long? CursoId { get; set; }//include Curso
         public Curso Curso { get; set; }
 
+        public CursosUsuarios curso_usuario { get; set; }
+
 
     }
 }

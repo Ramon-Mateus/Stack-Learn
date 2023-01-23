@@ -59,7 +59,7 @@ namespace Stack_Learn.Controllers
             avaliacao.Data_hora = DateTime.Now;
             context.Avaliacoes.Add(avaliacao);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("../Cursos/MeusCursosIndex/" + avaliacao.AlunoId);
         }
 
 

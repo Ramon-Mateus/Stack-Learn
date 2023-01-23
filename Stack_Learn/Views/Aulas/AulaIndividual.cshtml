@@ -2,12 +2,14 @@
 @{
     Layout = null;
     ViewBag.Title = "Detalhes da Aula";
+    int assistidas = 0;
+
 }
 <head>
     <title>Stack Learn | Aula individual</title>
 </head>
 <body>
-    
+    @Html.Partial("~/Views/Shared/_Header_Aluno.cshtml", Model.curso_usuario)
     <h1 class="fontJost400" style="margin-top:0px; font-size:22px; text-align:left; padding: 1.5em 1.5em 0px 1.5em; ">
         @Model.Curso.Categoria.Nome.ToUpper() <span style="opacity:0.4;"> > </span> @Model.Curso.Nome.ToUpper()
     </h1>
@@ -17,53 +19,181 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.AulaId)
 
-<div class="aulaindividual flex-col" style="margin-top: 2em;">
-    <div class="aula-esquerda flex-column space-between" style="width: 50%; background-color:#515352; padding-left: 33px;">
-        <h2 style="font-family: 'Jost'; font-size: 22px; color: white;">@Model.Titulo.ToUpper()</h2> 
-        <img src="~/img/ImgAula.svg" height="300" width="300" />
+        <div class="aulaindividual flex-col" style="margin-top: 2em;">
+            <div class="aula-esquerda flex-column space-between" style="width: 50%; background-color:#515352; padding-left: 33px;">
+                <h2 style="font-family: 'Jost'; font-size: 22px; color: white;">@Model.Titulo.ToUpper()</h2>
+                <img src="~/img/ImgAula.svg" height="300" width="300" />
 
-       <div class="checkbox flex-col space-between" style="padding-left: 20px; padding-right: 20px;">
-                   <div> 
+                <div class="checkbox flex-col space-between" style="padding-left: 20px; padding-right: 20px;">
+                    <div>
                         @Html.EditorFor(model => model.TrueFalse)
                         @Html.ValidationMessageFor(model => model.TrueFalse, "", new { @class = "text-danger" })
                     </div>
                     <div><input type="submit" value="Salvar progresso" class="btn btn-default" /></div>
-        </div>
-
-
-    </div>
-    <div class="aula-direita flex-column" style="width: 50%; ">
-        <h2 style="font-family: 'Jost'; font-size: 18px; color: black; text-align: center; margin:0px; font-weight: 500; background-color:#FFEB82; padding: 10px;">@Model.Curso.Nome.ToUpper()</h2>
-        @if (Model.Aulas != null)
-        {
-            foreach (var item in Model.Aulas)
-            {
-                <div class="outras flex-col space-between" style="color: black; padding:10px 4em;font-family: 'Jost'; font-size: 18px; background-color: #F8F8F8">
-
-                    <a href="./@item.AulaId" style="color:black;">@item.Ordem.  @item.Titulo</a>
-                    <div class="paracheck">
-                        @Html.DisplayFor(model => item.TrueFalse)
-                        <span class="checkkk"></span>
-                    </div>
                 </div>
-                
-            }
-        }
-    </div>
 
 
-    </div>
-        <div class="information">
-            <div class="information-esquerda">
+            </div>
+            <div class="aula-direita flex-column" style="width: 50%; ">
+                <h2 style="font-family: 'Jost'; font-size: 18px; color: black; text-align: center; margin:0px; font-weight: 500; background-color:#FFEB82; padding: 10px;">@Model.Curso.Nome.ToUpper()</h2>
+                @if (Model.Aulas != null)
+                {
+                    foreach (var item in Model.Aulas)
+                    {
+                        <div class="outras flex-col space-between" style="color: black; padding:10px 4em;font-family: 'Jost'; font-size: 18px; background-color: #F8F8F8">
+
+                            <a href="./@item.AulaId" style="color:black;">@item.Ordem.  @item.Titulo</a>
+                            <div class="paracheck">
+                                @Html.DisplayFor(model => item.TrueFalse)
+                                <span class="checkkk"></span>
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div>
+
+
+        </div>
+        <div class="descricao-progresso flex-col" style="padding-left: 33px; margin-bottom: 12px;">
+
+            <div class="resumo flex-column" style="width:50%;">
+                <h2 style="
+            font-family: 'Jost';
+            font-size: 18px;
+            font-weight: 500;
+
+            ">
+                    RESUMO DO CURSO
+                </h2>
+                <div class="line" style="background-image: linear-gradient(to right, #70D7C7, #FFCB34); height: 2px; margin: 0px; width: 97%; margin-bottom: 12px;"></div>
+                <p style="font-family: 'Jost'; font-weight: 300; font-size: 14px;">@Model.Curso.Descricao</p>
+            </div>
+
+            <div class="progresso flex-column" style="width: 50%; ">
+                <h2 style="
+            font-family: 'Jost';
+            font-size: 18px;
+            font-weight: 500;
+            padding-left: 33px;
+            ">
+                    PROGRESSO
+                </h2>
+                <div class="line" style="background-image: linear-gradient(to right, #70D7C7, #FFCB34); height: 2px; margin: 0px; width: 100%; margin-bottom: 12px;"></div>
+                <div class="bola-texto flex-col space-between" style="text-align: right; width: 100%;">
+                    @foreach (var item in Model.Aulas)
+                    {
+                        if (item.TrueFalse == true)
+                        {
+                            assistidas++;
+                        }
+                    }
+                    <div class="circle-yes-no" style="height: 100px; width: 100px; position: relative; margin-left: 33px;">
+                        @{int progresso = (@assistidas * 100) / @Model.Curso.Qtd_Aulas; }
+                        <div class="flex-column center-justify" style="text-align: center;font-weight: 400; font-size: 16px; z-index: 3; position: absolute; top: 9%; left: 9%; width: 82px; height: 82px;background-color: white; border-radius: 50%;">
+                            <p style="margin:auto 0;">@progresso %</p>
+                        </div>
+
+                        @*<div class="circle" style="
+                                height: 100px;
+                                width: 100px;
+                                border-radius: 50%;
+                                border: 3px solid black;
+                                margin: 10px;
+                                z-index:5;
+                                ">
+
+                            </div>*@
+                        <div class="circle" style="
+
+                        height: 100px;
+                        width: 100px;
+                        border-radius: 50%;
+                        border: 10px solid  #D9D9D9;
+
+
+                        position:absolute;
+
+
+
+                        top:0;
+
+                        position: absolute;
+
+                        z-index: 1;
+                        ">
+
+                        </div>
+
+                        @if (progresso <= 50)
+                        {
+                            @*<div class="superior-esquerdo" style="position:absolute; left:0; top: 0; width: 50px; height: 100px; background-color: white; z-index: 2;"></div>
+                                <div class="superior-esquerdo" style="position:absolute; top: 30%; width: 110px; height: 50px; background-color: white; z-index: 2;"></div>*@
+
+                            <div class="circle" style="
+
+                        height: 50px;
+                        width: 100px;
+                         border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+                        border: 10px solid #70D7C7;
+
+                        z-index: 2;
+
+                        position:absolute;
+
+
+
+                        top:0;
+                        ">
+
+                            </div>
+
+                        }
+                        @if (progresso > 50)
+                        {
+                            @*<div class="superior-esquerdo" style="position:absolute; left:0; top: 0; width: 50px; height: 100px; background-color: white; z-index: 2;"></div>
+                                <div class="superior-esquerdo" style="position:absolute; top: 30%; width: 110px; height: 50px; background-color: white; z-index: 2;"></div>*@
+
+                            <div class="circle" style="
+
+                        height: 50px;
+                        width: 100px;
+                         border-radius: 0 0 50% 50% / 0 0 100% 100%;
+                        border: 10px solid #70D7C7;
+
+                        z-index: 2;
+
+                        position:absolute;
+
+
+
+                        bottom:0;
+                        ">
+
+                            </div>
+
+                        }
+
+
+                    </div>
+
+                    <div class="texto flex-column" style="text-align: right; font-family: 'Jost'; font-weight: 300; font-size: 14px; margin-right: 40px;">
+                        <p>TOTAL DE AULAS = @Model.Curso.Qtd_Aulas</p>
+                        <p>AULAS ASSISTIDAS = @assistidas </p>
+                        @{ int progres = @Model.Curso.Qtd_Aulas - @assistidas;}
+                        <br />
+                        <p>FALTAM = @progres AULAS</p>
+
+
+
+                    </div>
+
+                </div>
+
 
             </div>
         </div>
-        <p> Descrição do curso:</p> <br /><p> @Model.Curso.Descricao</p>
-        <hr />
 
-        <hr />
-        <p>Progresso</p> <br />
-        <p>(Sem Progresso ainda)</p>
         @Html.Partial("~/Views/Shared/_Footer.cshtml", Model)
     }
 </body>

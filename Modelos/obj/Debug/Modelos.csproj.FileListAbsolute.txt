@@ -38,3 +38,9 @@ C:\Users\20201011110002\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\
 C:\Users\20201011110002\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.csproj.CoreCompileInputs.cache
 C:\Users\20201011110002\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.dll
 C:\Users\20201011110002\Source\Repos\Ramon-Mateus\Stack-Learn\Modelos\obj\Debug\Modelos.pdb
+C:\Users\smbne\Projetos\Modelos\bin\Debug\Modelos.dll
+C:\Users\smbne\Projetos\Modelos\bin\Debug\Modelos.pdb
+C:\Users\smbne\Projetos\Modelos\obj\Debug\Modelos.csproj.AssemblyReference.cache
+C:\Users\smbne\Projetos\Modelos\obj\Debug\Modelos.csproj.CoreCompileInputs.cache
+C:\Users\smbne\Projetos\Modelos\obj\Debug\Modelos.dll
+C:\Users\smbne\Projetos\Modelos\obj\Debug\Modelos.pdb
