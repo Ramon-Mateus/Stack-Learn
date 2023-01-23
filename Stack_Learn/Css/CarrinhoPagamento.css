@@ -5,7 +5,7 @@
     padding: 0;
 }
 .footer{
-    bottom: -300;
+    bottom: -300px;
     position: absolute;
     width: 100%;
     left: 0;

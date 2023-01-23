@@ -162,10 +162,6 @@ namespace Stack_Learn.Controllers
                 aulaDetails.Curso.Categoria = aula.Curso.Categoria;
                 */
 
-
-                pedido.Pago = true;
-                pedido.Data_Pagamento = DateTime.Now;
-                context.Entry(pedido).State = EntityState.Modified;
                 Pedido pedido2 = context.Pedidos.Find(pedido.PedidoId);
                 pedido2.Pago = true;
                 pedido2.Data_Pagamento = DateTime.Now;

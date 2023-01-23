@@ -115,6 +115,18 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 .size-editor input{
     width: 100%;
 }
+
+.part1-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../img/minhoca1.svg");
+    width:100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 3em; 
+}
+
 /*
 .next, .prev {
     position: absolute;
